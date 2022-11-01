@@ -32,14 +32,19 @@ export const Register = () => {
 
           <FormsLog onSubmit={handleSubmit(registerUser)}>
             <label htmlFor="name">Nome</label>
-            <input id="name" type="text" {...register("name")} />
+            <input
+              id="name"
+              type="text"
+              placeholder="Digite seu nome completo"
+              {...register("name")}
+            />
             <p className="error">{errors?.name?.message}</p>
 
             <label htmlFor="email">Email</label>
             <input
               id="email"
               type="text"
-              placeholder="Digite seu nome completo"
+              placeholder="Digite seu email"
               {...register("email")}
             />
             <p className="error">{errors?.email?.message}</p>
@@ -75,22 +80,16 @@ export const Register = () => {
             <input
               id="contact"
               type="text"
-              placeholder="Digite seu contato"
+              placeholder="Digite seu usuário do LinkedIn"
               {...register("linkedin")}
             />
             <p className="error">{errors.linkedin?.message}</p>
 
             <label htmlFor="specialty">Selecionar módulo</label>
             <select id="specialty" {...register("specialty")}>
-              <option value="Front-end">
-                Front-end
-              </option>
-              <option value="Back-End">
-                Back-End
-              </option>
-              <option value="Full-Stack">
-               Full-Stack
-              </option>
+              <option value="Front-end">Front-end</option>
+              <option value="Back-End">Back-End</option>
+              <option value="Full-Stack">Full-Stack</option>
             </select>
             <p className="error">{errors.specialty?.message}</p>
 
