@@ -1,84 +1,103 @@
 import styled from "styled-components";
 
 const Create = styled.div`
-    div {
-        margin: 25px 5px;
-        background-color: var(--grey-1);
-        border: 1px solid black;
-        border-radius: 5px;
-
-        h3 {
-            padding: 5px;
-        }
-        form {
-            margin: 3px;
-            padding: 10px 3px 3px 3px;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--color-primary);
-            color: white;
-            font-weight: 700;
-            
-            input {
-                margin: 5px 0 1rem 0;
-                padding: 10px;
-            }
-
-            .tecnologies {
-                border: none;
-                position: relative;
-                margin-bottom: 10px;
-
-                .tech {
-                    background-color: #B47BFD;
-                    position: relative;
-                    padding: 10px;
-                    border-color: var(--grey-1);
-                    display: inline-block;
-                }
-
-                #techAdd {
-                    position: absolute;
-                    right: 5px;
-                    bottom: 0;
-                }
-
-                .removeTech {
-                    position: absolute;
-                    display: flex;
-                    top: -5px;
-                    right: -5px;
-                    padding: 5px;
-                    background-color: white;
-                    border: none;
-                    border-radius: 50%;
-                    font-size: 8px;
-                }
-            }
-
-            select {
-                margin: 5px 0 1rem 0;
-                padding: 10px;
-            }
-
-            button {
-                background-color: var(--color-secundary);
-                padding: 8px;
-                font-weight: 700;
-            }
-        }
-
-        
-    }
-
-    @media screen and (min-width: 768px){
-        form {
-            display: flex;
-        }
-    }
+  .divCreate {
+    margin: 25px 5px;
+    background-color: var(--grey-1);
+    border: 1px solid black;
+    border-radius: 5px;
     
-    border-bottom: 2px solid var(--color-primary);
-`
 
-export default Create
+    h3 {
+      padding: 5px;
+    }
+    form {
+      position: relative;
+      margin: 3px;
+      padding: 15px 8px 3px 8px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 700;
+
+      .formColumn {
+        display: flex;
+        flex-direction: column;
+        border: none;
+      }
+      input {
+        margin: 5px 0 1rem 0;
+        padding: 10px;
+      }
+
+      select {
+        margin: 5px 0 1rem 0;
+        padding: 10px;
+      }
+
+      button {
+        margin-top: 10px;
+        background-color: var(--color-secundary);
+        border-radius: 5px;
+        padding: 8px;
+        font-weight: 700;
+      }
+    }
+
+    @media screen and (min-width: 500px) {
+        max-width: 540px;
+        margin: 25px auto;
+
+        form {
+            padding: 10px 30px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        max-width: unset;
+      form {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 20px 40px;
+
+        input {
+            width: 80%;
+        }
+
+        .tecnologies {
+            width: 90%;
+        }
+      }
+
+      .formColumn {
+        width: 48%;
+        gap: 5px;
+      }
+
+      #btnSaveJob {
+        width: 100%;
+      }
+
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .divCreate {
+      width: 80vw;
+      margin: 25px auto;
+      padding: 10px 10px 20px 10px;
+    }
+  }
+
+  @media screen and (min-width: 1100px){
+    .divForm {
+      padding: 0 20%;
+    }
+  }
+
+  border-bottom: 2px solid var(--color-primary);
+`;
+
+export default Create;
