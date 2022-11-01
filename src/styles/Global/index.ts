@@ -4,6 +4,7 @@ const Global = createGlobalStyle`
     :root {
         --color-primary: #430B66;
         --color-secundary: #BDAFCB;
+        --grey-1: ##EBEBEB;
     }
 
     /* http://meyerweb.com/eric/tools/css/reset/ 
