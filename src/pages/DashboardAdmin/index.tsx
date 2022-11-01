@@ -4,7 +4,7 @@ import JobsAdmin from "../../components/JobsAdmin"
 import Welcome from "../../components/Welcome"
 
 const DashboardAdmin = () => {
-    const name:string = 'vinicius'
+    const name:string = "vinicius"
     return (
         <>
             <Header />

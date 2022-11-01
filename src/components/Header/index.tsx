@@ -1,5 +1,4 @@
 import Logo from '../../img/logo.png'
-import btnMenu from '../../img/btnMenuMobile.png'
 import { LinkPrimary, LinkSecundary } from '../../styles/Links'
 import StyleHeader from '../../styles/Header'
 
