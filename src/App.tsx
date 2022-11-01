@@ -1,14 +1,14 @@
 import Global from './styles/Global';
 import './App.css';
-import Header from './components/Header';
-import DashboardAdmin from './pages/DashboardAdmin';
-import RoutesMain from './routes';
+// import RoutesMain from './routes';
+import DashboardUser from './pages/DashboardUser';
 
 function App() {
   return (
     <div className="App">
       <Global />
-      <RoutesMain/>
+      {/* <RoutesMain/> */}
+      <DashboardUser/>
     </div>
   );
 }
