@@ -8,6 +8,6 @@ Participantes:
   <li><a href="https://github.com/nataliauai">Natalia</a></li>
   <li><a href="https://github.com/netomilfont">Neto Milfont</a></li>
   <li><a href="https://github.com/viniciusgrp">Vinicius Pacheco</a></li>
-  <li><a href="https://github.com/viniciusgrp">Luiza Barros</a></li>
+  <li><a href="https://github.com/luizabarros">Luiza Barros</a></li>
 </ul>
 
