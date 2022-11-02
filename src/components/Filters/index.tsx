@@ -1,5 +1,5 @@
 import { DivFilters } from "../../styles/Divs"
-import {AiOutlineSearch} from "react-icons/ai"
+import { AiOutlineSearch } from "react-icons/ai"
 
 const Filters = () => {
 

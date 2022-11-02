@@ -1,14 +1,22 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 interface IUserCountextProps {
     children: React.ReactNode;
 }
 
-export const UserContext = createContext({})
+interface IUserContextProps {
+    // tipagem das props de value do UserContext.Provider
+    test: string | null
+}
+
+export const UserContext = createContext<IUserContextProps>({} as IUserContextProps)
 
 export const UserProvider = ({children}: IUserCountextProps) => {
+    const [test, setTest] = useState(null)
 
     return (
-        <UserContext.Provider value={{}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{ test }}>
+            {children}
+        </UserContext.Provider>
     )
 }
