@@ -29,7 +29,7 @@ const Cards = ({ title }: ICardsProps) => {
             try {
                 const { data } = await api.get<IJobsProps[]>("/companyJobs")
 
-                const filteredData = data.filter(object => object.level === user.level)
+                const filteredData = data.filter((object: IJobsProps) => object.level === user.level)
                 setAllJobs(filteredData)
             } catch (error) {
                 console.error(error)
@@ -38,13 +38,13 @@ const Cards = ({ title }: ICardsProps) => {
 
         getAllJobs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [allJobs])
 
     useEffect(() => {
         async function getSavedJobs() {
             try {
-                const userID = 4 //localStorage.getItem("")
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1YW5AbWFpbC5jb20iLCJpYXQiOjE2NjczOTc4MTgsImV4cCI6MTY2NzQwMTQxOCwic3ViIjoiNCJ9.xdoNbqjZpme6K7QqtiSPeJyB-uXReUKACd8tyLYmkn0" // localStorage.getItem("")
+                const userID = 3 //localStorage.getItem("")
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1YW5AbWFpbC5jb20iLCJpYXQiOjE2Njc0MTI3NDYsImV4cCI6MTY2NzQxNjM0Niwic3ViIjoiMyJ9._A8RaXtHZ3S-ERHQyQsmgxnkl7-GlKLPw4osU7rYHwI" // localStorage.getItem("")
                 api.defaults.headers.authorization = `Bearer ${token}`
 
                 const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`)
@@ -56,7 +56,7 @@ const Cards = ({ title }: ICardsProps) => {
 
         getSavedJobs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [savedJobs])
 
     return title === "Todas as vagas" ? <Lists objectArray={allJobs}/> : <Lists objectArray={savedJobs}/>
 }
