@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Header = styled.header`
+const HeaderUser = styled.header`
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -21,4 +21,4 @@ const Header = styled.header`
     }
 `
 
-export default Header
+export default HeaderUser
