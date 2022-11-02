@@ -19,12 +19,42 @@ export const DivGrey = styled.div`
         font-size: 16px;
         margin: 10px;
   }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+
+    .containerCards {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .cardList {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow: scroll;
+
+        gap: 30px;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 85%;
+
+    .cardList {
+      overflow: hidden;
+    }
+  }
 `;
 
 export const DivCard = styled.li`
     background-color: #ffffff;
     margin: 30px auto;
-    width: 180px;
+    width: 200px;
     padding: 15px;
     
     border-radius: 5px;
@@ -33,6 +63,7 @@ export const DivCard = styled.li`
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     
 
     .cardInfo {
@@ -49,7 +80,7 @@ export const DivCard = styled.li`
         }
     }
 
-    .Trash {
+    .trash {
         width: 30px;
         height: 30px;
         margin: 0 auto;
@@ -84,11 +115,12 @@ export const DivFilters = styled.div`
 
   .selectFilter {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 8px;
 
     margin-bottom: 15px;
-    width: 100%;
+    width: 90%;
     padding-top: 30px;
 
     select {
@@ -102,7 +134,8 @@ export const DivFilters = styled.div`
   }
 
   .searchBar {
-    width: 100%;
+    min-width: 315px;
+    max-width: 400px;
 
     .searchBarInput {
         border: 1px solid var(--color-primary);
@@ -116,6 +149,25 @@ export const DivFilters = styled.div`
         input {
             border: transparent;
         }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 0px;
+    padding-top: 20px;
+
+    width: 85%;
+
+    .selectFilter {
+      padding-top: 0px;
+      margin-bottom: 0px;
+      justify-content: flex-start;
+      gap: 10px;
+      
+    }
+
+    .searchBar {
+      width: 60%;
     }
   }
 `;
