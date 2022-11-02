@@ -1,9 +1,12 @@
+import JobsAdminStyle from "../../styles/JobsFilterAdmin";
+
 function JobsAdmin() {
   return (
-    <div className="jobsFilter">
+    <JobsAdminStyle>
+      <div className="searchSelect">
       <div className="filterLeft">
         <select id="tecnologies">
-          <option value="" disabled selected>
+          <option value="" selected disabled>
             Tecnologia
           </option>
           <option value="javascript">JavaScript</option>
@@ -11,7 +14,7 @@ function JobsAdmin() {
           <option value="typescript">TypeScript</option>
         </select>
         <select id="type">
-          <option value="" disabled selected>
+          <option value="" selected disabled>
             Tipo
           </option>
           <option value="remoto">Remoto</option>
@@ -19,7 +22,26 @@ function JobsAdmin() {
           <option value="presencial">Presencial</option>
         </select>
       </div>
-    </div>
+      <div className="filterRight">
+        <select id="salary">
+          <option value="" selected disabled>
+            Salário
+          </option>
+          <option value="1000">R$1.000</option>
+          <option value="2000">R$2.000</option>
+          <option value="5000">R$5.000</option>
+        </select>
+        <select id="company">
+          <option value="" selected disabled>
+            Empresa
+          </option>
+          <option value="microsoft">Microsoft</option>
+          <option value="google">Google</option>
+        </select>
+      </div>
+      </div>
+        <input type="text" id="adminJobSearch" placeholder="Pesquisar"/>
+    </JobsAdminStyle>
   );
 }
 

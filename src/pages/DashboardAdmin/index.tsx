@@ -1,6 +1,7 @@
 import CreateJob from "../../components/CreateJob"
 import Header from "../../components/Header"
 import JobsAdmin from "../../components/JobsAdmin"
+import JobsCreateds from "../../components/JobsCreateds"
 import Welcome from "../../components/Welcome"
 
 const DashboardAdmin = () => {
@@ -10,7 +11,8 @@ const DashboardAdmin = () => {
             <Header />
             <Welcome name={name} />
             <CreateJob />
-            <JobsAdmin/>
+            <JobsAdmin />
+            <JobsCreateds/>
         </>
     )
 }

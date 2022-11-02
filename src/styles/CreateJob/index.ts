@@ -85,7 +85,7 @@ const Create = styled.div`
 
   @media screen and (min-width: 768px) {
     .divCreate {
-      width: 80vw;
+      width: 85vw;
       margin: 25px auto;
       padding: 10px 10px 20px 10px;
     }
