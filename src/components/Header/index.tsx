@@ -1,5 +1,5 @@
 import Logo from '../../img/logo.png'
-import { LinkPrimary, LinkSecundary } from '../../styles/Links'
+import { LinkSecundary } from '../../styles/Links'
 import StyleHeader from '../../styles/Header'
 
 const Header = () => {
@@ -7,7 +7,6 @@ const Header = () => {
         <StyleHeader>
             <img src={Logo} alt="Logo Kenzinho" />
             <div className="rightHeader">
-                <LinkPrimary to={'/'} className='buttonHeaderDesktop'>Perfil</LinkPrimary>
                 <LinkSecundary to={'/'} className='buttonHeaderDesktop'>Logout</LinkSecundary>
             </div>
         </StyleHeader>

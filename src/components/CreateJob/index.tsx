@@ -28,11 +28,15 @@ const CreateJob = () => {
               />
               <label htmlFor="salary">Salário</label>
               <input type="text" id="salary" placeholder="R$4.500,00" />
+              <label htmlFor="tecnology">Tecnologia</label>
+              <input type="text"  id="tecnology" placeholder="Ex: React, JavaScript, Html..."/>
             </div>
             <div className="formColumn">
               <label htmlFor="level">Nível</label>
               <select id="level" placeholder="Escolha uma opção">
-                <option value="" disabled selected>Tecnologia</option>
+                <option value="" disabled selected>
+                  Selecione uma opção
+                </option>
                 <option value="junior">Júnior</option>
                 <option value="pleno">Pleno</option>
                 <option value="senior">Sênior</option>
