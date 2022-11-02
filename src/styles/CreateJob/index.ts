@@ -47,6 +47,7 @@ const Create = styled.div`
       textarea {
         height: 230px;
         padding: 10px;
+        resize: none;
       }
     }
 

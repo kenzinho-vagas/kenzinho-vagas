@@ -1,12 +1,40 @@
 import Create from "../../styles/CreateJob";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+interface IFormVagas {
+  company_name: string;
+  especiality: string;
+  salary: string;
+  kind_of_work: string;
+  tech: string;
+  level: string;
+  jobURL: string;
+  description: string;
+}
 
 const CreateJob = () => {
+  const { register, handleSubmit } = useForm();
+
+  const formSchema = yup.object().shape({
+    company_name: yup.string().required("Campo obrigátorio"),
+    especiality: yup.string().required("Campo obrigátorio"),
+    salary: yup.string().required("Campo obrigátorio"),
+    kind_of_work: yup.string().required("Campo obrigátorio"),
+    tech: yup.string().required("Campo obrigátorio"),
+    level: yup.string().required("Campo obrigátorio"),
+    jobURL: yup.string().required("Campo obrigátorio"),
+    description: yup.string().required("Campo obrigátorio"),
+
+  });
+
   return (
     <Create>
       <div className="divCreate">
         <h3>Criar vaga</h3>
         <div className="divForm">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="formColumn">
               <label htmlFor="companyName">Nome da empresa</label>
               <input
@@ -29,7 +57,11 @@ const CreateJob = () => {
               <label htmlFor="salary">Salário</label>
               <input type="text" id="salary" placeholder="R$4.500,00" />
               <label htmlFor="tecnology">Tecnologia</label>
-              <input type="text"  id="tecnology" placeholder="Ex: React, JavaScript, Html..."/>
+              <input
+                type="text"
+                id="tecnology"
+                placeholder="Ex: React, JavaScript, Html..."
+              />
             </div>
             <div className="formColumn">
               <label htmlFor="level">Nível</label>

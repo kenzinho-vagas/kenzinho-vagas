@@ -10,7 +10,7 @@ const RoutesMain = () => (
     <Route path="/" element={<LandingPage />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/dashboardAmin" element={<DashboardAdmin />} />
+    <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
     <Route path="/dashboardUser" element={<DashboardUser/>}/>
   </Routes>
 );
