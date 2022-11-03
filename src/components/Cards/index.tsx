@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react"
 import { api } from "../../services/api"
+=======
+import { useContext } from "react"
+import { JobContext, JobProvider } from "../../contexts/JobContext"
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
 import Lists from "../Lists"
 
 export interface IJobsProps {
@@ -20,47 +25,19 @@ interface ICardsProps {
 }
 
 const Cards = ({ title }: ICardsProps) => {
-    const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([])
-    const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([])
-    const [user, setUser] = useState<{level: string}>({level: "Júnior"})
-
-    useEffect(() => {
-        async function getAllJobs() {
-            try {
-                const { data } = await api.get<IJobsProps[]>("/companyJobs")
-
-                const filteredData = data.filter((object: IJobsProps) => object.level === user.level)
-                setAllJobs(filteredData)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
-        getAllJobs()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [allJobs])
-
-    useEffect(() => {
-        async function getSavedJobs() {
-            try {
-                const userID = 3 //localStorage.getItem("")
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1YW5AbWFpbC5jb20iLCJpYXQiOjE2Njc0Njk5NDAsImV4cCI6MTY2NzQ3MzU0MCwic3ViIjoiMyJ9.J3OiougLJ7R2yCVTOh6CYG1QqVd6ER6K6nbJf34_R9I" // localStorage.getItem("")
-                api.defaults.headers.authorization = `Bearer ${token}`
-
-                const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`)
-                setSavedJobs(data)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
-        getSavedJobs()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [savedJobs])
+    const { allJobs, savedJobs } = useContext(JobContext)
 
     return title === "Todas as vagas" 
-    ? <Lists objectArray={allJobs} title={title}/> 
-    : <Lists objectArray={savedJobs} title={title}/>
+    ? (
+        <JobProvider>
+            <Lists objectArray={allJobs} title={title}/>
+        </JobProvider>
+      )
+    : (
+        <JobProvider>
+            <Lists objectArray={savedJobs} title={title}/>
+        </JobProvider>
+      )
 }
 
 export default Cards

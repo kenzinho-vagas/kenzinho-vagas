@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+<<<<<<< HEAD
 import { IJobsProps } from "../Cards";
 import { notifyError, notifySuccess } from "../../toast";
 import { api } from "../../services/api";
@@ -10,14 +11,26 @@ import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";
 import Case from "../../img/case.png";
 import { DivModaldetails } from "./style";
+=======
+import { notifyError, notifySuccess } from "../../toast";
+import { IJobsProps } from "../Cards";
+import api from "../../services/api";
+
+
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
 interface IJobDetailsModalProps {
   jobID: number;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
+<<<<<<< HEAD
   const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([]);
   const [saveJob, setSaveJob] = useState<boolean>(false);
+=======
+    const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([]);
+    const [saveJob, setSaveJob] = useState<boolean>(false);
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
 
   useEffect(() => {
     async function getSpecificJob() {
@@ -31,6 +44,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
       }
     }
 
+<<<<<<< HEAD
     getSpecificJob();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,13 +59,35 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
           notifySuccess();
         } catch (error) {
           notifyError();
+=======
+        getSpecificJob()
+    }, [])
+
+    useEffect(() => {
+        async function postSpecificJob() {
+            if (saveJob) {
+                try {
+                    const body = specificJob[0]
+                    const userID = localStorage.getItem("@kenzinhoVagas:id");
+                    await api.post(`/users/${userID}/jobs`, body)
+                    notifySuccess()
+                } catch (error) {
+                    notifyError()
+                }
+            }
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
         }
       }
     }
 
+<<<<<<< HEAD
     postSpecificJob();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saveJob]);
+=======
+        postSpecificJob()
+    }, [saveJob])
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
 
   return (
     <DivModal>
@@ -107,4 +143,8 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
   );
 };
 
+<<<<<<< HEAD
 export default JobDetailsModal;
+=======
+export default JobDetailsModal;
+>>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180

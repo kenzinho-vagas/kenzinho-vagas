@@ -1,8 +1,9 @@
-import { DivGrey } from "../../styles/Divs"
-import Cards from "../Cards"
+import { JobProvider } from "../../contexts/JobContext";
+import { DivGrey } from "../../styles/Divs";
+import Cards from "../Cards";
 
 interface IJobsProps {
-    title: string
+    title: string;
 }
 
 const JobsContainer = ({ title }: IJobsProps) => {
@@ -10,10 +11,12 @@ const JobsContainer = ({ title }: IJobsProps) => {
         <DivGrey>
             <h3>{ title }</h3>
             <section className="cards">
-                <Cards title={title}/>
+                <JobProvider>
+                    <Cards title={title}/>
+                </JobProvider>
             </section>
         </DivGrey>
     )
 }
 
-export default JobsContainer
+export default JobsContainer;
