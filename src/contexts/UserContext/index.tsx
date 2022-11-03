@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 
 interface IUserContextProps {
@@ -40,15 +41,16 @@ interface IJobs {
   }
 
   export interface IEditeProfile {
-    level: string;
-    bio: string;
-    specialty: string
+    level?: string;
+    bio?: string;
+    specialty?: string
   }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext)
 
 export const UserProvider = ({children}: IUserContextProps) => {
     const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
+    console.log(profileUser)
     const [isProfileModal, setProfileModal] = useState<boolean>(false)
 
     useEffect(() =>{
@@ -74,17 +76,30 @@ export const UserProvider = ({children}: IUserContextProps) => {
         const userId = localStorage.getItem("@kenzinhoVagas:id")
         const token = localStorage.getItem("@kenzinhoVagas:accessToken")
 
+        if (body.bio === "") {
+            delete body.bio
+        }
+        if (body.level === "") {
+            delete body.level
+        }
+        if (body.specialty === "") {
+            delete body.specialty
+        }
+
         try {
             api.defaults.headers.authorization = `Bearer ${token}`
 
             const {data} = await api.patch(`/users/${userId}`, body)
-            console.log(data)
             setProfileUser(data)
+            toast.success("Perfil editado com Sucesso!!")
         }
 
         catch (error) {
             console.log(error)
+            toast.error("Opa! Algo deu errado...");
         }
+
+        console.log(body)
     }
 
     return (

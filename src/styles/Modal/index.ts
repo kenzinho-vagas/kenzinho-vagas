@@ -18,7 +18,7 @@ export const DivModal = styled.div`
     .overlayModal {
       width: 90%;
       min-width: 300px;
-      max-width: 500px;
+      max-width: 700px;
       position: relative;
       display: flex;
       justify-content: center;
@@ -88,8 +88,88 @@ export const DivForm = styled.div`
   padding: 8px;
 
   form {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+
+    .formColumns {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      margin-bottom: 15px;
+      padding-top: 20px;
+
+      .formLeft {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+
+        label {
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 700;
+          
+          margin-bottom: 5px;
+        }
+
+        input {
+          margin-bottom: 20px;
+          padding: 8px;
+          border-radius: 4px;
+        }
+
+        input::placeholder {
+          font-size: 14px;
+          color: #000000;
+        }
+      }
+
+      .formRight {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+
+        label {
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 700;
+          
+          margin-bottom: 5px;
+        }
+        
+        input, select {
+          margin-bottom: 20px;
+          padding: 8px;
+          border-radius: 4px;
+
+          font-size: 16px;
+          color: #000000;
+        }
+
+       
+      }
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        gap: 30px;
+      }
+    }
+
+    button {
+      background-color: var(--color-secundary);
+      border: transparent;
+      border-radius: 4px;
+
+      margin-bottom: 20px;
+      padding: 8px;
+
+      color: #000000;
+      font-weight: 700;
+      font-size: 14px;
+    }
   }
+    
 `
