@@ -1,8 +1,9 @@
 import Header from "../../styles/HeaderAdmin";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
 import logo from "../../img/logo.png";
-import { DivLanding, DivOurNumbers } from "./style";
+import { DivKenzinho, DivLanding, DivOurNumbers } from "./style";
 import group from "../../img/group.png";
+import whykenzinho from "../../img/whykenzinho.png"
 
 export const LandingPage = () => {
   return (
@@ -53,6 +54,17 @@ export const LandingPage = () => {
           </li>
         </ul>
       </DivOurNumbers>
+      <DivKenzinho>
+        <h2 className="titleDiv3">PORQUE USAR A KENZINHO?</h2>
+        <div className="whyKenzinho">
+      <div className="divkenzie1">
+          <img src={whykenzinho} alt="Pessoas trabalhando" />
+        </div>
+        <div className="divkenzie2">
+          <h3 className="content3">Aqui você encontra vagas que dão match com o seu perfil, vagas filtradas para as tecnologias que você aprendeu!</h3>
+        </div>
+        </div>
+      </DivKenzinho>
     </>
   );
 };
