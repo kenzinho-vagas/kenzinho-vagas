@@ -32,7 +32,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
             if (saveJob) {
                 try {
                     const body = specificJob[0]
-                    const userID = localStorage.getItem("@kenzinhoVagas:userID");
+                    const userID = localStorage.getItem("@kenzinhoVagas:id");
                     await api.post(`/users/${userID}/jobs`, body)
                     notifySuccess()
                 } catch (error) {

@@ -49,7 +49,7 @@ export const JobProvider = ({children}: IJobCountextProps) => {
     useEffect(() => {
         async function getSavedJobs() {
             try {
-                const userID = localStorage.getItem("@kenzinhoVagas:userID");
+                const userID = localStorage.getItem("@kenzinhoVagas:id");
                 const token = localStorage.getItem("@kenzinhoVagas:accessToken")
                 api.defaults.headers.authorization = `Bearer ${token}`
 
