@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
-import { api } from "../../services/api";
+import api from "../../services/api";
 
 interface IJobProvider {
   children: React.ReactNode;

@@ -42,7 +42,7 @@ const Global = createGlobalStyle`
     body {
         line-height: 1;
     }
-    ol, ul {
+    ol, ul, li {
         list-style: none;
     }
     blockquote, q {
@@ -56,9 +56,6 @@ const Global = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
-    }
-    button {
-        cursor: pointer;
     }
 `;
 

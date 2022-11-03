@@ -1,19 +1,17 @@
-import Filters from "../../components/Filters";
 import Footer from "../../components/Footer";
 import HeaderUser from "../../components/HeaderUser";
-import JobCards from "../../components/JobCards";
-import NewJobCards from "../../components/NewJobCards";
+import Main from "../../components/Main";
 import Welcome from "../../components/Welcome";
+import { UserContext } from "../../contexts/UserContext";
 
 const DashboardUser = () => {
   const name: string = "Gabriela";
+
   return (
     <>
       <HeaderUser />
       <Welcome name={name} />
-      <JobCards />
-      <Filters />
-      <NewJobCards />
+      <Main/>
       <Footer />
     </>
   );
