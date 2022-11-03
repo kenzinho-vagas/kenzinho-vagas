@@ -2,6 +2,7 @@ import Global from "./styles/Global";
 import Routes from "./routes";
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from "./contexts/AuthContext";
+import { JobProvider } from "./contexts/JobContext";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
       <ToastContainer />
       <Global />
       <AuthProvider>
-        <Routes />
+        <JobProvider>
+          <Routes />
+        </JobProvider>
       </AuthProvider>
     </div>
   );
