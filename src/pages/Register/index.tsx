@@ -100,6 +100,11 @@ export const Register = () => {
             </select>
             <p className="error">{errors.specialty?.message}</p>
 
+            <input type="text"
+            id="isAdmin"
+            hidden
+            value="false"
+            {...register("isAdmin")} />
             <button className="buttonForm1" type="submit">
               Cadastrar
             </button>
