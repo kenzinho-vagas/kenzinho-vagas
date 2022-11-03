@@ -7,7 +7,8 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import  api  from "../services/api";
+import api from "../services/api";
+
 
 export interface IUser {
   id: number;
@@ -19,7 +20,7 @@ export interface IUser {
   level: string;
   bio?: string;
   specialty: string;
-  isAdmin: boolean;
+  isAdmin: false;
   jobs: [];
 }
 
@@ -31,8 +32,7 @@ export interface IAuthContext {
 
 export interface ILogin {
   user: IUser;
-  accessToken: string;
-  id: number;
+  token: string;
 }
 
 interface IUserContext {
@@ -72,14 +72,16 @@ export const AuthProvider = ({ children }: IAuthContext) => {
     try {
       const res = await api.post<ILogin>("/login", data);
       console.log(res);
-      const { user: userResponse, accessToken } = res.data;
-      const id = userResponse.id.toString();
-      api.defaults.headers.authorization = `Bearer ${accessToken}`;
-      localStorage.setItem("@kenzinhoVagas:accessToken", accessToken);
-      localStorage.setItem("@kenzinhoVagas:id", id);
-      userResponse.isAdmin === true
-        ? navigate("/dashboardAdmin", { replace: true })
-        : navigate("/dashboard", { replace: true });
+
+      const { user: userResponse, token } = res.data;
+
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      setUser(userResponse);
+      localStorage.setItem("@kenzinhoVagas:accessToken", token);
+      userResponse.isAdmin === false || undefined
+        ? navigate("/dashboard", { replace: true })
+        : navigate("/dashboardAdmin", { replace: true })
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
