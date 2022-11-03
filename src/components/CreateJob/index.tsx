@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { ITechs, JobContext } from "../../contexts/JobContext";
+import { JobContext } from "../../contexts/JobContext";
 
 export interface INewJobForm {
   company_name: string;
@@ -29,6 +29,7 @@ const CreateJob = () => {
     level: yup.string(),
     jobURL: yup.string(),
     description: yup.string().required("Campo obrigátorio"),
+    candidates: yup.string(),
   });
 
   const {
@@ -113,7 +114,13 @@ const CreateJob = () => {
                 placeholder="Ex: Atuará em todo o ciclo de vida do sistema (Planejar, arquitetar, desenvolver, testar, implementar, monitorar, documentar, etc.)"
                 {...register("description")}
               ></textarea>
-              <p>{errors.description && errors.description.message}</p>
+              <input
+                type="text"
+                id="candidates"
+                hidden
+                value={[]}
+                {...register("candidates")}
+              />
               <button type="submit" id="btnSaveJob">
                 Criar
               </button>
