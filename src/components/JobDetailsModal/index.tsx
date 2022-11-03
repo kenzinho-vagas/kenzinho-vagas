@@ -4,6 +4,7 @@ import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../Cards";
 import api from "../../services/api";
 
+
 interface IJobDetailsModalProps {
     jobID: number,
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>
