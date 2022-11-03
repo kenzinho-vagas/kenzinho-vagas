@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
+import { AuthContext } from "../AuthContext";
 import api from "../../services/api";
 
 interface IJobCountextProps {
@@ -22,18 +23,19 @@ export const JobContext = createContext<IJobContextProps>({} as IJobContextProps
 export const JobProvider = ({children}: IJobCountextProps) => {
     const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
     const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([]);
-    const [user, setUser] = useState<{level: string}>({level: "Júnior"}); // mudar
 
     const [showModal, setShowModal] = useState<boolean>(false);
     const [deleteJob, setDeleteJob] = useState<boolean>(false);
     const [id, setID] = useState<number>(0);
+
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         async function getAllJobs() {
             try {
                 const { data } = await api.get<IJobsProps[]>("/companyJobs")
 
-                const filteredData = data.filter((object: IJobsProps) => object.level === user.level)
+                const filteredData = data.filter((object: IJobsProps) => object.level === user?.level)
                 setAllJobs(filteredData)
 
             } catch (error) {
