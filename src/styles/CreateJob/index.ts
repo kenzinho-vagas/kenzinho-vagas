@@ -6,7 +6,6 @@ const Create = styled.div`
     background-color: var(--grey-1);
     border: 1px solid black;
     border-radius: 5px;
-    
 
     h3 {
       padding: 5px;
@@ -44,30 +43,44 @@ const Create = styled.div`
         padding: 8px;
         font-weight: 700;
       }
+
+      button:hover {
+        background-color: white;
+      }
+
+      button:active {
+        background-color: var(--color-secundary);
+      }
+
+      textarea {
+        height: 230px;
+        padding: 10px;
+        resize: none;
+      }
     }
 
     @media screen and (min-width: 500px) {
-        max-width: 540px;
-        margin: 25px auto;
+      max-width: 540px;
+      margin: 25px auto;
 
-        form {
-            padding: 10px 30px;
-        }
+      form {
+        padding: 10px 30px;
+      }
     }
 
     @media screen and (min-width: 768px) {
-        max-width: unset;
+      max-width: unset;
       form {
         flex-direction: row;
         flex-wrap: nowrap;
         padding: 20px 40px;
 
         input {
-            width: 80%;
+          width: 80%;
         }
 
-        .tecnologies {
-            width: 90%;
+        #tecnology {
+          width: 80%;
         }
       }
 
@@ -79,7 +92,6 @@ const Create = styled.div`
       #btnSaveJob {
         width: 100%;
       }
-
     }
   }
 
@@ -91,7 +103,7 @@ const Create = styled.div`
     }
   }
 
-  @media screen and (min-width: 1100px){
+  @media screen and (min-width: 1100px) {
     .divForm {
       padding: 0 20%;
     }

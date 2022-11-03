@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react"
 import Candidates from "../../components/Candidates"
 import CreateJob from "../../components/CreateJob"
 import Header from "../../components/HeaderAdmin"
-import JobsAdmin from "../../components/JobsAdmin"
+import JobsAdmin from "../../components/FilterJobsAdmin"
 import JobsCreateds from "../../components/JobsCreateds"
 import Welcome from "../../components/Welcome"
 

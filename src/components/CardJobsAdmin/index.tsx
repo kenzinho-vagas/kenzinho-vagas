@@ -4,8 +4,9 @@ import Salary from "../../img/salary.png";
 import Company from "../../img/company.png";
 import BtnCloseJob from "../../img/closeJob.png";
 import { ButtonPrimary } from "../../styles/Buttons";
+import { IFormVagas } from '../../contexts/JobContext'
 
-const Card = (elem) => {
+const Card = (elem:IFormVagas) => {
     const salary = Number(elem.salary)
   return (
     <li>

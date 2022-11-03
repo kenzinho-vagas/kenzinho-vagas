@@ -5,16 +5,16 @@ function JobsAdmin() {
     <JobsAdminStyle>
       <div className="searchSelect">
       <div className="filterLeft">
-        <select id="tecnologies">
-          <option value="" selected disabled>
+        <select id="tecnologies" defaultValue={"default"}>
+          <option value="default" disabled>
             Tecnologia
           </option>
           <option value="javascript">JavaScript</option>
           <option value="react">React</option>
           <option value="typescript">TypeScript</option>
         </select>
-        <select id="type">
-          <option value="" selected disabled>
+        <select id="type" defaultValue={"default"}>
+          <option value="default" disabled>
             Tipo
           </option>
           <option value="remoto">Remoto</option>

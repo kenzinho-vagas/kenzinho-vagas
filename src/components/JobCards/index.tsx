@@ -9,35 +9,30 @@ import Local from "../../img/localization.png";
 const JobCards = () => {
   return (
     <DivGrey>
-    <h3>SUAS VAGAS:</h3>
-    <div className="cards">
-      <div className="containerCards">
-        <ul className="cardList">
-          <DivCard>
-            <CardTitle>Programador Back-end</CardTitle>
-            <div className="cardInfo">
-              <img src={Case} alt="case" />
-              <CardText>Nome da Empresa</CardText>
-            </div>
-            <div className="cardInfo">
-              <img src={Xp} alt="xp" />
-              <CardText>Nível: Júnior</CardText>
-            </div>
-            <div className="cardInfo">
-              <img src={Local} alt="local" />
-              <CardText>Remoto</CardText>
-            </div>
-            <div className="cardInfo">
-              <img src={Wage} alt="wage" />
-              <CardText>R$ 5.000 a R$ 6.000</CardText>
-            </div>
-            <img src={Trash} alt="Trash" className="trash" />
-          </DivCard>
-          
-        </ul>
-      </div>
-    </div>
-  </DivGrey>
+      <h3>SUAS VAGAS:</h3>
+      <ul>
+        <DivCard>
+          <CardTitle>Programador Back-end</CardTitle>
+          <div className="cardInfo">
+            <img src={Case} alt="trash" />
+            <CardText>Nome da Empresa</CardText>
+          </div>
+          <div className="cardInfo">
+            <img src={Xp} alt="trash" />
+            <CardText>Nível: Júnior</CardText>
+          </div>
+          <div className="cardInfo">
+            <img src={Local} alt="trash" />
+            <CardText>Remoto</CardText>
+          </div>
+          <div className="cardInfo">
+            <img src={Wage} alt="trash" />
+            <CardText>R$ 5.000 a R$ 6.000</CardText>
+          </div>
+          <img src={Trash} alt="trash" className="Trash" />
+        </DivCard>
+      </ul>
+    </DivGrey>
   );
 };
 

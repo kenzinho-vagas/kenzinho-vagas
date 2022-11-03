@@ -31,7 +31,8 @@ export interface IAuthContext {
 
 export interface ILogin {
   user: IUser;
-  token: string;
+  accessToken: string;
+  id: number;
 }
 
 interface IUserContext {
@@ -71,14 +72,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
     try {
       const res = await api.post<ILogin>("/login", data);
       console.log(res);
-
-      const { user: userResponse, token } = res.data;
-
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      setUser(userResponse);
-      localStorage.setItem("@kenzinhoVagas:accessToken", token);
-      user.isAdmin === true
+      const { user: userResponse, accessToken } = res.data;
+      const id = userResponse.id.toString();
+      api.defaults.headers.authorization = `Bearer ${accessToken}`;
+      localStorage.setItem("@kenzinhoVagas:accessToken", accessToken);
+      localStorage.setItem("@kenzinhoVagas:id", id);
+      userResponse.isAdmin === true
         ? navigate("/dashboardAdmin", { replace: true })
         : navigate("/dashboard", { replace: true });
     } catch (error) {
