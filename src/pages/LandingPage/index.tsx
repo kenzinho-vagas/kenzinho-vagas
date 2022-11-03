@@ -2,6 +2,7 @@ import Header from "../../styles/HeaderAdmin";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
 import logo from "../../img/logo.png"
 import { DivLanding } from "./style";
+import group from "../../img/group.png"
 
 
 
@@ -21,7 +22,7 @@ export const LandingPage = () => {
       </Header>
      <DivLanding>
         <div className="div1">
-         <h2>imagem</h2>  
+        <img src={group} alt="Pessoas trabalhando" />  
         </div>
         <div className="div2">
             <h1 className="titleLand">AS MELHORES VAGAS PARA PROFISSIONAIS JÚNIOR DE TECNOLOGIA</h1>

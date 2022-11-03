@@ -16,10 +16,12 @@ justify-content: space-between;
 }
 
 .div1{
-    width:50%
+    width:45%;
+    padding:40px 0 0 100px ;
+    
 }
 .div2{
-    width:50%;
+    width:55%;
     padding-top:100px;
 }
 
