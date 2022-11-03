@@ -9,7 +9,8 @@ import Wage from "../../img/wage.png";
 import Xp from "../../img/xp.png";
 import Local from "../../img/localization.png";
 import Trash from "../../img/d44a483c04e31fce85c33bbac3d611ba.png";
-import api from "../../services/api"
+import { api } from "../../services/api";
+
 
 interface IListsProps {
     objectArray: IJobsProps[],
@@ -42,7 +43,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
                 {
                     objectArray.map((object: IJobsProps) => (
                         <LiCard key={ object.id }>
-                            <CardTitle>{ object.specialty }</CardTitle>
+                            <CardTitle>Programador {object.specialty }</CardTitle>
 
                             <div className="cardInfo">
                                 <img src={ Case } alt="case" />

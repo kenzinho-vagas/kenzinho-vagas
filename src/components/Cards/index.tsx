@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../../services/api"
+import { api } from "../../services/api"
 import Lists from "../Lists"
 
 export interface IJobsProps {
