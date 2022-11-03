@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react"
+import Candidates from "../../components/Candidates"
 import CreateJob from "../../components/CreateJob"
-import Header from "../../components/Header"
+import Header from "../../components/HeaderAdmin"
 import JobsAdmin from "../../components/JobsAdmin"
 import JobsCreateds from "../../components/JobsCreateds"
 import Welcome from "../../components/Welcome"
 
 const DashboardAdmin = () => {
+
     const name:string = "vinicius"
     return (
         <>
@@ -12,9 +15,10 @@ const DashboardAdmin = () => {
             <Welcome name={name} />
             <CreateJob />
             <JobsAdmin />
-            <JobsCreateds/>
+            <JobsCreateds />
+            <Candidates/>
         </>
     )
 }
 
-export default DashboardAdmin
+export default DashboardAdmin;

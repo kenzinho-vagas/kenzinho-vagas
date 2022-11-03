@@ -1,65 +1,44 @@
-import Company from '../../img/company.png'
-import Level from '../../img/level.png'
-import Type from '../../img/type.png'
-import Salary from '../../img/salary.png'
+import { useEffect, useState } from 'react'
+import { api } from '../../services/api'
 import ListJobsAdmin from '../../styles/ListJobsAdmin'
-import BtnCloseJob from '../../img/closeJob.png'
-import { ButtonPrimary } from '../../styles/Buttons'
+import Card from '../CardJobsAdmin'
 
 
 const JobsCreateds = () => {
+    interface IJobs {
+            map(arg0: (elem: IJobs) => JSX.Element): import("react").ReactNode
+            userId: number;
+            company_name: string;
+            specialty: string;
+            salary: string;
+            kind_of_work: string;
+            tech: string[];
+            level: string;
+            jobURL: string;
+            description: string;
+            id: number;
+    }
+
+    const [adminJobs, setAdminJobs] = useState<IJobs | null>()
+    async function listJobs() {
+        try {
+            const {data} = await api.get<IJobs>('/companyJobs')
+            console.log(data)
+            setAdminJobs(data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        listJobs()
+    }, [])
+
     return (
         <ListJobsAdmin>
             <h2>Vagas criadas</h2>
             <ul>
-                <li>
-                    <button className="btnDeleteJob"><img  src={BtnCloseJob} alt="Botao excluir vaga" /></button>
-                    <h3>  Programador Back End</h3>
-                    <p><img src={Company} alt="Empresa"/> Empresa</p>
-                    <p><img src={Level} alt="Nivel"/>Nível: Júnior</p>
-                    <p><img src={Type} alt="Tipo"/>Remoto</p>
-                    <p><img src={Salary} alt="Salario" />R$5.000 a R$6.000</p>
-                    <div className="buttonsJob">
-                        <ButtonPrimary>Editar</ButtonPrimary>
-                        <ButtonPrimary>Candidatos</ButtonPrimary>
-                    </div>
-                </li>
-                <li>
-                    <button className="btnDeleteJob"><img  src={BtnCloseJob} alt="Botao excluir vaga" /></button>
-                    <h3>  Programador Back End</h3>
-                    <p><img src={Company} alt="Empresa"/> Empresa</p>
-                    <p><img src={Level} alt="Nivel"/>Nível: Júnior</p>
-                    <p><img src={Type} alt="Tipo"/>Remoto</p>
-                    <p><img src={Salary} alt="Salario" />R$5.000 a R$6.000</p>
-                    <div className="buttonsJob">
-                        <ButtonPrimary>Editar</ButtonPrimary>
-                        <ButtonPrimary>Candidatos</ButtonPrimary>
-                    </div>
-                </li>
-                <li>
-                    <button className="btnDeleteJob"><img  src={BtnCloseJob} alt="Botao excluir vaga" /></button>
-                    <h3>  Programador Back End</h3>
-                    <p><img src={Company} alt="Empresa"/> Empresa</p>
-                    <p><img src={Level} alt="Nivel"/>Nível: Júnior</p>
-                    <p><img src={Type} alt="Tipo"/>Remoto</p>
-                    <p><img src={Salary} alt="Salario" />R$5.000 a R$6.000</p>
-                    <div className="buttonsJob">
-                        <ButtonPrimary>Editar</ButtonPrimary>
-                        <ButtonPrimary>Candidatos</ButtonPrimary>
-                    </div>
-                </li>
-                <li>
-                    <button className="btnDeleteJob"><img  src={BtnCloseJob} alt="Botao excluir vaga" /></button>
-                    <h3>  Programador Back End</h3>
-                    <p><img src={Company} alt="Empresa"/> Empresa</p>
-                    <p><img src={Level} alt="Nivel"/>Nível: Júnior</p>
-                    <p><img src={Type} alt="Tipo"/>Remoto</p>
-                    <p><img src={Salary} alt="Salario" />R$5.000 a R$6.000</p>
-                    <div className="buttonsJob">
-                        <ButtonPrimary>Editar</ButtonPrimary>
-                        <ButtonPrimary>Candidatos</ButtonPrimary>
-                    </div>
-                </li>
+                {adminJobs && adminJobs.map((elem: IJobs) => Card(elem))}
             </ul>
         </ListJobsAdmin>
     )

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
-const ListJobsAdmin = styled.div`
-    margin: 5px;
+const Candidates = styled.div`
+
+
+    margin: 30px 5px;
     padding: 8px;
     display: flex;
     flex-direction: column;
@@ -11,10 +13,12 @@ const ListJobsAdmin = styled.div`
 
     background-color: var(--grey-2);
 
+    word-break: break-all;
+
     ul {
         display: flex;
         overflow-x: auto;
-        gap: 80px;
+        gap: 50%;
         padding: 20px 0px;
 
         li {
@@ -70,11 +74,10 @@ const ListJobsAdmin = styled.div`
         }
     }
 
-
     @media screen and (min-width: 768px){
 
         max-width: 85%;
-        margin: 0 auto;
+        margin: 30px auto;
         padding: 15px;
 
         ul {
@@ -95,4 +98,4 @@ const ListJobsAdmin = styled.div`
     }
 `
 
-export default ListJobsAdmin
+export default Candidates
