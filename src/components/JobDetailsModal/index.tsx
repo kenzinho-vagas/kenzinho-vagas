@@ -1,8 +1,8 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import { IJobsProps } from "../Cards"
-import api from "../../services/api"
-import { notifyError, notifySuccess } from "../../toast"
+import { useState } from "react";
+import { useEffect } from "react";
+import { notifyError, notifySuccess } from "../../toast";
+import { IJobsProps } from "../Cards";
+import api from "../../services/api";
 
 interface IJobDetailsModalProps {
     jobID: number,
@@ -10,8 +10,8 @@ interface IJobDetailsModalProps {
 }
 
 const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
-    const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([])
-    const [saveJob, setSaveJob] = useState<boolean>(false)
+    const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([]);
+    const [saveJob, setSaveJob] = useState<boolean>(false);
 
     useEffect(() => {
         async function getSpecificJob() {
@@ -24,7 +24,6 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
         }
 
         getSpecificJob()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -32,7 +31,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
             if (saveJob) {
                 try {
                     const body = specificJob[0]
-                    const userID = 3 //localStorage.getItem("")
+                    const userID = localStorage.getItem("@kenzinhoVagas:userID");
                     await api.post(`/users/${userID}/jobs`, body)
                     notifySuccess()
                 } catch (error) {
@@ -42,7 +41,6 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
         }
 
         postSpecificJob()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [saveJob])
 
     return (
@@ -72,4 +70,4 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     )
 }
 
-export default JobDetailsModal
+export default JobDetailsModal;

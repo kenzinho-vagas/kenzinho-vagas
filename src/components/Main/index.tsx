@@ -1,5 +1,5 @@
-import Filters from "../Filters"
-import JobsContainer from "../JobsContainer"
+import Filters from "../Filters";
+import JobsContainer from "../JobsContainer";
 
 const Main = () => {
     return (
@@ -11,4 +11,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Main;

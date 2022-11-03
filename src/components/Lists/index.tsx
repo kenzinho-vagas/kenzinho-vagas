@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react"
-import { notifyError, notifySuccess } from "../../toast";
-import { IJobsProps } from "../Cards"
+import { IJobsProps } from "../Cards";
 import { LiCard } from "../../styles/Divs";
 import { CardText, CardTitle } from "../../styles/Typography";
+import { JobContext, JobProvider } from "../../contexts/JobContext";
+import { useContext } from "react";
 import JobDetailsModal from "../JobDetailsModal"
 import Case from "../../img/case.png";
 import Wage from "../../img/wage.png";
 import Xp from "../../img/xp.png";
 import Local from "../../img/localization.png";
 import Trash from "../../img/d44a483c04e31fce85c33bbac3d611ba.png";
-import api from "../../services/api"
 
 interface IListsProps {
     objectArray: IJobsProps[],
@@ -17,24 +16,7 @@ interface IListsProps {
 }
 
 const Lists = ({ objectArray, title }: IListsProps) => {
-    const [showModal, setShowModal] = useState<boolean>(false)
-    const [deleteJob, setDeleteJob] = useState<boolean>(false)
-    const [id, setID] = useState<number>(0)
-
-    useEffect(() => {
-        async function deleteSpecificJob() {
-            if (deleteJob) {
-                try {
-                    await api.delete(`/jobs/${id}`)
-                    notifySuccess()
-                } catch (error) {
-                    notifyError()
-                }
-            }
-        }
-
-        deleteSpecificJob()
-    }, [deleteJob, id])
+    const { id, showModal, setShowModal, setDeleteJob, setID } = useContext(JobContext);
 
     return (
         <div className="containerCards">
@@ -90,12 +72,10 @@ const Lists = ({ objectArray, title }: IListsProps) => {
             </ul>
 
             {
-                showModal && <JobDetailsModal 
-                jobID={ id }
-                setShowModal={setShowModal}/>
+                showModal && <JobDetailsModal jobID={id} setShowModal={setShowModal}/>
             }
         </div>
     )
 }
 
-export default Lists
+export default Lists;
