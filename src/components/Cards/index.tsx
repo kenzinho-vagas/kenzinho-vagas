@@ -44,7 +44,7 @@ const Cards = ({ title }: ICardsProps) => {
         async function getSavedJobs() {
             try {
                 const userID = 3 //localStorage.getItem("")
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1YW5AbWFpbC5jb20iLCJpYXQiOjE2Njc0NjU5MzksImV4cCI6MTY2NzQ2OTUzOSwic3ViIjoiMyJ9.y-kfar34FwpUS-JUJ-XY9NhbMdY3yWIc59kHblhtFx4" // localStorage.getItem("")
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1YW5AbWFpbC5jb20iLCJpYXQiOjE2Njc0Njk5NDAsImV4cCI6MTY2NzQ3MzU0MCwic3ViIjoiMyJ9.J3OiougLJ7R2yCVTOh6CYG1QqVd6ER6K6nbJf34_R9I" // localStorage.getItem("")
                 api.defaults.headers.authorization = `Bearer ${token}`
 
                 const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`)

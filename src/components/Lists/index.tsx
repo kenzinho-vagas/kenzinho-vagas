@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react"
-import { toast } from "react-toastify";
-import { IJobsProps } from "../Cards"
-import JobDetailsModal from "../JobDetailsModal"
-import api from "../../services/api"
 import { notifyError, notifySuccess } from "../../toast";
+import { IJobsProps } from "../Cards"
+import { LiCard } from "../../styles/Divs";
+import { CardText, CardTitle } from "../../styles/Typography";
+import JobDetailsModal from "../JobDetailsModal"
+import Case from "../../img/case.png";
+import Wage from "../../img/wage.png";
+import Xp from "../../img/xp.png";
+import Local from "../../img/localization.png";
+import Trash from "../../img/d44a483c04e31fce85c33bbac3d611ba.png";
+import api from "../../services/api"
 
 interface IListsProps {
     objectArray: IJobsProps[],
@@ -31,32 +37,54 @@ const Lists = ({ objectArray, title }: IListsProps) => {
     }, [deleteJob, id])
 
     return (
-        <>
-            <ul>
+        <div className="containerCards">
+            <ul className="cardList">
                 {
                     objectArray.map((object: IJobsProps) => (
-                        <li key={ object.id }>
-                            <h3>{ object.specialty }</h3>
-                            <p>{ object.company_name }</p>
-                            <p>{ object.level }</p>
-                            <p>{ object.kind_of_work }</p>
-                            <p>{ object.salary }</p>
+                        <LiCard key={ object.id }>
+                            <CardTitle>{ object.specialty }</CardTitle>
+
+                            <div className="cardInfo">
+                                <img src={ Case } alt="case" />
+                                <CardText>{ object.company_name }</CardText>
+                            </div>
+                            
+                            <div className="cardInfo">
+                                <img src={ Xp } alt="xp" />
+                                <CardText>{ object.level }</CardText>
+                            </div>
+                            
+                            <div className="cardInfo">
+                                <img src={ Local } alt="local" />
+                                <CardText>{ object.kind_of_work }</CardText>
+                            </div>
+                            
+                            <div className="cardInfo">
+                                <img src={ Wage } alt="wage" />
+                                <CardText>{ object.salary }</CardText>
+                            </div>
+
                             {
                                 title === "Todas as vagas" 
                                 ? (
                                     <button onClick={() => {
                                         setShowModal(true)
                                         setID(object.id)
-                                    }} type="button">Ver detalhes</button>
-                                )
-                                : <button 
-                                  type="button"
-                                  onClick={() => {
-                                    setDeleteJob(true)
-                                    setID(object.id)
-                                  }}>Excluir</button>
+                                    }} 
+                                    type="button" 
+                                    className="seeDetails">Ver detalhes</button>
+                                  )
+                                : (
+                                    <img 
+                                    src={Trash}
+                                    alt="Trash"
+                                    onClick={() => {
+                                        setDeleteJob(true)
+                                        setID(object.id)
+                                    }}/>
+                                  )
                             }
-                        </li>
+                        </LiCard>
                     ))
                 }
             </ul>
@@ -66,7 +94,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
                 jobID={ id }
                 setShowModal={setShowModal}/>
             }
-        </>
+        </div>
     )
 }
 

@@ -1,3 +1,4 @@
+import { DivGrey } from "../../styles/Divs"
 import Cards from "../Cards"
 
 interface IJobsProps {
@@ -6,10 +7,12 @@ interface IJobsProps {
 
 const JobsContainer = ({ title }: IJobsProps) => {
     return (
-        <section>
-            <h2>{ title }</h2>
-            <Cards title={title}/>
-        </section>
+        <DivGrey>
+            <h3>{ title }</h3>
+            <section className="cards">
+                <Cards title={title}/>
+            </section>
+        </DivGrey>
     )
 }
 

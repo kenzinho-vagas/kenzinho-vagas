@@ -51,7 +51,7 @@ export const DivGrey = styled.div`
   }
 `;
 
-export const DivCard = styled.li`
+export const LiCard = styled.li`
     background-color: #ffffff;
     margin: 30px auto;
     width: 200px;
