@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
 import { AuthContext } from "../AuthContext";
-import { api } from "../../services/api";
+import api  from "../../services/api";
 
 interface IJobCountextProps {
     children: React.ReactNode;
@@ -35,7 +35,7 @@ export const JobProvider = ({children}: IJobCountextProps) => {
             try {
                 const { data } = await api.get<IJobsProps[]>("/companyJobs")
 
-                const filteredData = data.filter((object: IJobsProps) => object.level === user?.level)
+                const filteredData = data.filter((object: IJobsProps) => object.level === "Júnior")
                 setAllJobs(filteredData)
 
             } catch (error) {

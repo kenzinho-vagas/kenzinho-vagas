@@ -1,7 +1,7 @@
 import { IJobsProps } from "../Cards";
 import { LiCard } from "../../styles/Divs";
 import { CardText, CardTitle } from "../../styles/Typography";
-import { IJobContextProps, JobContext, JobProvider } from "../../contexts/JobContext";
+import { IJobContextProps, JobContext } from "../../contexts/JobContextDU";
 import { useContext } from "react";
 import JobDetailsModal from "../JobDetailsModal"
 import Case from "../../img/case.png";
@@ -9,8 +9,6 @@ import Wage from "../../img/wage.png";
 import Xp from "../../img/xp.png";
 import Local from "../../img/localization.png";
 import Trash from "../../img/d44a483c04e31fce85c33bbac3d611ba.png";
-import { api } from "../../services/api";
-
 
 interface IListsProps {
     objectArray: IJobsProps[],

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { useEffect, useState } from "react"
-import { api } from "../../services/api"
-=======
 import { useContext } from "react"
-import { JobContext, JobProvider } from "../../contexts/JobContext"
->>>>>>> 700c8c9e25603e897eabc0a386390e17d2575180
+import { JobContext, JobProvider } from "../../contexts/JobContextDU"
 import Lists from "../Lists"
 
 export interface IJobsProps {
