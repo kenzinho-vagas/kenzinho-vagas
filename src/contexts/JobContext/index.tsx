@@ -34,6 +34,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   async function NewJob(data: INewJobForm) {
     try {
       const response = await api.post("users/1/companyJobs ", data);
+      console.log(response);
       const { jobs: jobResponse, token } = response.data;
       api.defaults.headers.authorization = `Bearer ${token}`;
       setJob(jobResponse);

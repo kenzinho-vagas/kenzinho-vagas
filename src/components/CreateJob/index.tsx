@@ -56,6 +56,7 @@ const CreateJob = () => {
                 placeholder="Nome da empresa"
                 {...register("company_name")}
               />
+              <p>{errors.company_name && errors.company_name.message}</p>
               <label htmlFor="especiality">Especialidade</label>
               <input
                 type="text"
@@ -63,6 +64,7 @@ const CreateJob = () => {
                 placeholder="Front-end, Back-end..."
                 {...register("specialty")}
               />
+              <p>{errors.specialty && errors.specialty.message}</p>
               <label htmlFor="type">Tipo de vaga</label>
               <input
                 type="text"
@@ -70,8 +72,15 @@ const CreateJob = () => {
                 placeholder="Presencial, Remota..."
                 {...register("kind_of_work")}
               />
+              <p>{errors.kind_of_work && errors.kind_of_work.message}</p>
               <label htmlFor="salary">Salário</label>
-              <input type="text" id="salary" placeholder="R$4.500,00" />
+              <input
+                type="text"
+                id="salary"
+                placeholder="R$4.500,00"
+                {...register("salary")}
+              />
+              <p>{errors.salary && errors.salary.message}</p>
               <label htmlFor="tecnology">Tecnologia</label>
               <input
                 type="text"
@@ -79,6 +88,7 @@ const CreateJob = () => {
                 placeholder="Ex: React, JavaScript, Html..."
                 {...register("tech")}
               />
+              <p>{errors.tech && errors.tech.message}</p>
             </div>
             <div className="formColumn">
               <label htmlFor="level">Nível</label>
@@ -93,6 +103,7 @@ const CreateJob = () => {
                 <option value="pleno">Pleno</option>
                 <option value="senior">Sênior</option>
               </select>
+              <p>{errors.level && errors.level.message}</p>
               <label htmlFor="description">Descrição</label>
               <textarea
                 id="description"
@@ -101,6 +112,7 @@ const CreateJob = () => {
                 placeholder="Ex: Atuará em todo o ciclo de vida do sistema (Planejar, arquitetar, desenvolver, testar, implementar, monitorar, documentar, etc.)"
                 {...register("description")}
               ></textarea>
+              <p>{errors.description && errors.description.message}</p>
               <button type="submit" id="btnSaveJob">
                 Criar
               </button>
