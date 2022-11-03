@@ -44,16 +44,40 @@ justify-content: space-between;
     }
 
 }
+`
 
-/* image 1
+export const DivOurNumbers = styled.div`
+background-color: var(--color-secundary);
+height: 390px;
+color:var(--color-white);
+text-align: center;
+align-items: center;
 
-position: absolute;
-width: 576px;
-height: 369px;
-left: 81px;
-top: 132px;
+.titleLand2{
+    font-size:24px;
+    font-weight:bold;
+    padding:20px;
+    margin-bottom:50px;
+}
 
-background: url(pretty-freelance-copywriter-texting-message-phone-while-her-colleagues-typing-keyboards-indoor-portrait-young-programmers-different-ethnicities-working-office.jpg);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+.listNumbers{
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+}
+
+.listNumbers li {
+    background-color: var(--color-white);
+    color: var(--text-color2);
+    width: 241px;
+    height:110px;
+    align-content: center;
+    padding-top:60px;
+    font-size:22px;
+    border-radius: 6px;
+}
+.listNumbers span{
+    color: var(--color-primary);
+}
 
 `

@@ -4,8 +4,10 @@ const Global = createGlobalStyle`
     :root {
         --color-primary: #430B66;
         --color-secundary: #BDAFCB;
+        --color-white: #FFFFFF;
         --grey-1: ##EBEBEB;
         --grey-2: #C0C0C0;
+        --text-color2: #1E1E1E;
     }
 
     /* http://meyerweb.com/eric/tools/css/reset/ 
