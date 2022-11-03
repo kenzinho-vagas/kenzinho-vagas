@@ -1,21 +1,67 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import api from "../../services/api";
 
-interface IUserCountextProps {
+interface IUserContextProps {
     children: React.ReactNode;
 }
 
-interface IUserContextProps {
-    // tipagem das props de value do UserContext.Provider
-    test: string | null
+export interface IUserContext {
+    profileUser: IUserProfile | null;
+    setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
 }
 
-export const UserContext = createContext<IUserContextProps>({} as IUserContextProps)
+interface IUserProfile {
+    email: string;
+    password: string;
+    name: string;
+    linkedin: string;
+    level: string;
+    bio: string;
+    specialty: string;
+    isAdmin: boolean;
+    id: number;
+    jobs: IJobs[];
+}
 
-export const UserProvider = ({children}: IUserCountextProps) => {
-    const [test, setTest] = useState(null)
+interface IJobs {
+    userId: number;
+    company_name: string;
+    specialty: string;
+    salary: string;
+    kind_of_work: string;
+    tech: string[];
+    level: string;
+    jobURL: string;
+    description: string;
+    id: number;
+  }
+
+export const UserContext = createContext<IUserContext>({} as IUserContext)
+
+export const UserProvider = ({children}: IUserContextProps) => {
+    const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
+
+    useEffect(() =>{
+        async function getProfile () {
+            const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+            const userId = localStorage.getItem("@kenzinhoVagas:id")
+
+            try {
+                api.defaults.headers.authorization = `Bearer ${token}`;
+                const {data} = await api.get<IUserProfile>(`/users/${userId}`)
+                setProfileUser(data)
+            }
+            catch (error){
+                console.log(error)
+                
+            }
+          
+        }
+        getProfile()
+    }, [])
 
     return (
-        <UserContext.Provider value={{ test }}>
+        <UserContext.Provider value={{ profileUser, setProfileUser }}>
             {children}
         </UserContext.Provider>
     )

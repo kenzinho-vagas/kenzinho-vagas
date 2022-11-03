@@ -1,16 +1,17 @@
+import { useContext } from "react";
 import Footer from "../../components/Footer";
 import HeaderUser from "../../components/HeaderUser";
 import Main from "../../components/Main";
 import Welcome from "../../components/Welcome";
-import { UserContext } from "../../contexts/UserContext";
+import { IUserContext, UserContext } from "../../contexts/UserContext";
 
 const DashboardUser = () => {
-  const name: string = "Gabriela";
+  const {profileUser} = useContext<IUserContext>(UserContext)
 
   return (
     <>
       <HeaderUser />
-      <Welcome name={name} />
+      <Welcome name={profileUser?.name} />
       <Main/>
       <Footer />
     </>
