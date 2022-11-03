@@ -8,6 +8,8 @@ interface IUserContextProps {
 export interface IUserContext {
     profileUser: IUserProfile | null;
     setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
+    isProfileModal: boolean;
+    setProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IUserProfile {
@@ -40,6 +42,7 @@ export const UserContext = createContext<IUserContext>({} as IUserContext)
 
 export const UserProvider = ({children}: IUserContextProps) => {
     const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
+    const [isProfileModal, setProfileModal] = useState<boolean>(false)
 
     useEffect(() =>{
         async function getProfile () {
@@ -61,7 +64,7 @@ export const UserProvider = ({children}: IUserContextProps) => {
     }, [])
 
     return (
-        <UserContext.Provider value={{ profileUser, setProfileUser }}>
+        <UserContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal }}>
             {children}
         </UserContext.Provider>
     )
