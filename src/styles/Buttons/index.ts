@@ -4,7 +4,6 @@ export const ButtonPurple = styled.button`
     background-color: var(--color-primary);
     padding: 5px 10px;
     width: 60px;
-    height: 30px;
     color: white;
     font-weight: 700;
     text-transform: uppercase;
@@ -18,7 +17,6 @@ export const ButtonPurple = styled.button`
 
     @media screen and (min-width: 768px){
         width: 130px;
-        height: 40px;
         font-size: 18px;
     }
 `
@@ -41,7 +39,6 @@ export const ButtonWhite = styled.button`
 
     @media screen and (min-width: 768px){
         width: 130px;
-        height: 40px;
         font-size: 18px;
     }
 `

@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       localStorage.setItem("@kenzinhoVagas:id", id);
       userResponse.isAdmin === true
         ? navigate("/dashboardAdmin", { replace: true })
-        : navigate("/dashboard", { replace: true });
+        : navigate("/dashboardUser", { replace: true });
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
