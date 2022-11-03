@@ -19,7 +19,7 @@ export interface IUser {
   level: string;
   bio?: string;
   specialty: string;
-  isAdmin: boolean;
+  isAdmin: false;
   jobs: [];
 }
 
@@ -78,9 +78,9 @@ export const AuthProvider = ({ children }: IAuthContext) => {
 
       setUser(userResponse);
       localStorage.setItem("@kenzinhoVagas:accessToken", token);
-      user.isAdmin === true
-        ? navigate("/dashboardAdmin", { replace: true })
-        : navigate("/dashboard", { replace: true });
+      userResponse.isAdmin === false || undefined
+        ? navigate("/dashboard", { replace: true })
+        : navigate("/dashboardAdmin", { replace: true })
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
