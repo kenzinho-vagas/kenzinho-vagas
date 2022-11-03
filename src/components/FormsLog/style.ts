@@ -11,10 +11,11 @@ export const FormsLog = styled.form`
   padding: 10px;
   background-color:var(--color-primary);
   border-radius:8px;
+  margin-bottom:5px;
 
   input,
   select {
-    background-color: white;
+    background-color: var(--grey-1);
     border: none;
     margin: 10px;
     padding: 20px;
@@ -27,40 +28,45 @@ export const FormsLog = styled.form`
   }
 
   .buttonForm1{
-    height: 35px;
+    
     border-radius: 8px;
-    border: 1px solid violet;
-    background-color: violet;
+    border: 1px solid var(--grey-2);
+    background-color:var(--color-button);
     margin:10px;
     font-weight:bold;
+    color:var(--text-color1);
     cursor: pointer;
+    font-size:15px;
+    padding:10px;
 
   }
 
   .buttonForm2{
    
-    background-color: white;
+    background-color:var(--grey-1);
     margin:10px;
     text-align: center;
     border-radius: 8px;
-    border: 1px solid black;
+    border: 1px solid var(--grey-2);
     padding:10px;
+    font-weight:bold;
+    color:var(--text-color1);
     
   }
 
   a{
     text-decoration: none;
-    color:#2C2C2C;
-    font-family: Nunito;
+    color:var(--text-color1);
   }
 
   @media (max-width: 700px) {
     width: 90%;
-    max-width:400px;
+    max-width: 400px;
+    margin-left:5px;
   }
   input,
   select {
     padding: 5px;
     font-size: 14px;
   }
-`;
+`

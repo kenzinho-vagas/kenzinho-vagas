@@ -85,12 +85,19 @@ export const Register = () => {
 
             <label htmlFor="linkedin">Link do LinkedIn</label>
             <input
-              id="contact"
+              id="linkedin"
               type="text"
               placeholder="Digite seu usuário do LinkedIn"
               {...register("linkedin")}
             />
             <p className="error">{errors.linkedin?.message}</p>
+
+            <label htmlFor="level">Selecionar nível do cargo</label>
+            <select id="level" {...register("specialty")}>
+              <option value="Junior">Júnior</option>
+              <option value="Pleno">Pleno</option>
+              <option value="Senior">Sênior</option>
+            </select>
 
             <label htmlFor="specialty">Selecionar módulo</label>
             <select id="specialty" {...register("specialty")}>
