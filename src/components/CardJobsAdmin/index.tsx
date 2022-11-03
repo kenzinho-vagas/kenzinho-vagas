@@ -3,7 +3,7 @@ import Type from "../../img/type.png";
 import Salary from "../../img/salary.png";
 import Company from "../../img/company.png";
 import BtnCloseJob from "../../img/closeJob.png";
-import { ButtonPrimary } from "../../styles/Buttons";
+import { ButtonPurple } from "../../styles/Buttons";
 import { IFormVagas } from '../../contexts/JobContext'
 
 const Card = (elem:IFormVagas) => {
@@ -30,8 +30,8 @@ const Card = (elem:IFormVagas) => {
         {salary.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
       </p>
       <div className="buttonsJob">
-        <ButtonPrimary>Editar</ButtonPrimary>
-        <ButtonPrimary>Candidatos</ButtonPrimary>
+        <ButtonPurple>Editar</ButtonPurple>
+        <ButtonPurple>Candidatos</ButtonPurple>
       </div>
     </li>
   );
