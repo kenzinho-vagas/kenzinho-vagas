@@ -44,6 +44,14 @@ const Create = styled.div`
         font-weight: 700;
       }
 
+      button:hover {
+        background-color: white;
+      }
+
+      button:active {
+        background-color: var(--color-secundary);
+      }
+
       textarea {
         height: 230px;
         padding: 10px;
