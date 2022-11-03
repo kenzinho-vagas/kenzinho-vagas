@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { IJobsProps } from "../Cards"
 import api from "../../services/api"
+import { notifyError, notifySuccess } from "../../toast"
 
 interface IJobDetailsModalProps {
     jobID: number,
@@ -33,8 +34,9 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     const body = specificJob[0]
                     const userID = 3 //localStorage.getItem("")
                     await api.post(`/users/${userID}/jobs`, body)
+                    notifySuccess()
                 } catch (error) {
-                    console.error(error)
+                    notifyError()
                 }
             }
         }

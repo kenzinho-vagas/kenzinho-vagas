@@ -1,14 +1,34 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify";
 import { IJobsProps } from "../Cards"
 import JobDetailsModal from "../JobDetailsModal"
+import api from "../../services/api"
+import { notifyError, notifySuccess } from "../../toast";
 
 interface IListsProps {
-    objectArray: IJobsProps[]
+    objectArray: IJobsProps[],
+    title: string
 }
 
-const Lists = ({ objectArray }: IListsProps) => {
+const Lists = ({ objectArray, title }: IListsProps) => {
     const [showModal, setShowModal] = useState<boolean>(false)
+    const [deleteJob, setDeleteJob] = useState<boolean>(false)
     const [id, setID] = useState<number>(0)
+
+    useEffect(() => {
+        async function deleteSpecificJob() {
+            if (deleteJob) {
+                try {
+                    await api.delete(`/jobs/${id}`)
+                    notifySuccess()
+                } catch (error) {
+                    notifyError()
+                }
+            }
+        }
+
+        deleteSpecificJob()
+    }, [deleteJob, id])
 
     return (
         <>
@@ -21,10 +41,21 @@ const Lists = ({ objectArray }: IListsProps) => {
                             <p>{ object.level }</p>
                             <p>{ object.kind_of_work }</p>
                             <p>{ object.salary }</p>
-                            <button onClick={() => {
-                                setShowModal(true)
-                                setID(object.id)
-                            }}>Ver detalhes</button>
+                            {
+                                title === "Todas as vagas" 
+                                ? (
+                                    <button onClick={() => {
+                                        setShowModal(true)
+                                        setID(object.id)
+                                    }} type="button">Ver detalhes</button>
+                                )
+                                : <button 
+                                  type="button"
+                                  onClick={() => {
+                                    setDeleteJob(true)
+                                    setID(object.id)
+                                  }}>Excluir</button>
+                            }
                         </li>
                     ))
                 }
