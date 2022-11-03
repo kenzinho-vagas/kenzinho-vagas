@@ -14,6 +14,7 @@ export interface INewJobForm {
   level: string;
   jobURL: string;
   description: string;
+  candidates: [];
 }
 
 const CreateJob = () => {
