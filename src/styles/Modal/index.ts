@@ -44,19 +44,52 @@ export const DivModal = styled.div`
           margin-bottom: 15px;
           width: 90%;
 
-          h3 {
+          .modalHeaderTitle {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            h3 {
             color: #000000;
             font-weight: 700;
             font-size: 20px;
             text-align: center;
           }
-          .iconClose {
+          }
+          
+          .modalHeaderBtn {
+            display: flex;
+            width: 10%;
+            justify-content: flex-end;
+
+            .iconClose {
             color: var(--color-primary);
             height: 25px;
             display: flex;
           }
+          }
+          
         }
       }
     }
   }
 `;
+
+export const DivForm = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--color-primary);
+  border-radius: 4px;
+
+  margin-bottom: 1.5rem;
+  padding: 8px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+`

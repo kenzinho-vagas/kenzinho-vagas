@@ -10,6 +10,7 @@ export interface IUserContext {
     setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
     isProfileModal: boolean;
     setProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
+    editeProfile: (body: IEditeProfile) => void
 }
 
 interface IUserProfile {
@@ -38,6 +39,12 @@ interface IJobs {
     id: number;
   }
 
+  export interface IEditeProfile {
+    level: string;
+    bio: string;
+    specialty: string
+  }
+
 export const UserContext = createContext<IUserContext>({} as IUserContext)
 
 export const UserProvider = ({children}: IUserContextProps) => {
@@ -63,8 +70,25 @@ export const UserProvider = ({children}: IUserContextProps) => {
         getProfile()
     }, [])
 
+    async function editeProfile (body: IEditeProfile) {
+        const userId = localStorage.getItem("@kenzinhoVagas:id")
+        const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+
+        try {
+            api.defaults.headers.authorization = `Bearer ${token}`
+
+            const {data} = await api.patch(`/users/${userId}`, body)
+            console.log(data)
+            setProfileUser(data)
+        }
+
+        catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal }}>
+        <UserContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
             {children}
         </UserContext.Provider>
     )
