@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import logo from "../../img/logo.png";
 import "react-toastify/dist/ReactToastify.css";
 import { schema } from "./schema";
 import { useContext } from "react";
 import { AuthContext, IUser } from "../../contexts/AuthContext";
 import { FormsLog } from "../../components/FormsLog/style";
-import { DivRegister } from "./style";
+
+import { DivLogin } from "../Login/style";
+import Header from "../../styles/Header";
+import { LinkPrimary, LinkSecundary } from "../../styles/Links";
 
 export const Register = () => {
   const { registerUser } = useContext(AuthContext);
@@ -21,16 +24,20 @@ export const Register = () => {
 
   return (
     <>
-      <DivRegister>
-        <div className="contentCadastro">
-          <header>
-            <h2>KenzieHub</h2>
-            <Link to="/">
-              <span className="goback">Voltar</span>
-            </Link>
-          </header>
+<Header>
+          <img src={logo} alt="Logo Kenzinho" />
+          <div className="rightHeader">
+          <LinkPrimary to={'/'} className='buttonHeaderDesktop'>Sobre Nós</LinkPrimary>
+          <LinkSecundary to={'/login'} className='buttonHeaderDesktop'>Login</LinkSecundary>
+          </div>
+        </Header>
+      <DivLogin>
+
+        <div className="contentLogin">
+          
 
           <FormsLog onSubmit={handleSubmit(registerUser)}>
+            <h1 className="title">Cadastro</h1>
             <label htmlFor="name">Nome</label>
             <input
               id="name"
@@ -78,12 +85,19 @@ export const Register = () => {
 
             <label htmlFor="linkedin">Link do LinkedIn</label>
             <input
-              id="contact"
+              id="linkedin"
               type="text"
               placeholder="Digite seu usuário do LinkedIn"
               {...register("linkedin")}
             />
             <p className="error">{errors.linkedin?.message}</p>
+
+            <label htmlFor="level">Selecionar nível do cargo</label>
+            <select id="level" {...register("specialty")}>
+              <option value="Junior">Júnior</option>
+              <option value="Pleno">Pleno</option>
+              <option value="Senior">Sênior</option>
+            </select>
 
             <label htmlFor="specialty">Selecionar módulo</label>
             <select id="specialty" {...register("specialty")}>
@@ -93,12 +107,17 @@ export const Register = () => {
             </select>
             <p className="error">{errors.specialty?.message}</p>
 
-            <button className="btnregister" type="submit">
+            <input type="text"
+            id="isAdmin"
+            hidden
+            value="false"
+            {...register("isAdmin")} />
+            <button className="buttonForm1" type="submit">
               Cadastrar
             </button>
           </FormsLog>
         </div>
-      </DivRegister>
+      </DivLogin>
     </>
   );
 };

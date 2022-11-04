@@ -33,6 +33,9 @@ export interface IAuthContext {
 export interface ILogin {
   user: IUser;
   token: string;
+  accessToken: string;
+  id: number;
+  isAdmin: false;
 }
 
 interface IUserContext {
@@ -51,11 +54,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-          const { data } = await api.get<IUser>(`/users/`);
+          const { data } = await api.get<IUser>(`/users/${id}`);
           setUser(data);
         } catch (error) {
           console.error(error);
@@ -72,16 +76,14 @@ export const AuthProvider = ({ children }: IAuthContext) => {
     try {
       const res = await api.post<ILogin>("/login", data);
       console.log(res);
-
-      const { user: userResponse, token } = res.data;
-
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      setUser(userResponse);
-      localStorage.setItem("@kenzinhoVagas:accessToken", token);
-      userResponse.isAdmin === false || undefined
-        ? navigate("/dashboard", { replace: true })
-        : navigate("/dashboardAdmin", { replace: true })
+      const { user: userResponse, accessToken } = res.data;
+      const id = userResponse.id.toString();
+      api.defaults.headers.authorization = `Bearer ${accessToken}`;
+      localStorage.setItem("@kenzinhoVagas:accessToken", accessToken);
+      localStorage.setItem("@kenzinhoVagas:id", id);
+      userResponse.isAdmin
+        ? navigate("/dashboardAdmin", { replace: true })
+        : navigate("/dashboardUser", { replace: true });
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
@@ -92,7 +94,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       const res = await api.post<ILogin>("/signup", data);
       console.log(res);
       toast("Usuário cadastrado com sucesso!");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
