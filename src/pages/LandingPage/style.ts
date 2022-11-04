@@ -8,22 +8,45 @@ export const DivLanding = styled.div`
   justify-content: space-between;
 
   .titleLand {
+    width: 90%;
     font-size: 40px;
     line-height: 60px;
     font-weight: bold;
     margin: 20px 0;
   }
+  .textLand {
+    width: 90%;
+  }
 
   .div1 {
     width: 45%;
-    padding: 40px 0 0 100px;
+    padding: 55px 0 0 70px;
+  }
+
+  .div1 img {
+    max-width: 100%;
   }
   .div2 {
     width: 55%;
-    padding-top: 100px;
+    padding-top: 80px;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 850px) {
+    .titleLand {
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .textLand {
+      font-size: 22px;
+    }
+    .div1 {
+      padding-top: 100px;
+    }
+  }
+
+  @media (max-width: 650px) {
     .div1 {
       display: none;
     }
@@ -31,13 +54,14 @@ export const DivLanding = styled.div`
       font-size: 24px;
       line-height: 40px;
       font-weight: bold;
-      margin: 60px 0;
+      margin: 30px 0;
     }
     .div2 {
       width: 100%;
       padding-top: 100px;
       text-align: center;
       padding: 15px;
+      height: 300px;
     }
   }
 `;
@@ -86,6 +110,9 @@ export const DivKenzinho = styled.div`
     width: 50%;
     margin: 10px;
   }
+  .divkenzie1 img {
+    max-width: 100%;
+  }
   .divkenzie2 {
     width: 50%;
   }
@@ -99,13 +126,25 @@ export const DivKenzinho = styled.div`
   .content3 {
     font-size: 22px;
     font-weight: bold;
-    margin-top: 150px;
-    line-height:30px;
+    margin-top: 140px;
+    line-height: 30px;
+  }
+  .footer{
+    width: 100%;
+    height:40px;
+    background-color: var(--color-primary);
+}
+
+  @media (max-width: 790px) {
+    .content3 {
+      margin-top: 100px;
+    }
   }
   @media (max-width: 700px) {
-    .whyKenzinho{
-        padding:0;
+    .whyKenzinho {
+      padding: 0;
     }
+
     .divkenzie1 {
       display: none;
     }
@@ -113,10 +152,10 @@ export const DivKenzinho = styled.div`
       width: 100%;
       padding-top: 100px;
       text-align: center;
-      padding:0;
+      padding: 0;
     }
-    .content3{
-        margin:50px;
+    .content3 {
+      margin: 50px;
     }
   }
 `;
