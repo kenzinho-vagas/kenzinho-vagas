@@ -4,8 +4,12 @@ import Header from "../../components/HeaderAdmin"
 import JobsAdmin from "../../components/FilterJobsAdmin"
 import JobsCreateds from "../../components/JobsCreateds"
 import Welcome from "../../components/Welcome"
+import { useContext } from "react"
+import { JobContext } from "../../contexts/JobContext"
+import ModalEdit from "../../components/ModalEditJob"
 
 const DashboardAdmin = () => {
+    const { jobId, editModal } = useContext(JobContext);
 
     const name:string = "vinicius"
     return (
@@ -15,7 +19,8 @@ const DashboardAdmin = () => {
             <CreateJob />
             <JobsAdmin />
             <JobsCreateds />
-            <Candidates/>
+            {jobId && <Candidates />}
+            {editModal && <ModalEdit/>}
         </>
     )
 }

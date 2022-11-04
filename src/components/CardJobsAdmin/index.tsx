@@ -4,9 +4,12 @@ import Salary from "../../img/salary.png";
 import Company from "../../img/company.png";
 import BtnCloseJob from "../../img/closeJob.png";
 import { ButtonPurple } from "../../styles/Buttons";
-import { IFormVagas } from '../../contexts/JobContext'
+import { IFormVagas, JobContext } from '../../contexts/JobContext'
+import { useContext } from "react";
 
-const Card = (elem:IFormVagas) => {
+const Card = (elem: IFormVagas) => {
+  const { setJobId, setEditModal, setEditId } = useContext(JobContext)
+
     const salary = Number(elem.salary)
   return (
     <li>
@@ -30,8 +33,13 @@ const Card = (elem:IFormVagas) => {
         {salary.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
       </p>
       <div className="buttonsJob">
-        <ButtonPurple>Editar</ButtonPurple>
-        <ButtonPurple>Candidatos</ButtonPurple>
+        <ButtonPurple onClick={() => {
+          setEditModal(true)
+          setEditId(elem.id)
+        }}>Editar</ButtonPurple>
+        <ButtonPurple onClick={(e) => {
+          setJobId(elem.id)
+        }}>Candidatos</ButtonPurple>
       </div>
     </li>
   );

@@ -1,23 +1,16 @@
-import Create from "../../styles/CreateJob";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
-import { JobContext } from "../../contexts/JobContext";
+import { useContext, useEffect, useState } from "react";
+import { JobContext, IFormVagas } from "../../contexts/JobContext";
+import { INewJobForm } from "../CreateJob";
+import { ModalEditStyle } from "../../styles/Modal";
+import api from "../../services/api";
 
-export interface INewJobForm {
-  company_name: string;
-  specialty: string;
-  salary: string;
-  kind_of_work: string;
-  tech: string;
-  level: string;
-  jobURL: string;
-  description: string;
-}
-
-const CreateJob = () => {
-  const { NewJob } = useContext(JobContext);
+const ModalEdit = () => {
+    const { NewJob, setEditModal, editId } = useContext(JobContext);
+    
+    const [job, editJob] = useState<IFormVagas | null>(null)
 
   const formSchema = yup.object().shape({
     company_name: yup.string().required("Campo obrigátorio"),
@@ -40,40 +33,59 @@ const CreateJob = () => {
 
   const submitForm = (data: INewJobForm) => {
     NewJob(data);
-  };
+    };
+    
+    async function getJob() {
+        try {
+            const {data} = await api.get<IFormVagas>(`companyJobs/${editId}`)
+            console.log(data)
+            editJob(data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        getJob()
+    }, [])
 
   return (
-    <Create>
-      <div className="divCreate">
-        <h3>Criar vaga</h3>
+    <div>
+      <ModalEditStyle>
         <div className="divForm">
+            <button className="btnCloseModal" onClick={() => setEditModal(false)}>X</button>
           <form onSubmit={handleSubmit(submitForm)}>
             <div className="formColumn">
               <label htmlFor="companyName">Nome da empresa</label>
               <input
+                value={job?.company_name}
                 type="text"
                 id="companyName"
                 placeholder="Nome da empresa"
                 {...register("company_name")}
               />
               <label htmlFor="especiality">Especialidade</label>
-              <input
+                          <input
+                              value={job?.specialty}
                 type="text"
                 id="especiality"
                 placeholder="Front-end, Back-end..."
                 {...register("specialty")}
               />
               <label htmlFor="type">Tipo de vaga</label>
-              <input
+                          <input
+                              value={job?.kind_of_work}
                 type="text"
                 id="type"
                 placeholder="Presencial, Remota..."
                 {...register("kind_of_work")}
               />
               <label htmlFor="salary">Salário</label>
-              <input type="text" id="salary" placeholder="R$4.500,00" />
+                          <input
+                              value={job?.salary}
+                              type="text" id="salary" placeholder="R$4.500,00" />
               <label htmlFor="tecnology">Tecnologia</label>
-              <input
+                          <input
                 type="text"
                 id="tecnology"
                 placeholder="Ex: React, JavaScript, Html..."
@@ -102,14 +114,14 @@ const CreateJob = () => {
                 {...register("description")}
               ></textarea>
               <button type="submit" id="btnSaveJob">
-                Criar
+                Editar
               </button>
             </div>
           </form>
         </div>
-      </div>
-    </Create>
+      </ModalEditStyle>
+    </div>
   );
 };
 
-export default CreateJob;
+export default ModalEdit;
