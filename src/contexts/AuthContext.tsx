@@ -35,7 +35,7 @@ export interface ILogin {
   token: string;
   accessToken: string;
   id: number;
-  isAdmin: false;
+  isAdmin: boolean;
 }
 
 interface IUserContext {
