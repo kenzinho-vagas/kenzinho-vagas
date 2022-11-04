@@ -1,10 +1,15 @@
 import { DivFilters } from "../../styles/Divs";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 
 const Filters = () => {
-  const { setSearch } = useContext(JobContext);
+  const { search, setSearch } = useContext(JobContext);
+
+  function filterCard(event: React.ChangeEvent<HTMLInputElement>) {
+    event.preventDefault();
+    setSearch(event.target.value);
+  }
 
   return (
     <DivFilters>
@@ -21,7 +26,12 @@ const Filters = () => {
       </div>
       <div className="searchBar">
         <div className="searchBarInput">
-          <input type="text" placeholder="Pesquisar" />
+          <input
+            type="text"
+            placeholder="Pesquisar"
+            value={search}
+            onChange={(event) => filterCard(event)}
+          />
           <AiOutlineSearch />
         </div>
       </div>

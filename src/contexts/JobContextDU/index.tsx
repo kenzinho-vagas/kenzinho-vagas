@@ -8,7 +8,7 @@ interface IJobCountextProps {
   children: React.ReactNode;
 }
 
-export interface IJobContextProps {
+export interface IJobContext {
   allJobs: IJobsProps[];
   savedJobs: IJobsProps[];
   showModal: boolean;
@@ -18,11 +18,10 @@ export interface IJobContextProps {
   setID: React.Dispatch<React.SetStateAction<number>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  writtenSearch: IJobsProps[];
 }
 
-export const JobContext = createContext<IJobContextProps>(
-  {} as IJobContextProps
-);
+export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobCountextProps) => {
   const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
@@ -101,6 +100,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setID,
         search,
         setSearch,
+        writtenSearch,
       }}
     >
       {children}
