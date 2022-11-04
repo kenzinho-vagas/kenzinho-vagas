@@ -7,5 +7,4 @@ export const DivLogin = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 5%;
-
-  `
+`;
