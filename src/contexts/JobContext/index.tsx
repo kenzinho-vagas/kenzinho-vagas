@@ -8,6 +8,7 @@ interface IJobProvider {
 
 interface IJobContext {
   NewJob: (data: INewJobForm) => void;
+  EditJob: (data: INewJobForm) => void;
   listJobs: () => void;
   adminJobs: IFormVagas | null | undefined;
   jobId: number | null;
@@ -76,6 +77,28 @@ export const JobProvider = ({ children }: IJobProvider) => {
     }
   }
 
+  async function EditJob(data: INewJobForm) {
+    console.log(data)
+    try {
+      const response = await api.patch(`companyJobs/${editId} `, data);
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      const techsJob = response.data.tech.split(" ").join("");
+      const techsJobCorrect = techsJob.split(",");
+      const candidatesCorrect = response.data.candidates.split("");
+      const getJobs = await api.get(`/companyJobs`)
+      setAdminJobs(getJobs.data);
+
+      const DataPath = {
+        tech: techsJobCorrect,
+        candidates: candidatesCorrect,
+      };
+      await api.patch<PatchJob | null>(`companyJobs/${editId}`, DataPath);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function listJobs() {
     try {
       const { data } = await api.get<IFormVagas>("/companyJobs");
@@ -102,7 +125,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
 
 
   return (
-    <JobContext.Provider value={{ NewJob, listJobs, adminJobs, jobId, candidates, getCandidates, setJobId, editModal, setEditModal, editId, setEditId }}>
+    <JobContext.Provider value={{ NewJob, listJobs, adminJobs, jobId, candidates, getCandidates, setJobId, editModal, setEditModal, editId, setEditId, EditJob }}>
       {children}
     </JobContext.Provider>
   );

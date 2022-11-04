@@ -8,38 +8,43 @@ import { ModalEditStyle } from "../../styles/Modal";
 import api from "../../services/api";
 
 const ModalEdit = () => {
-    const { NewJob, setEditModal, editId } = useContext(JobContext);
+    const { EditJob, setEditModal, editId } = useContext(JobContext);
     
-    const [job, editJob] = useState<IFormVagas | null>(null)
+    const [job, setJob] = useState<IFormVagas | null>(null)
 
-  const formSchema = yup.object().shape({
-    company_name: yup.string().required("Campo obrigátorio"),
-    specialty: yup.string().required("Campo obrigátorio"),
-    salary: yup.string().required("Campo obrigátorio"),
-    kind_of_work: yup.string().required("Campo obrigátorio"),
-    tech: yup.string().required("Campo obrigátorio"),
-    level: yup.string(),
-    jobURL: yup.string(),
-    description: yup.string().required("Campo obrigátorio"),
-  });
+    interface IJobEdit {
+        company_name: string | undefined;
+        specialty: string | undefined;
+        salary: string | undefined;
+        kind_of_work: string | undefined;
+        tech: [] | undefined;
+        level: string | undefined;
+        description: string | undefined;
+      }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<INewJobForm>({
-    resolver: yupResolver(formSchema),
-  });
+    const formSchema = yup.object().shape({
+        company_name: yup.string().required("Campo obrigátorio"),
+        specialty: yup.string().required("Campo obrigátorio"),
+        salary: yup.string().required("Campo obrigátorio"),
+        kind_of_work: yup.string().required("Campo obrigátorio"),
+        tech: yup.string().required("Campo obrigátorio"),
+        level: yup.string(),
+        description: yup.string().required("Campo obrigátorio"),
+      });
 
-  const submitForm = (data: INewJobForm) => {
-    NewJob(data);
-    };
-    
+      const {
+        register,
+          handleSubmit,
+          reset
+      } = useForm<INewJobForm>({
+        // resolver: yupResolver(formSchema),
+      });
+
     async function getJob() {
         try {
             const {data} = await api.get<IFormVagas>(`companyJobs/${editId}`)
             console.log(data)
-            editJob(data)
+            setJob(data)
         } catch (error) {
             console.error(error)
         }
@@ -54,19 +59,19 @@ const ModalEdit = () => {
       <ModalEditStyle>
         <div className="divForm">
             <button className="btnCloseModal" onClick={() => setEditModal(false)}>X</button>
-          <form onSubmit={handleSubmit(submitForm)}>
+                  <form onSubmit={handleSubmit(EditJob)}>
             <div className="formColumn">
               <label htmlFor="companyName">Nome da empresa</label>
               <input
-                value={job?.company_name}
+                defaultValue={job?.company_name}
                 type="text"
                 id="companyName"
                 placeholder="Nome da empresa"
                 {...register("company_name")}
-              />
+                          />
               <label htmlFor="especiality">Especialidade</label>
                           <input
-                              value={job?.specialty}
+                              defaultValue={job?.specialty}
                 type="text"
                 id="especiality"
                 placeholder="Front-end, Back-end..."
@@ -74,7 +79,7 @@ const ModalEdit = () => {
               />
               <label htmlFor="type">Tipo de vaga</label>
                           <input
-                              value={job?.kind_of_work}
+                              defaultValue={job?.kind_of_work}
                 type="text"
                 id="type"
                 placeholder="Presencial, Remota..."
@@ -82,10 +87,11 @@ const ModalEdit = () => {
               />
               <label htmlFor="salary">Salário</label>
                           <input
-                              value={job?.salary}
+                              defaultValue={job?.salary}
                               type="text" id="salary" placeholder="R$4.500,00" />
               <label htmlFor="tecnology">Tecnologia</label>
                           <input
+                              defaultValue={job?.tech}
                 type="text"
                 id="tecnology"
                 placeholder="Ex: React, JavaScript, Html..."
@@ -108,12 +114,13 @@ const ModalEdit = () => {
               <label htmlFor="description">Descrição</label>
               <textarea
                 id="description"
-                cols={30}
+                              cols={30}
+                              defaultValue={job?.description}
                 rows={11}
                 placeholder="Ex: Atuará em todo o ciclo de vida do sistema (Planejar, arquitetar, desenvolver, testar, implementar, monitorar, documentar, etc.)"
                 {...register("description")}
               ></textarea>
-              <button type="submit" id="btnSaveJob">
+              <button type="submit" id="btnEditJob">
                 Editar
               </button>
             </div>
