@@ -1,16 +1,19 @@
+import { useContext } from "react";
 import Footer from "../../components/Footer";
 import HeaderUser from "../../components/HeaderUser";
 import Main from "../../components/Main";
+import ProfileModal from "../../components/ProfileModal";
 import Welcome from "../../components/Welcome";
-import { UserContext } from "../../contexts/UserContext";
+import { IProfileContext, ProfileContext } from "../../contexts/UserContext";
 
 const DashboardUser = () => {
-  const name: string = "Gabriela";
+  const {profileUser, isProfileModal} = useContext<IProfileContext>(ProfileContext)
 
   return (
     <>
+    {isProfileModal && <ProfileModal/>}
       <HeaderUser />
-      <Welcome name={name} />
+      <Welcome name={profileUser?.name} />
       <Main/>
       <Footer />
     </>

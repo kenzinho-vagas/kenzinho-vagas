@@ -7,7 +7,8 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import  api  from "../services/api";
+import api from "../services/api";
+
 
 export interface IUser {
   id: number;
@@ -31,8 +32,10 @@ export interface IAuthContext {
 
 export interface ILogin {
   user: IUser;
+  token: string;
   accessToken: string;
   id: number;
+  isAdmin: false;
 }
 
 interface IUserContext {
@@ -51,6 +54,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      // const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
@@ -77,9 +81,9 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       api.defaults.headers.authorization = `Bearer ${accessToken}`;
       localStorage.setItem("@kenzinhoVagas:accessToken", accessToken);
       localStorage.setItem("@kenzinhoVagas:id", id);
-      userResponse.isAdmin === true
+      userResponse.isAdmin
         ? navigate("/dashboardAdmin", { replace: true })
-        : navigate("/dashboard", { replace: true });
+        : navigate("/dashboardUser", { replace: true });
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
@@ -90,7 +94,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       const res = await api.post<ILogin>("/signup", data);
       console.log(res);
       toast("Usuário cadastrado com sucesso!");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");

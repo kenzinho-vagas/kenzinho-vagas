@@ -1,22 +1,111 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import api from "../../services/api";
 
-interface IUserCountextProps {
+interface IProfileContextProps {
     children: React.ReactNode;
 }
 
-interface IUserContextProps {
-    // tipagem das props de value do UserContext.Provider
-    test: string | null
+export interface IProfileContext {
+    profileUser: IUserProfile | null;
+    setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
+    isProfileModal: boolean;
+    setProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
+    editeProfile: (body: IEditeProfile) => void
 }
 
-export const UserContext = createContext<IUserContextProps>({} as IUserContextProps)
+interface IUserProfile {
+    email: string;
+    password: string;
+    name: string;
+    linkedin: string;
+    level: string;
+    bio: string;
+    specialty: string;
+    isAdmin: boolean;
+    id: number;
+    jobs: IJobs[];
+}
 
-export const UserProvider = ({children}: IUserCountextProps) => {
-    const [test, setTest] = useState(null)
+interface IJobs {
+    userId: number;
+    company_name: string;
+    specialty: string;
+    salary: string;
+    kind_of_work: string;
+    tech: string[];
+    level: string;
+    jobURL: string;
+    description: string;
+    id: number;
+  }
+
+  export interface IEditeProfile {
+    level?: string;
+    bio?: string;
+    specialty?: string
+  }
+
+export const ProfileContext = createContext<IProfileContext>({} as IProfileContext)
+
+export const ProfileProvider = ({children}: IProfileContextProps) => {
+    const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
+    console.log(profileUser)
+    const [isProfileModal, setProfileModal] = useState<boolean>(false)
+
+    useEffect(() =>{
+        async function getProfile () {
+            const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+            const userId = localStorage.getItem("@kenzinhoVagas:id")
+
+            try {
+                api.defaults.headers.authorization = `Bearer ${token}`;
+                const {data} = await api.get<IUserProfile>(`/users/${userId}`)
+                setProfileUser(data)
+            }
+            catch (error){
+                console.log(error)
+                
+            }
+          
+        }
+        getProfile()
+    }, [])
+
+    async function editeProfile (body: IEditeProfile) {
+        const userId = localStorage.getItem("@kenzinhoVagas:id")
+        const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+
+        if (body.bio === "") {
+            delete body.bio
+        }
+        if (body.level === "") {
+            delete body.level
+        }
+        if (body.specialty === "") {
+            delete body.specialty
+        }
+
+        try {
+            api.defaults.headers.authorization = `Bearer ${token}`
+
+            const {data} = await api.patch(`/users/${userId}`, body)
+            setProfileUser(data)
+            toast.success("Perfil editado com Sucesso!!")
+            setProfileModal(!isProfileModal)
+        }
+
+        catch (error) {
+            console.log(error)
+            toast.error("Opa! Algo deu errado...");
+        }
+
+        console.log(body)
+    }
 
     return (
-        <UserContext.Provider value={{ test }}>
+        <ProfileContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
             {children}
-        </UserContext.Provider>
+        </ProfileContext.Provider>
     )
 }

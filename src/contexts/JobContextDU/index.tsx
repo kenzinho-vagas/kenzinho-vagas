@@ -35,7 +35,7 @@ export const JobProvider = ({children}: IJobCountextProps) => {
             try {
                 const { data } = await api.get<IJobsProps[]>("/companyJobs")
 
-                const filteredData = data.filter((object: IJobsProps) => object.level === "Júnior")
+                const filteredData = data.filter((object: IJobsProps) => object.level === user?.level)
                 setAllJobs(filteredData)
 
             } catch (error) {

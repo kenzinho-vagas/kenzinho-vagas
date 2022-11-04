@@ -6,32 +6,67 @@ export const FormsLog = styled.form`
   display: flex;
   flex-direction: column;
   background-color: var(--color-grey3);
-  color: var(--color-grey0);
+  color: var(--grey-1);
   justify-content: center;
   padding: 10px;
+  background-color:var(--color-primary);
+  border-radius:8px;
+  margin-bottom:5px;
 
   input,
   select {
-    background-color: var(--color-grey2);
+    background-color: var(--grey-1);
     border: none;
-    color: var(--color-grey0);
     margin: 10px;
     padding: 20px;
     font-size: 16px;
-    height: 40px;
+    height: 35px;
     border-radius: 4px;
   }
   label {
     margin: 10px;
   }
 
+  .buttonForm1{
+    
+    border-radius: 8px;
+    border: 1px solid var(--grey-2);
+    background-color:var(--color-button);
+    margin:10px;
+    font-weight:bold;
+    color:var(--text-color1);
+    cursor: pointer;
+    font-size:15px;
+    padding:10px;
+
+  }
+
+  .buttonForm2{
+   
+    background-color:var(--grey-1);
+    margin:10px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--grey-2);
+    padding:10px;
+    font-weight:bold;
+    color:var(--text-color1);
+    
+  }
+
+  a{
+    text-decoration: none;
+    color:var(--text-color1);
+  }
+
   @media (max-width: 700px) {
     width: 90%;
-    max-width:400px;
+    max-width: 400px;
+    margin-left:5px;
   }
   input,
   select {
     padding: 5px;
     font-size: 14px;
   }
-`;
+`
