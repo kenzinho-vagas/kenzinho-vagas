@@ -25,7 +25,6 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobCountextProps) => {
   const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
-  const [jobsFiltered, setJobsFiltered] = useState;
   const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([]);
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -53,7 +52,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
           const filteredData = data.filter(
             (object: IJobsProps) => object.level === user?.level
           );
-
+          console.log(filteredData);
           setAllJobs(filteredData);
         } catch (error) {
           console.error(error);

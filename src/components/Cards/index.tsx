@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { JobContext, JobProvider } from "../../contexts/JobContextDU";
+import { JobContext } from "../../contexts/JobContextDU";
 import Lists from "../Lists";
 
 export interface IJobsProps {
@@ -20,7 +20,7 @@ interface ICardsProps {
 }
 
 const Cards = ({ title }: ICardsProps) => {
-  const { allJobs, savedJobs, writtenSearch } = useContext(JobContext);
+  const { savedJobs, writtenSearch } = useContext(JobContext);
 
   return title === "Todas as vagas" ? (
     <Lists objectArray={writtenSearch} title={title} />

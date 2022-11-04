@@ -1,4 +1,3 @@
-import { JobProvider } from "../../contexts/JobContextDU";
 import { DivGrey } from "../../styles/Divs";
 import Cards from "../Cards";
 
