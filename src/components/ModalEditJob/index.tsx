@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { useContext, useEffect, useState } from "react";
 import { JobContext, IFormVagas } from "../../contexts/JobContext";
-import { INewJobForm } from "../CreateJob";
+import { IEditJobForm } from "../CreateJob";
 import { ModalEditStyle } from "../../styles/Modal";
 import api from "../../services/api";
 
@@ -11,20 +10,11 @@ const ModalEdit = () => {
     
     const [job, setJob] = useState<IFormVagas | null>(null)
 
-    const formSchema = yup.object().shape({
-        company_name: yup.string().required("Campo obrigátorio"),
-        specialty: yup.string().required("Campo obrigátorio"),
-        salary: yup.string().required("Campo obrigátorio"),
-        kind_of_work: yup.string().required("Campo obrigátorio"),
-        tech: yup.string().required("Campo obrigátorio"),
-        level: yup.string(),
-        description: yup.string().required("Campo obrigátorio"),
-      });
 
       const {
         register,
           handleSubmit,
-      } = useForm<INewJobForm>({
+      } = useForm<IEditJobForm>({
         // resolver: yupResolver(formSchema),
       });
 
@@ -38,7 +28,7 @@ const ModalEdit = () => {
         }
   }
   
-  function callSubmit (data: INewJobForm) {
+  function callSubmit (data: IEditJobForm) {
     EditJob(data)
     setEditModal(false)
   }

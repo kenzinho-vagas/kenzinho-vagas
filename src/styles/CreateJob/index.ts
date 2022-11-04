@@ -38,10 +38,11 @@ const Create = styled.div`
 
       button {
         margin-top: 10px;
-        background-color: var(--color-secundary);
+        background-color: var(--grey-1);
         border-radius: 5px;
         padding: 8px;
         font-weight: 700;
+        cursor: pointer;
       }
 
       button:hover {
@@ -53,9 +54,13 @@ const Create = styled.div`
       }
 
       textarea {
-        height: 230px;
-        padding: 10px;
+        height: 250px;
+        padding: 8px;
         resize: none;
+      }
+      p {
+        font-size: 14px;
+        color: var(--text-yup-color);
       }
     }
 

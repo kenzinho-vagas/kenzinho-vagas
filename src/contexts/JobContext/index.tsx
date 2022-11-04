@@ -1,14 +1,23 @@
 import { createContext, useState } from "react";
-import { IEditJobForm, INewJobForm } from "../../components/CreateJob";
+import { INewJobForm } from "../../components/CreateJob";
+
 import api from "../../services/api";
 
 interface IJobProvider {
   children: React.ReactNode;
 }
+interface IEditJobForm {
+  company_name?: string;
+  level?: string;
+  specialty?: string;
+  salary?: string;
+  kind_of_work?: string;
+  description?: string;
+}
 
 interface IJobContext {
   NewJob: (data: INewJobForm) => void;
-  EditJob: (data: INewJobForm) => void;
+  EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
   adminJobs: IFormVagas | null | undefined;
   jobId: number | null;
@@ -19,6 +28,7 @@ interface IJobContext {
   editModal: boolean;
   editId: number | null;
   setEditId: any;
+  DelJob: (jobId?: number) => void;
 }
 
 export interface IFormVagas {
@@ -26,7 +36,7 @@ export interface IFormVagas {
   filter(arg0: (elem: IFormVagas) => boolean): unknown;
   company_name: string;
   specialty: string;
-  salary: string;
+  salary: number;
   kind_of_work: string;
   tech: [];
   level: string;
@@ -42,6 +52,7 @@ interface PatchJob {
   userId?: number;
   id?: number;
 }
+
 
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
@@ -118,6 +129,18 @@ export const JobProvider = ({ children }: IJobProvider) => {
     }
   }
 
+  async function DelJob(jobId?: number) {
+    try {
+      await api.delete(`companyJobs/${jobId}`);
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      const delJob = adminJobs?.filter((job) => job.id !== jobId);
+      setAdminJobs(delJob as any);
+    } catch (errors) {
+      console.log(errors);
+    }
+  }
+
   async function listJobs() {
     try {
       const { data } = await api.get<IFormVagas>("/companyJobs");
@@ -157,6 +180,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
         editId,
         setEditId,
         EditJob,
+        DelJob,
       }}
     >
       {children}

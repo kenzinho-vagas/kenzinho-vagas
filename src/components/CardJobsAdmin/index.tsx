@@ -9,12 +9,12 @@ import { useContext } from "react";
 import { v4 as uuid } from 'uuid';
 
 const Card = (elem: IFormVagas) => {
-  const { setJobId, setEditModal, setEditId } = useContext(JobContext)
+  const { setJobId, setEditModal, setEditId, DelJob } = useContext(JobContext)
 
     const salary = Number(elem.salary)
   return (
     <li key={uuid()}>
-      <button className="btnDeleteJob">
+      <button className="btnDeleteJob" onClick={() => {DelJob(elem.id)}}>
         <img src={BtnCloseJob} alt="Botao excluir vaga" />
       </button>
       <h3> {elem.specialty}</h3>
