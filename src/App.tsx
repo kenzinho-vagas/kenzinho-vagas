@@ -4,7 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from "./contexts/AuthContext";
 import { JobProvider } from "./contexts/JobContext";
 import "./App.css";
-import { UserProvider } from "./contexts/UserContext";
+import { ProfileProvider } from "./contexts/UserContext";
+
 
 function App() {
   return (
@@ -12,11 +13,11 @@ function App() {
       <ToastContainer />
       <Global />
       <AuthProvider>
-        <UserProvider>
+        <ProfileProvider>
           <JobProvider>
             <Routes />
           </JobProvider>
-        </UserProvider>
+        </ProfileProvider>
         
       </AuthProvider>
     </div>

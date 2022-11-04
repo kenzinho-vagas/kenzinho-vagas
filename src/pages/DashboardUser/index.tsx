@@ -4,10 +4,10 @@ import HeaderUser from "../../components/HeaderUser";
 import Main from "../../components/Main";
 import ProfileModal from "../../components/ProfileModal";
 import Welcome from "../../components/Welcome";
-import { IUserContext, UserContext } from "../../contexts/UserContext";
+import { IProfileContext, ProfileContext } from "../../contexts/UserContext";
 
 const DashboardUser = () => {
-  const {profileUser, isProfileModal} = useContext<IUserContext>(UserContext)
+  const {profileUser, isProfileModal} = useContext<IProfileContext>(ProfileContext)
 
   return (
     <>

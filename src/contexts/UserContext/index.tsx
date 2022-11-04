@@ -2,11 +2,11 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 
-interface IUserContextProps {
+interface IProfileContextProps {
     children: React.ReactNode;
 }
 
-export interface IUserContext {
+export interface IProfileContext {
     profileUser: IUserProfile | null;
     setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
     isProfileModal: boolean;
@@ -46,9 +46,9 @@ interface IJobs {
     specialty?: string
   }
 
-export const UserContext = createContext<IUserContext>({} as IUserContext)
+export const ProfileContext = createContext<IProfileContext>({} as IProfileContext)
 
-export const UserProvider = ({children}: IUserContextProps) => {
+export const ProfileProvider = ({children}: IProfileContextProps) => {
     const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
     console.log(profileUser)
     const [isProfileModal, setProfileModal] = useState<boolean>(false)
@@ -104,8 +104,8 @@ export const UserProvider = ({children}: IUserContextProps) => {
     }
 
     return (
-        <UserContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
+        <ProfileContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
             {children}
-        </UserContext.Provider>
+        </ProfileContext.Provider>
     )
 }
