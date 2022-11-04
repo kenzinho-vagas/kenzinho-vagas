@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api";
+import { AuthContext, IUserContext } from "../AuthContext";
 
 interface IProfileContextProps {
     children: React.ReactNode;
@@ -53,6 +54,8 @@ export const ProfileProvider = ({children}: IProfileContextProps) => {
     console.log(profileUser)
     const [isProfileModal, setProfileModal] = useState<boolean>(false)
 
+    const {loading} = useContext<IUserContext>(AuthContext)
+
     useEffect(() =>{
         async function getProfile () {
             const token = localStorage.getItem("@kenzinhoVagas:accessToken")
@@ -70,7 +73,7 @@ export const ProfileProvider = ({children}: IProfileContextProps) => {
           
         }
         getProfile()
-    }, [])
+    }, [loading])
 
     async function editeProfile (body: IEditeProfile) {
         const userId = localStorage.getItem("@kenzinhoVagas:id")
