@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
 import { AuthContext } from "../AuthContext";
@@ -16,6 +16,8 @@ export interface IJobContextProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteJob: React.Dispatch<React.SetStateAction<boolean>>;
   setID: React.Dispatch<React.SetStateAction<number>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const JobContext = createContext<IJobContextProps>(
@@ -43,10 +45,10 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       try {
         const { data } = await api.get<IJobsProps[]>("/companyJobs");
 
-        const filteredData = data.filter(
-          (object: IJobsProps) => object.level === "Júnior"
-        );
-        setAllJobs(filteredData);
+        // const filteredData = data.filter(
+        //   (object: IJobsProps) => object.level === "Júnior"
+        // );
+        setAllJobs(data);
       } catch (error) {
         console.error(error);
       }
@@ -97,6 +99,8 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setShowModal,
         setDeleteJob,
         setID,
+        search,
+        setSearch,
       }}
     >
       {children}
