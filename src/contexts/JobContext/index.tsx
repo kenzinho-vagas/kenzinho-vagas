@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
+import JobsAdmin from "../../components/FilterJobsAdmin";
+import { AxiosError } from "axios";
 import api from "../../services/api";
 
 interface IJobProvider {
@@ -19,6 +21,7 @@ interface IJobContext {
   editModal: boolean;
   editId: number | null;
   setEditId: any;
+  DelJob: (jobId?: number) => void;
 }
 
 export interface IFormVagas {
@@ -26,7 +29,7 @@ export interface IFormVagas {
   filter(arg0: (elem: IFormVagas) => boolean): unknown;
   company_name: string;
   specialty: string;
-  salary: string;
+  salary: number;
   kind_of_work: string;
   tech: [];
   level: string;
@@ -43,15 +46,19 @@ interface PatchJob {
   id?: number;
 }
 
+interface IApiError {
+  error: string;
+}
+
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
   const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
-  const [jobId, setJobId] = useState(null)
+  const [jobId, setJobId] = useState(null);
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
-  const [editModal, setEditModal] = useState(false)
-  const [editId, setEditId] = useState(null)
-  
+  const [editModal, setEditModal] = useState(false);
+  const [editId, setEditId] = useState(null);
+
   async function NewJob(data: INewJobForm) {
     try {
       const response = await api.post("users/1/companyJobs ", data);
@@ -64,7 +71,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      const getJobs = await api.get(`/companyJobs`)
+      const getJobs = await api.get(`/companyJobs`);
       setAdminJobs(getJobs.data);
 
       const DataPath = {
@@ -78,7 +85,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   }
 
   async function EditJob(data: INewJobForm) {
-    console.log(data)
+    console.log(data);
     try {
       const response = await api.patch(`companyJobs/${editId} `, data);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
@@ -86,7 +93,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      const getJobs = await api.get(`/companyJobs`)
+      const getJobs = await api.get(`/companyJobs`);
       setAdminJobs(getJobs.data);
 
       const DataPath = {
@@ -96,6 +103,18 @@ export const JobProvider = ({ children }: IJobProvider) => {
       await api.patch<PatchJob | null>(`companyJobs/${editId}`, DataPath);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function DelJob(jobId?: number) {
+    try {
+      await api.delete(`companyJobs/${jobId}`);
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      api.defaults.headers.authorization = `Bearer ${token}`;
+      const delJob = adminJobs?.filter((job) => job.id !== jobId);
+      setAdminJobs(delJob as any);
+    } catch (errors) {
+      console.log(errors);
     }
   }
 
@@ -110,7 +129,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
 
   async function getCandidates() {
     try {
-      const { data } = await api.get<IFormVagas []>(`jobs`);
+      const { data } = await api.get<IFormVagas[]>(`jobs`);
       const job = await api.get<IFormVagas>(`companyJobs/${jobId}`);
       const candidate = data.filter(
         (elem: IFormVagas) =>
@@ -123,9 +142,24 @@ export const JobProvider = ({ children }: IJobProvider) => {
     }
   }
 
-
   return (
-    <JobContext.Provider value={{ NewJob, listJobs, adminJobs, jobId, candidates, getCandidates, setJobId, editModal, setEditModal, editId, setEditId, EditJob }}>
+    <JobContext.Provider
+      value={{
+        NewJob,
+        listJobs,
+        adminJobs,
+        jobId,
+        candidates,
+        getCandidates,
+        setJobId,
+        editModal,
+        setEditModal,
+        editId,
+        setEditId,
+        EditJob,
+        DelJob,
+      }}
+    >
       {children}
     </JobContext.Provider>
   );

@@ -8,7 +8,7 @@ import { JobContext } from "../../contexts/JobContext";
 export interface INewJobForm {
   company_name: string;
   specialty: string;
-  salary: string;
+  salary: number;
   kind_of_work: string;
   tech: string;
   level: string;
@@ -36,12 +36,14 @@ const CreateJob = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<INewJobForm>({
     resolver: yupResolver(formSchema),
   });
 
   const submitForm = (data: INewJobForm) => {
     NewJob(data);
+    reset();
   };
 
   return (
@@ -101,9 +103,9 @@ const CreateJob = () => {
                 {...register("level")}
               >
                 <option value="default">Selecione uma opção</option>
-                <option value="junior">Júnior</option>
-                <option value="pleno">Pleno</option>
-                <option value="senior">Sênior</option>
+                <option value="Júnior">Júnior</option>
+                <option value="Pleno">Pleno</option>
+                <option value="Sênior">Sênior</option>
               </select>
               <p>{errors.level && errors.level.message}</p>
               <label htmlFor="description">Descrição</label>

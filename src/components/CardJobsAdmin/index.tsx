@@ -8,12 +8,12 @@ import { IFormVagas, JobContext } from '../../contexts/JobContext'
 import { useContext } from "react";
 
 const Card = (elem: IFormVagas) => {
-  const { setJobId, setEditModal, setEditId } = useContext(JobContext)
+  const { setJobId, setEditModal, setEditId, DelJob } = useContext(JobContext)
 
     const salary = Number(elem.salary)
   return (
     <li>
-      <button className="btnDeleteJob">
+      <button className="btnDeleteJob" onClick={() => {DelJob(elem.id)}}>
         <img src={BtnCloseJob} alt="Botao excluir vaga" />
       </button>
       <h3> {elem.specialty}</h3>
