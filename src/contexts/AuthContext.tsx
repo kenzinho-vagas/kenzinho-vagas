@@ -20,7 +20,7 @@ export interface IUser {
   level: string;
   bio?: string;
   specialty: string;
-  isAdmin: false;
+  isAdmin: boolean;
   jobs: [];
 }
 
@@ -54,12 +54,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      const id = localStorage.getItem("@kenzinhoVagas:id");
+      // const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-          const { data } = await api.get<IUser>(`/users/${id}`);
+          const { data } = await api.get<IUser>(`/users/`);
           setUser(data);
         } catch (error) {
           console.error(error);

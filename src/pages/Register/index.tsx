@@ -93,7 +93,7 @@ export const Register = () => {
             <p className="error">{errors.linkedin?.message}</p>
 
             <label htmlFor="level">Selecionar nível do cargo</label>
-            <select id="level" {...register("specialty")}>
+            <select id="level" {...register("level")}>
               <option value="Junior">Júnior</option>
               <option value="Pleno">Pleno</option>
               <option value="Senior">Sênior</option>
