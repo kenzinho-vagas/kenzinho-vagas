@@ -1,12 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import api from "../../services/api";
+import { AuthContext, IUserContext } from "../AuthContext";
 
-interface IUserContextProps {
+interface IProfileContextProps {
     children: React.ReactNode;
 }
 
-export interface IUserContext {
+export interface IProfileContext {
     profileUser: IUserProfile | null;
     setProfileUser: React.Dispatch<React.SetStateAction<IUserProfile | null>>;
     isProfileModal: boolean;
@@ -46,12 +47,14 @@ interface IJobs {
     specialty?: string
   }
 
-export const UserContext = createContext<IUserContext>({} as IUserContext)
+export const ProfileContext = createContext<IProfileContext>({} as IProfileContext)
 
-export const UserProvider = ({children}: IUserContextProps) => {
+export const ProfileProvider = ({children}: IProfileContextProps) => {
     const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
     console.log(profileUser)
     const [isProfileModal, setProfileModal] = useState<boolean>(false)
+
+    const {loading} = useContext<IUserContext>(AuthContext)
 
     useEffect(() =>{
         async function getProfile () {
@@ -70,7 +73,7 @@ export const UserProvider = ({children}: IUserContextProps) => {
           
         }
         getProfile()
-    }, [])
+    }, [loading])
 
     async function editeProfile (body: IEditeProfile) {
         const userId = localStorage.getItem("@kenzinhoVagas:id")
@@ -104,8 +107,8 @@ export const UserProvider = ({children}: IUserContextProps) => {
     }
 
     return (
-        <UserContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
+        <ProfileContext.Provider value={{ profileUser, setProfileUser, isProfileModal, setProfileModal, editeProfile }}>
             {children}
-        </UserContext.Provider>
+        </ProfileContext.Provider>
     )
 }

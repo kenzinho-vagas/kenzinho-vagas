@@ -23,7 +23,7 @@ const Cards = ({ title }: ICardsProps) => {
   const { allJobs, savedJobs, writtenSearch } = useContext(JobContext);
 
   return title === "Todas as vagas" ? (
-    <Lists objectArray={allJobs} title={title} />
+    <Lists objectArray={writtenSearch} title={title} />
   ) : (
     <Lists objectArray={savedJobs} title={title} />
   );

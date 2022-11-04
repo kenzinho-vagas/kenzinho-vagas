@@ -4,13 +4,16 @@ import { LinkSecundary } from '../../styles/Links'
 import StyleHeader from '../../styles/HeaderUser'
 import { ButtonPurple } from '../../styles/Buttons'
 import { useContext } from 'react'
-import { IUserContext, UserContext } from '../../contexts/UserContext'
+import { IProfileContext, ProfileContext} from '../../contexts/UserContext'
+
 
 const HeaderUser = () => {
 
-    const {isProfileModal, setProfileModal} = useContext<IUserContext>(UserContext)
+    const {isProfileModal, setProfileModal} = useContext<IProfileContext>(ProfileContext)
+
 
     function logout () {
+ 
         window.localStorage.clear()
     }
 

@@ -2,13 +2,13 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
 import {useForm} from "react-hook-form"
 import { useContext } from "react"
-import { IEditeProfile, IUserContext, UserContext } from "../../contexts/UserContext"
+import { IEditeProfile, IProfileContext, ProfileContext } from "../../contexts/UserContext"
 import { DivForm, DivModal } from "../../styles/Modal"
 import {CgCloseO} from "react-icons/cg"
 
 const ProfileModal = () => {
 
-    const {isProfileModal, setProfileModal, profileUser, editeProfile} = useContext<IUserContext>(UserContext)
+    const {isProfileModal, setProfileModal, profileUser, editeProfile} = useContext<IProfileContext>(ProfileContext)
 
     const schema = yup.object().shape({
         level: yup.string(),

@@ -25,6 +25,7 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobCountextProps) => {
   const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
+  const [jobsFiltered, setJobsFiltered] = useState;
   const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([]);
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -35,26 +36,33 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
 
   const [search, setSearch] = useState("");
 
-  const writtenSearch = allJobs.filter((vacancies) =>
-    vacancies.company_name.toLowerCase().includes(search.toLowerCase())
+  const writtenSearch = allJobs.filter(
+    (vacancies) =>
+      vacancies.company_name.toLowerCase().includes(search.toLowerCase()) ||
+      vacancies.specialty.toLowerCase().includes(search.toLowerCase())
   );
 
   useEffect(() => {
     async function getAllJobs() {
-      try {
-        const { data } = await api.get<IJobsProps[]>("/companyJobs");
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
 
-        // const filteredData = data.filter(
-        //   (object: IJobsProps) => object.level === "Júnior"
-        // );
-        setAllJobs(data);
-      } catch (error) {
-        console.error(error);
+      if (token) {
+        try {
+          const { data } = await api.get<IJobsProps[]>("/companyJobs");
+
+          const filteredData = data.filter(
+            (object: IJobsProps) => object.level === user?.level
+          );
+
+          setAllJobs(filteredData);
+        } catch (error) {
+          console.error(error);
+        }
       }
     }
 
     getAllJobs();
-  }, [allJobs]);
+  }, []);
 
   useEffect(() => {
     async function getSavedJobs() {
