@@ -1,23 +1,20 @@
 import styled from "styled-components";
 
-
 export const DivGrey = styled.div`
   background-color: var(--grey-1);
   width: 95%;
   margin: 30px auto;
 
   border-radius: 5px;
-  border: 1px solid #1E1E1E;
-  
+  border: 1px solid #1e1e1e;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-;
-
   h3 {
-        font-weight: 700;
-        font-size: 16px;
-        margin: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 10px;
   }
 
   .cards {
@@ -52,62 +49,59 @@ export const DivGrey = styled.div`
 `;
 
 export const DivCard = styled.li`
-    background-color: #ffffff;
-    margin: 30px auto;
-    width: 200px;
-    padding: 15px;
-    
-    border-radius: 5px;
-    border: 1px solid #1E1E1E;
-    
+  background-color: #ffffff;
+  margin: 30px auto;
+  width: 200px;
+  padding: 15px;
 
+  border-radius: 5px;
+  border: 1px solid #1e1e1e;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .cardInfo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    
+    margin-bottom: 15px;
 
-    .cardInfo {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 15px;
-
-        img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-        }
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
     }
+  }
 
-    .trash {
-        width: 30px;
-        height: 30px;
-        margin: 0 auto;
-    }
+  .trash {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+  }
 
-    .seeDetails {
-        background-color: var(--color-primary);
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: 700;
+  .seeDetails {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
 
-        padding: 8px;
-        border-radius: 5px;
-        border:transparent;
+    padding: 8px;
+    border-radius: 5px;
+    border: transparent;
 
-        width: 70%;
-        margin: 0 auto;
-    }
-;
-`
+    width: 70%;
+    margin: 0 auto;
+  }
+`;
 
 export const DivFilters = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   margin: 0px auto 20px auto;
   border-top: 2px solid var(--color-primary);
 
@@ -124,13 +118,30 @@ export const DivFilters = styled.div`
     padding-top: 30px;
 
     select {
-        margin-right: 5px;
+      width: 163px;
+      margin-right: 8px;
 
-        border: 1px solid var(--color-primary);
-        border-radius: 8px;
+      border: 1px solid var(--color-primary);
+      border-radius: 8px;
 
-        padding: 4px;
+      padding: 4px;
     }
+  }
+
+  button {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1.5px transparent;
+    background-color: var(--color-primary);
+    color: var(--grey-1);
+    padding: 4px;
+  }
+
+  button:hover {
+    background-color: #fff;
+    border: solid 1.5px var(--color-primary);
+    color: var(--color-primary);
   }
 
   .searchBar {
@@ -138,17 +149,17 @@ export const DivFilters = styled.div`
     max-width: 400px;
 
     .searchBarInput {
-        border: 1px solid var(--color-primary);
-        border-radius: 8px;
+      border: 1px solid var(--color-primary);
+      border-radius: 8px;
 
-        padding: 4px;
+      padding: 4px;
 
-        display: flex;
-        justify-content: space-between;
+      display: flex;
+      justify-content: space-between;
 
-        input {
-            border: transparent;
-        }
+      input {
+        border: transparent;
+      }
     }
   }
   @media screen and (min-width: 768px) {
@@ -163,7 +174,6 @@ export const DivFilters = styled.div`
       margin-bottom: 0px;
       justify-content: flex-start;
       gap: 10px;
-      
     }
 
     .searchBar {
@@ -171,6 +181,3 @@ export const DivFilters = styled.div`
     }
   }
 `;
-
-
-
