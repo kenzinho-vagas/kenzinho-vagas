@@ -33,6 +33,7 @@ export interface ILogin {
   user: IUser;
   accessToken: string;
   id: number;
+  isAdmin: false;
 }
 
 interface IUserContext {
@@ -51,11 +52,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-          const { data } = await api.get<IUser>(`/users/`);
+          const { data } = await api.get<IUser>(`/users/${id}`);
           setUser(data);
         } catch (error) {
           console.error(error);
@@ -90,7 +92,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       const res = await api.post<ILogin>("/signup", data);
       console.log(res);
       toast("Usuário cadastrado com sucesso!");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
