@@ -25,14 +25,17 @@ export const Login = () => {
   return (
     <>
       <Header>
-          <img src={logo} alt="Logo Kenzinho" />
-          <div className="rightHeader">
-          <LinkPrimary to={'/'} className='buttonHeaderDesktop'>Sobre Nós</LinkPrimary>
-          <LinkSecundary to={'/'} className='buttonHeaderDesktop'>Inicio</LinkSecundary>
-          </div>
-        </Header>
+        <img src={logo} alt="Logo Kenzinho" />
+        <div className="rightHeader">
+          <LinkPrimary to={"/"} className="buttonHeaderDesktop">
+            Sobre Nós
+          </LinkPrimary>
+          <LinkSecundary to={"/"} className="buttonHeaderDesktop">
+            Inicio
+          </LinkSecundary>
+        </div>
+      </Header>
       <DivLogin>
-       
         <div className="contentLogin">
           <FormsLog onSubmit={handleSubmit(loginUser)}>
             <h1 className="title">LOGIN</h1>
