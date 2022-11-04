@@ -24,7 +24,7 @@ export const FooterLanding = styled.div`
   }
 
   .footer1 {
-    width: 200px;
+    width: 215px;
     line-height: 20px;
     margin: 10px 0;
   }
@@ -34,7 +34,7 @@ export const FooterLanding = styled.div`
 
   .logoFooter {
     font-weight: 900;
-    gap: 10px;
+    gap: 5px;
     text-align: center;
     font-size: 26px;
     display: flex;
@@ -42,7 +42,7 @@ export const FooterLanding = styled.div`
   }
 
   .footer2 {
-    width: 200px;
+    width: 215px;
     margin-top: 20px;
     line-height: 30px;
   }

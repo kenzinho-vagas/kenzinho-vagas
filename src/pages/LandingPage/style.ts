@@ -129,11 +129,11 @@ export const DivKenzinho = styled.div`
     margin-top: 140px;
     line-height: 30px;
   }
-  .footer{
+  .footer {
     width: 100%;
-    height:40px;
+    height: 40px;
     background-color: var(--color-primary);
-}
+  }
 
   @media (max-width: 790px) {
     .content3 {

@@ -111,7 +111,7 @@ export const LandingPage = () => {
                 <Link to={"/"}>Vagas em tecnologia</Link>
               </li>
               <li>
-                <Link to={"/"}>Cadastro para acesso de vagas</Link>
+                <Link to={"/register"}>Cadastro para acessar vagas</Link>
               </li>
             </ul>
           </div>
