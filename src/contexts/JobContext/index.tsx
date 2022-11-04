@@ -63,7 +63,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      setAdminJobs(response.data);
+      const getJobs = await api.get(`/companyJobs`)
+      setAdminJobs(getJobs.data);
 
       const DataPath = {
         tech: techsJobCorrect,
