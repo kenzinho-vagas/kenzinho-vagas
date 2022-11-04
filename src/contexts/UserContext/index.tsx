@@ -92,6 +92,7 @@ export const UserProvider = ({children}: IUserContextProps) => {
             const {data} = await api.patch(`/users/${userId}`, body)
             setProfileUser(data)
             toast.success("Perfil editado com Sucesso!!")
+            setProfileModal(!isProfileModal)
         }
 
         catch (error) {
