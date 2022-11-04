@@ -7,7 +7,6 @@ interface IJobProvider {
 }
 
 interface IJobContext {
-  jobs: IFormVagas | null;
   NewJob: (data: INewJobForm) => void;
   listJobs: () => void;
   adminJobs: IFormVagas | null | undefined;
@@ -34,7 +33,6 @@ interface PatchJob {
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [jobs, setJob] = useState<IFormVagas | null>(null);
   const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
 
   async function NewJob(data: INewJobForm) {
@@ -49,7 +47,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      setJob(response.data);
+      setAdminJobs(response.data);
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -71,7 +69,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   }
 
   return (
-    <JobContext.Provider value={{ NewJob, jobs, listJobs, adminJobs }}>
+    <JobContext.Provider value={{ NewJob, listJobs, adminJobs }}>
       {children}
     </JobContext.Provider>
   );
