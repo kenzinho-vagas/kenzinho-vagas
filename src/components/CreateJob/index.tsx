@@ -17,6 +17,16 @@ export interface INewJobForm {
   candidates: [];
 }
 
+export interface IEditJobForm {
+  company_name?: string;
+  specialty?: string;
+  salary?: string;
+  kind_of_work?: string;
+  tech?: string;
+  level?: string;
+  description?: string;
+}
+
 const CreateJob = () => {
   const { NewJob } = useContext(JobContext);
 

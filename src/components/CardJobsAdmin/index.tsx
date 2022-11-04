@@ -6,13 +6,14 @@ import BtnCloseJob from "../../img/closeJob.png";
 import { ButtonPurple } from "../../styles/Buttons";
 import { IFormVagas, JobContext } from '../../contexts/JobContext'
 import { useContext } from "react";
+import { v4 as uuid } from 'uuid';
 
 const Card = (elem: IFormVagas) => {
   const { setJobId, setEditModal, setEditId } = useContext(JobContext)
 
     const salary = Number(elem.salary)
   return (
-    <li>
+    <li key={uuid()}>
       <button className="btnDeleteJob">
         <img src={BtnCloseJob} alt="Botao excluir vaga" />
       </button>

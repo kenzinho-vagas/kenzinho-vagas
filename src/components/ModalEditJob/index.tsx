@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { JobContext, IFormVagas } from "../../contexts/JobContext";
 import { INewJobForm } from "../CreateJob";
@@ -11,16 +10,6 @@ const ModalEdit = () => {
     const { EditJob, setEditModal, editId } = useContext(JobContext);
     
     const [job, setJob] = useState<IFormVagas | null>(null)
-
-    interface IJobEdit {
-        company_name: string | undefined;
-        specialty: string | undefined;
-        salary: string | undefined;
-        kind_of_work: string | undefined;
-        tech: [] | undefined;
-        level: string | undefined;
-        description: string | undefined;
-      }
 
     const formSchema = yup.object().shape({
         company_name: yup.string().required("Campo obrigátorio"),
@@ -35,7 +24,6 @@ const ModalEdit = () => {
       const {
         register,
           handleSubmit,
-          reset
       } = useForm<INewJobForm>({
         // resolver: yupResolver(formSchema),
       });
@@ -48,7 +36,12 @@ const ModalEdit = () => {
         } catch (error) {
             console.error(error)
         }
-    }
+  }
+  
+  function callSubmit (data: INewJobForm) {
+    EditJob(data)
+    setEditModal(false)
+  }
 
     useEffect(() => {
         getJob()
@@ -59,7 +52,7 @@ const ModalEdit = () => {
       <ModalEditStyle>
         <div className="divForm">
             <button className="btnCloseModal" onClick={() => setEditModal(false)}>X</button>
-                  <form onSubmit={handleSubmit(EditJob)}>
+                  <form onSubmit={handleSubmit(callSubmit)}>
             <div className="formColumn">
               <label htmlFor="companyName">Nome da empresa</label>
               <input
@@ -106,10 +99,10 @@ const ModalEdit = () => {
                 defaultValue={"default"}
                 {...register("level")}
               >
-                <option value="default">Selecione uma opção</option>
-                <option value="junior">Júnior</option>
-                <option value="pleno">Pleno</option>
-                <option value="senior">Sênior</option>
+                <option defaultValue={job?.level}>{job? job.level : 'Selecione um nivel'}</option>
+                <option value="Junior">Júnior</option>
+                <option value="Pleno">Pleno</option>
+                <option value="Senior">Sênior</option>
               </select>
               <label htmlFor="description">Descrição</label>
               <textarea
