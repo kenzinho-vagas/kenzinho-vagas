@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivGrey = styled.div`
-  background-color: var(--grey-1);
+  background-color: var(--grey-4);
   width: 95%;
   margin: 30px auto;
   border-radius: 5px;
