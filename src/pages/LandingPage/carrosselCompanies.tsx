@@ -37,7 +37,10 @@ export const ControlledCarousel = () => {
             allCompanies.map(company => (
                 <Carousel.Item>
                     <h2>{ company.name }</h2>
-                    <p>Número de vagas</p>
+                    <div>
+                      <h3>Número de vagas</h3>
+                      <p>Lorem ipsum</p>
+                    </div>
                 </Carousel.Item>
             ))
         }
