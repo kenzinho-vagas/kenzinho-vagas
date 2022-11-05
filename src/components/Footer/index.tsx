@@ -1,4 +1,4 @@
-import { DivFooter } from "./style"
+import { DivFooter } from "./style";
 
 const Footer = () => {
 
@@ -9,4 +9,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;

@@ -18,4 +18,6 @@ export const schema = yup.object({
   bio: yup.string().required("Bio é obrigatória."),
   linkedin: yup.string().required("Cadastre seu usuário LinkedIn."),
   specialty: yup.string().required(),
+  level:yup.string().required(),
+  isAdmin: yup.bool(),
 });

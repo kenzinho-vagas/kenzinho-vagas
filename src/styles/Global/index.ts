@@ -5,8 +5,12 @@ const Global = createGlobalStyle`
         --color-primary: #430B66;
         --color-secundary: #BDAFCB;
         --color-white: #FFFFFF;
+        --grey-1: #EBEBEB;
+        --grey-2:#000000;
         --grey-3: #C0C0C0;
         --grey-4: ##EBEBEB;
+        --color-button: #F3D9FA;
+        --text-color1: #2C2C2C;
         --text-color2: #1E1E1E;
     }
 
@@ -35,6 +39,7 @@ const Global = createGlobalStyle`
         font: inherit;
         vertical-align: baseline;
         font-family: 'Nunito Sans', sans-serif;
+
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
