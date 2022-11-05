@@ -65,7 +65,7 @@ export const FooterLanding = styled.div`
 
   @media (max-width: 931px) {
     .footerContent {
-      gap:0;
+      gap: 5px;
     }
     .icons svg {
     margin: 5px;
@@ -77,7 +77,6 @@ export const FooterLanding = styled.div`
   @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
-    margin: 20px 10px;
   }
 
   @media (max-width: 600px) {
@@ -85,6 +84,7 @@ export const FooterLanding = styled.div`
       align-items: center;
       flex-direction: column;
       gap: 0;
+      text-align: center;
     }
     .followUs {
       margin-top: 20px;
