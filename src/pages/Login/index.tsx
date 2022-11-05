@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
-import logo from "../../img/logo.png";
-import "react-toastify/dist/ReactToastify.css";
 import { DivLogin } from "./style";
 import { schema } from "./schema";
 import { useContext } from "react";
 import { AuthContext, IUser } from "../../contexts/AuthContext";
 import { FormsLog } from "../../components/FormsLog/style";
-import Header from "../../styles/Header";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
+import Header from "../../styles/Header";
+import logo from "../../img/logo.png";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const { loginUser } = useContext(AuthContext);

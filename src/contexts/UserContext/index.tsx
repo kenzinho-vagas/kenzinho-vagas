@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import api from "../../services/api";
 import { AuthContext, IUserContext } from "../AuthContext";
+import api from "../../services/api";
 
 interface IProfileContextProps {
     children: React.ReactNode;

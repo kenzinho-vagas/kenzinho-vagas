@@ -1,7 +1,7 @@
 import { DivFilters } from "../../styles/Divs";
 import { AiOutlineSearch } from "react-icons/ai";
-import React, { useContext } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
+import React, { useContext } from "react";
 
 const Filters = () => {
   const { search, setSearch } = useContext(JobContext);

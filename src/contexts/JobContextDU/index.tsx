@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
-import { AuthContext } from "../AuthContext";
 import api from "../../services/api";
 
 interface IJobCountextProps {
@@ -30,8 +29,6 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteJob, setDeleteJob] = useState<boolean>(false);
   const [id, setID] = useState<number>(0);
-
-  const { user } = useContext(AuthContext);
 
   const [search, setSearch] = useState("");
 

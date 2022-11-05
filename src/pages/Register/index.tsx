@@ -1,15 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../img/logo.png";
-import "react-toastify/dist/ReactToastify.css";
 import { schema } from "./schema";
 import { useContext } from "react";
 import { AuthContext, IUser } from "../../contexts/AuthContext";
 import { FormsLog } from "../../components/FormsLog/style";
-
 import { DivLogin } from "../Login/style";
-import Header from "../../styles/Header";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
+import Header from "../../styles/Header";
+import logo from "../../img/logo.png";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Register = () => {
   const { registerUser } = useContext(AuthContext);

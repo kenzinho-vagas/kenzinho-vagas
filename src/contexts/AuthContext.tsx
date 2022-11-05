@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
-
-
 export interface IUser {
   id: number;
   name: string;
@@ -55,7 +53,6 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      // const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
