@@ -62,7 +62,41 @@ export const DivLanding = styled.div`
       text-align: center;
       padding: 15px;
       height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
     }
+  }
+`;
+
+export const DivAllCompanies = styled.div`
+  background-color: var(--color-white);
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .titleLand2 {
+    font-size: 24px;
+    color: var(--color-primary);
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .carousel-item {
+    max-width: 450px;
+    height: 230px;
+    padding: 90px 60px;
+    border: 1px solid var(--grey-2);
+    border-radius: 5px;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 24px;
+    padding-bottom: 8px;
   }
 `;
 
