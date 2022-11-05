@@ -14,7 +14,7 @@ export const ButtonPurple = styled.button`
     align-items: center;
     justify-content: center;
     font-size: 12px;
-
+    cursor: pointer;
     @media screen and (min-width: 768px){
         width: 130px;
         font-size: 18px;
@@ -36,7 +36,7 @@ export const ButtonWhite = styled.button`
     align-items: center;
     justify-content: center;
     font-size: 12px;
-
+    cursor: pointer;
     @media screen and (min-width: 768px){
         width: 130px;
         font-size: 18px;

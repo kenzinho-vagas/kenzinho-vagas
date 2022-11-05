@@ -8,8 +8,8 @@ const JobsCreateds = () => {
     const { adminJobs, listJobs } = useContext(JobContext);
 
     useEffect(() => {
-        listJobs();
-    }, [])
+        listJobs()
+    }, [adminJobs])
 
     return (
         <ListJobsAdmin>

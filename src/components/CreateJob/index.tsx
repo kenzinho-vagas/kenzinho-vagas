@@ -8,12 +8,23 @@ import * as yup from "yup";
 export interface INewJobForm {
   company_name: string;
   specialty: string;
-  salary: string;
+  salary: number;
   kind_of_work: string;
   tech: string;
   level: string;
   jobURL: string;
   description: string;
+  candidates: [];
+}
+
+export interface IEditJobForm {
+  company_name?: string;
+  specialty?: string;
+  salary?: string;
+  kind_of_work?: string;
+  tech?: string;
+  level?: string;
+  description?: string;
 }
 
 const CreateJob = () => {
@@ -28,18 +39,21 @@ const CreateJob = () => {
     level: yup.string(),
     jobURL: yup.string(),
     description: yup.string().required("Campo obrigátorio"),
+    candidates: yup.string(),
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<INewJobForm>({
     resolver: yupResolver(formSchema),
   });
 
   const submitForm = (data: INewJobForm) => {
     NewJob(data);
+    reset();
   };
 
   return (
@@ -56,6 +70,7 @@ const CreateJob = () => {
                 placeholder="Nome da empresa"
                 {...register("company_name")}
               />
+              <p>{errors.company_name && errors.company_name.message}</p>
               <label htmlFor="especiality">Especialidade</label>
               <input
                 type="text"
@@ -63,6 +78,7 @@ const CreateJob = () => {
                 placeholder="Front-end, Back-end..."
                 {...register("specialty")}
               />
+              <p>{errors.specialty && errors.specialty.message}</p>
               <label htmlFor="type">Tipo de vaga</label>
               <input
                 type="text"
@@ -70,8 +86,15 @@ const CreateJob = () => {
                 placeholder="Presencial, Remota..."
                 {...register("kind_of_work")}
               />
+              <p>{errors.kind_of_work && errors.kind_of_work.message}</p>
               <label htmlFor="salary">Salário</label>
-              <input type="text" id="salary" placeholder="R$4.500,00" />
+              <input
+                type="text"
+                id="salary"
+                placeholder="R$4.500,00"
+                {...register("salary")}
+              />
+              <p>{errors.salary && errors.salary.message}</p>
               <label htmlFor="tecnology">Tecnologia</label>
               <input
                 type="text"
@@ -79,6 +102,7 @@ const CreateJob = () => {
                 placeholder="Ex: React, JavaScript, Html..."
                 {...register("tech")}
               />
+              <p>{errors.tech && errors.tech.message}</p>
             </div>
             <div className="formColumn">
               <label htmlFor="level">Nível</label>
@@ -89,10 +113,11 @@ const CreateJob = () => {
                 {...register("level")}
               >
                 <option value="default">Selecione uma opção</option>
-                <option value="junior">Júnior</option>
-                <option value="pleno">Pleno</option>
-                <option value="senior">Sênior</option>
+                <option value="Júnior">Júnior</option>
+                <option value="Pleno">Pleno</option>
+                <option value="Sênior">Sênior</option>
               </select>
+              <p>{errors.level && errors.level.message}</p>
               <label htmlFor="description">Descrição</label>
               <textarea
                 id="description"
@@ -101,6 +126,13 @@ const CreateJob = () => {
                 placeholder="Ex: Atuará em todo o ciclo de vida do sistema (Planejar, arquitetar, desenvolver, testar, implementar, monitorar, documentar, etc.)"
                 {...register("description")}
               ></textarea>
+              <input
+                type="text"
+                id="candidates"
+                hidden
+                value={[]}
+                {...register("candidates")}
+              />
               <button type="submit" id="btnSaveJob">
                 Criar
               </button>
