@@ -1,99 +1,12 @@
-import { useEffect, useState } from "react";
-// import { api } from "../../services/api";
-// import { listenerCount } from "process";
-
-interface IFilterObjectUser {
-  tech: string;
-  salary: string;
-  type: string;
-}
+import { useContext, useState } from "react";
+import { JobContext } from "../../contexts/JobContextDU";
 
 const SelectFilter = () => {
   const [selectTech, setSelectTech] = useState("");
   const [selectSalary, setSelectSalary] = useState("");
   const [selectType, setSelectType] = useState("");
-  const [List, setList] = useState([]);
-  const [listFiltred, setListFiltred] = useState([]);
-  const [teste, setTeste] = useState([]);
 
-  //   useEffect(() => {
-  //     async function getVagas() {
-  //       const { data } = await api.get(
-  //         `https://kenzinho-vagas.herokuapp.com/companyJobs`
-  //       );
-
-  //       setList(data);
-  //     }
-  //     getVagas();
-  //   }, []);
-
-  //   testeOption();
-
-  const filterSelect = (object: IFilterObjectUser) => {
-    console.log(List);
-    if (object.salary === "" && object.type === "") {
-      const resultFiltred = List.filter((element) => {
-        return element.tech.join(",").includes(object.tech) === true;
-      });
-
-      setListFiltred(resultFiltred);
-    } else if (object.tech === "" && object.type === "") {
-      const resultFiltred = List.filter((element) => {
-        return (
-          +element.salary >= +object.salary &&
-          +element.salary <= +object.salary + 5000
-        );
-      });
-
-      setListFiltred(resultFiltred);
-    } else if (object.tech === "" && object.salary === "") {
-      const resultFiltred = List.filter((element) => {
-        return element.kind_of_work === object.type;
-      });
-
-      setListFiltred(resultFiltred);
-    } else if (object.tech === "") {
-      const resultFiltred = List.filter((element) => {
-        return (
-          +element.salary >= +object.salary &&
-          +element.salary <= +object.salary + 5000 &&
-          element.kind_of_work === object.type
-        );
-      });
-
-      setListFiltred(resultFiltred);
-    } else if (object.salary === "") {
-      const resultFiltred = List.filter((element) => {
-        return (
-          element.tech.join(",").includes(object.tech) === true &&
-          element.kind_of_work === object.type
-        );
-      });
-
-      setListFiltred(resultFiltred);
-    } else if (object.type === "") {
-      const resultFiltred = List.filter((element) => {
-        return (
-          +element.salary >= +object.salary &&
-          +element.salary <= +object.salary + 5000 &&
-          element.tech.join(",").includes(object.tech) === true
-        );
-      });
-
-      setListFiltred(resultFiltred);
-    } else {
-      const resultFiltred = List.filter((element) => {
-        return (
-          +element.salary >= +object.salary &&
-          +element.salary <= +object.salary + 5000 &&
-          element.tech.join(",").includes(object.tech) === true &&
-          element.kind_of_work === object.type
-        );
-      });
-
-      setListFiltred(resultFiltred);
-    }
-  };
+  const { filterSelect } = useContext(JobContext);
 
   return (
     <>
