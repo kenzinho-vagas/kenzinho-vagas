@@ -1,6 +1,6 @@
-import Logo from '../../img/logo.png'
-import { LinkPrimary, LinkSecundary } from '../../styles/Links'
-import StyleHeader from '../../styles/HeaderAdmin'
+import { LinkPrimary, LinkSecundary } from "../../styles/Links";
+import Logo from "../../img/logo.png";
+import StyleHeader from "../../styles/HeaderAdmin";
 
 const Header = () => {
     return (
@@ -14,4 +14,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

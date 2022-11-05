@@ -1,8 +1,8 @@
-import StyleCandidates from '../../styles/Candidates'
-import Email from '../../img/email.png'
-import Level from '../../img/level.png'
-import Linkedin from '../../img/linkedin.png'
-import Stack from '../../img/stack.png'
+import StyleCandidates from "../../styles/Candidates";
+import Email from "../../img/email.png";
+import Level from "../../img/level.png";
+import Linkedin from "../../img/linkedin.png";
+import Stack from "../../img/stack.png";
 
 const Candidates = () => {
     return (
@@ -58,4 +58,4 @@ const Candidates = () => {
     )
 }
 
-export default Candidates
+export default Candidates;
