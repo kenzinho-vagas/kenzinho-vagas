@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import api from "../services/api";
 
 
+
 export interface IUser {
   id: number;
   name: string;
@@ -38,7 +39,7 @@ export interface ILogin {
   isAdmin: boolean;
 }
 
-interface IUserContext {
+export interface IUserContext {
   user: IUser | null;
   loading: boolean;
   loginUser: (data: IUser) => void;
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser>({} as IUser);
 
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUser() {
@@ -70,7 +71,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
     }
 
     loadUser();
-  }, []);
+  }, [loading]);
 
   async function loginUser(data: IUser) {
     try {
@@ -84,6 +85,8 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       userResponse.isAdmin
         ? navigate("/dashboardAdmin", { replace: true })
         : navigate("/dashboardUser", { replace: true });
+
+        setLoading(true)
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");

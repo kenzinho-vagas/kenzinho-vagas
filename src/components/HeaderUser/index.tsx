@@ -6,11 +6,14 @@ import { ButtonPurple } from '../../styles/Buttons'
 import { useContext } from 'react'
 import { IProfileContext, ProfileContext} from '../../contexts/UserContext'
 
+
 const HeaderUser = () => {
 
     const {isProfileModal, setProfileModal} = useContext<IProfileContext>(ProfileContext)
 
+
     function logout () {
+ 
         window.localStorage.clear()
     }
 
