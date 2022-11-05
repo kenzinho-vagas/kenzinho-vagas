@@ -1,9 +1,9 @@
 import Create from "../../styles/CreateJob";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { JobContext } from "../../contexts/JobContext";
+import * as yup from "yup";
 
 export interface INewJobForm {
   company_name: string;

@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
-
 export interface IUser {
   id: number;
   name: string;
@@ -35,10 +34,10 @@ export interface ILogin {
   token: string;
   accessToken: string;
   id: number;
-  isAdmin: false;
+  isAdmin: boolean;
 }
 
-interface IUserContext {
+export interface IUserContext {
   user: IUser | null;
   loading: boolean;
   loginUser: (data: IUser) => void;
@@ -49,17 +48,17 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser>({} as IUser);
 
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      // const id = localStorage.getItem("@kenzinhoVagas:id");
+      const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-          const { data } = await api.get<IUser>(`/users/`);
+          const { data } = await api.get<IUser>(`/users/${id}`);
           setUser(data);
         } catch (error) {
           console.error(error);
@@ -70,7 +69,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
     }
 
     loadUser();
-  }, []);
+  }, [loading]);
 
   async function loginUser(data: IUser) {
     try {
@@ -84,6 +83,8 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       userResponse.isAdmin
         ? navigate("/dashboardAdmin", { replace: true })
         : navigate("/dashboardUser", { replace: true });
+
+        setLoading(true)
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");

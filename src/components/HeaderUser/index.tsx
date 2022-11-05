@@ -1,17 +1,16 @@
-import Logo from '../../img/logo.png'
-// import btnMenu from '../../img/btnMenuMobile.png'
-import { LinkSecundary } from '../../styles/Links'
-import StyleHeader from '../../styles/HeaderUser'
-import { ButtonPurple } from '../../styles/Buttons'
-import { useContext } from 'react'
-import { IProfileContext, ProfileContext} from '../../contexts/UserContext'
+import Logo from "../../img/logo.png";
+import StyleHeader from "../../styles/HeaderUser";
+import { LinkSecundary } from "../../styles/Links";
+import { ButtonPurple } from "../../styles/Buttons";
+import { useContext } from "react";
+import { IProfileContext, ProfileContext} from "../../contexts/UserContext";
+
 
 const HeaderUser = () => {
-
-    const {isProfileModal, setProfileModal} = useContext<IProfileContext>(ProfileContext)
+    const {isProfileModal, setProfileModal} = useContext<IProfileContext>(ProfileContext);
 
     function logout () {
-        window.localStorage.clear()
+        window.localStorage.clear();
     }
 
     return (
@@ -25,4 +24,4 @@ const HeaderUser = () => {
     )
 }
 
-export default HeaderUser
+export default HeaderUser;

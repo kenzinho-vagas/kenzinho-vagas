@@ -5,10 +5,10 @@ export const DivFooter = styled.div `
     display: flex;
     justify-content: flex-end;
 
-    padding: 4px;
+    padding: 12px;
 
     p {
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
         color: #ffffff;
     }

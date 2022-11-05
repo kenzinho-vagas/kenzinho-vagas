@@ -11,8 +11,9 @@ export const FormsLog = styled.form`
   padding: 10px;
   background-color:var(--color-primary);
   border-radius:8px;
-  margin-bottom:5px;
-
+  margin-bottom:10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
   input,
   select {
     background-color: var(--grey-1);

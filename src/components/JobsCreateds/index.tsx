@@ -1,9 +1,8 @@
-import { useContext, useEffect } from 'react'
-import { JobContext } from '../../contexts/JobContext'
-import ListJobsAdmin from '../../styles/ListJobsAdmin'
-import Card from '../CardJobsAdmin'
-import { IFormVagas } from '../../contexts/JobContext'
-
+import { useContext, useEffect } from "react"
+import { JobContext } from "../../contexts/JobContext"
+import { IFormVagas } from "../../contexts/JobContext"
+import ListJobsAdmin from "../../styles/ListJobsAdmin"
+import Card from "../CardJobsAdmin"
 
 const JobsCreateds = () => {
     const { adminJobs, listJobs } = useContext(JobContext);
@@ -22,4 +21,4 @@ const JobsCreateds = () => {
     )
 }
 
-export default JobsCreateds
+export default JobsCreateds;
