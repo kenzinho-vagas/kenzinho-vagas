@@ -12,6 +12,7 @@ const Global = createGlobalStyle`
         --grey-3: #C0C0C0;
         --color-button: #F3D9FA;
         --text-color1: #2C2C2C;
+        --text-yup-color: #FFB84E
     }
 
     /* http://meyerweb.com/eric/tools/css/reset/ 
