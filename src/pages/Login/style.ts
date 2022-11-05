@@ -7,7 +7,6 @@ export const DivLogin = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 5%;
-  color: white;
   
   .contentLogin{
     width:489px;
@@ -24,8 +23,6 @@ export const DivLogin = styled.div`
   .account{
     text-align: center;
     margin: 20px;
-  }
-
-  
+  } 
 
   `

@@ -53,11 +53,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      const id = localStorage.getItem("@kenzinhoVagas:id");
 
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-          const { data } = await api.get<IUser>(`/users/`);
+          const { data } = await api.get<IUser>(`/users/${id}`);
           setUser(data);
         } catch (error) {
           console.error(error);
