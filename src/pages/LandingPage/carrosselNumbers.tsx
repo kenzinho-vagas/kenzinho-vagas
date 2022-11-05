@@ -9,7 +9,7 @@ export const ControlledCarousel = () => {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
       <Carousel.Item>
       <li>
             <h4>

@@ -74,7 +74,6 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   async function loginUser(data: IUser) {
     try {
       const res = await api.post<ILogin>("/login", data);
-      console.log(res);
       const { user: userResponse, accessToken } = res.data;
       const id = userResponse.id.toString();
       api.defaults.headers.authorization = `Bearer ${accessToken}`;
@@ -93,14 +92,12 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   async function registerUser(data: IUser) {
     try {
       const res = await api.post<ILogin>("/signup", data);
-      console.log(res);
       toast("Usuário cadastrado com sucesso!");
       navigate("/login");
     } catch (error) {
       console.error(error);
       toast("Algo deu errado! :(");
     }
-    console.log(data);
   }
 
   return (
