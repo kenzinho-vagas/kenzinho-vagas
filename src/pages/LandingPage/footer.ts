@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const FooterLanding = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-around;
-  margin: 40px 10px;
+  justify-content: space-evenly;
+  margin: 40px 0;
   gap: 30px;
 
   a {
@@ -62,7 +63,18 @@ export const FooterLanding = styled.div`
     font-size: 1.6rem;
   }
 
-  @media (max-width: 790px) {
+  @media (max-width: 931px) {
+    .footerContent {
+      gap:0;
+    }
+    .icons svg {
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  }
+
+  @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
     margin: 20px 10px;

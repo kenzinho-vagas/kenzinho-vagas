@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { ImInstagram, ImYoutube } from "react-icons/im";
 import { FaFacebookSquare, FaTwitter, FaTiktok } from "react-icons/fa";
+import { ControlledCarousel } from "./carrosselNumbers";
 
 export const LandingPage = () => {
   return (
@@ -41,24 +42,29 @@ export const LandingPage = () => {
       <DivOurNumbers>
         <h2 className="titleLand2">NOSSOS NÚMEROS</h2>
         <ul className="listNumbers">
-          <li>
+          <div className="mobile">
+          <ControlledCarousel/>
+          </div>
+        
+          <li className="desktop">
             <h4>
               <span>+1000</span>
             </h4>
             <h4>OPORTUNIDADES</h4>
           </li>
-          <li>
+          <li className="desktop">
             <h4>
               <span>+100</span>
             </h4>
             <h4>EMPRESAS</h4>
           </li>
-          <li>
+          <li className="desktop">
             <h4>
               <span>+10.000</span>
             </h4>
             <h4>CANDIDATOS</h4>
           </li>
+          
         </ul>
       </DivOurNumbers>
       <DivKenzinho>
@@ -128,6 +134,7 @@ export const LandingPage = () => {
         </div>
       </FooterLanding>
       <Footer />
+   
     </>
   );
 };

@@ -90,7 +90,7 @@ export const DivOurNumbers = styled.div`
     background-color: var(--color-white);
     color: var(--text-color2);
     width: 241px;
-    height: 110px;
+    height: 150px;
     align-content: center;
     padding-top: 60px;
     font-size: 22px;
@@ -99,6 +99,19 @@ export const DivOurNumbers = styled.div`
   .listNumbers span {
     color: var(--color-primary);
   }
+
+  .mobile{
+    display: none;
+  }
+  @media (max-width: 700px){
+    .desktop{
+      display:none;
+    }
+    .mobile{
+      display: flex;
+    }
+  }
+  
 `;
 
 export const DivKenzinho = styled.div`
