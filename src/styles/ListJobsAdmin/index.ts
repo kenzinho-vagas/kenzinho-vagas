@@ -9,7 +9,7 @@ const ListJobsAdmin = styled.div`
 
     border: 1px solid black;
 
-    background-color: var(--grey-2);
+    background-color: var(--grey-3);
 
     ul {
         display: flex;
