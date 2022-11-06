@@ -113,16 +113,18 @@ export const DivFilters = styled.div`
     margin-bottom: 15px;
     width: 90%;
     padding-top: 30px;
+    
     select {
       margin-right: 5px;
       border: 1px solid var(--color-primary);
       border-radius: 8px;
-      padding: 4px;
+      padding: 2px;
+      font-size: 13px;
     }
   }
   .searchBar {
-    min-width: 315px;
-    max-width: 400px;
+    width: 95%;
+
     .searchBarInput {
       border: 1px solid var(--color-primary);
       border-radius: 8px;
