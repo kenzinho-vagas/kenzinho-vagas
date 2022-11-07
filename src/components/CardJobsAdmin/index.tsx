@@ -2,7 +2,7 @@ import Level from "../../img/level.png";
 import Type from "../../img/type.png";
 import Salary from "../../img/salary.png";
 import Company from "../../img/company.png";
-import BtnCloseJob from "../../img/closeJob.png";
+import DeleteSvg from "../../img/DeleteSvg.svg";
 import { ButtonPurple } from "../../styles/Buttons";
 import { IFormVagas, JobContext } from "../../contexts/JobContext";
 import { useContext } from "react";
@@ -14,20 +14,14 @@ const Card = (elem: IFormVagas) => {
 
   const salary = Number(elem.salary);
   return (
-    <li
-      key={uuid()}
-      onClick={() => {
-        setJobId(elem.id);
-        getCandidates();
-      }}
-    >
+    <li key={uuid()}>
       <button
         className="btnDeleteJob"
         onClick={() => {
           DelJob(elem.id);
         }}
       >
-        <img src={BtnCloseJob} alt="Botao excluir vaga" />
+        <img src={DeleteSvg} alt="Botao excluir vaga" />
       </button>
       <h3> {elem.specialty}</h3>
       <p>
@@ -55,8 +49,10 @@ const Card = (elem: IFormVagas) => {
           Editar
         </ButtonPurple>
         <ButtonPurple
+          className="btnCandidatesJob"
           onClick={(e) => {
             setJobId(elem.id);
+            getCandidates();
           }}
         >
           Candidatos

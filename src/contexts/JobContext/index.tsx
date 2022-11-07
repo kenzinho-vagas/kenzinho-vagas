@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
+import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
 
@@ -36,7 +37,7 @@ export interface IFormVagas {
   filter(arg0: (elem: IFormVagas) => boolean): unknown;
   company_name: string;
   specialty: string;
-  salary: number;
+  salary: string;
   kind_of_work: string;
   tech: [];
   level: string;
@@ -62,6 +63,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [editModal, setEditModal] = useState<boolean>(false);
   const [editId, setEditId] = useState<number | null>(null);
 
+
   async function NewJob(data: INewJobForm) {
     try {
       const response = await api.post("users/1/companyJobs ", data);
@@ -78,8 +80,10 @@ export const JobProvider = ({ children }: IJobProvider) => {
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
+      notifySuccess()
     } catch (error) {
       console.log(error);
+      notifyError()
     }
   }
 
@@ -93,7 +97,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.specialty === "") {
       delete data.specialty;
     }
-    if (data.salary === "") {
+    // eslint-disable-next-line no-self-compare
+    if (data.salary === data.salary) {
       delete data.salary;
     }
     if (data.level === "") {
