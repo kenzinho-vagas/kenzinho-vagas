@@ -1,6 +1,11 @@
+import { useContext, useState } from "react";
+import { JobContext } from "../../contexts/JobContext";
 import JobsAdminStyle from "../../styles/JobsFilterAdmin";
 
 function JobsAdmin() {
+  const { writtenSearchAdmin } = useContext(JobContext);
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <JobsAdminStyle>
       <div className="searchSelect">

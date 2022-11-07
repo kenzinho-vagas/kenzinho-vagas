@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { CgSearch } from "react-icons/cg";
 import { INewJobForm } from "../../components/CreateJob";
 
 import api from "../../services/api";
@@ -30,6 +29,9 @@ interface IJobContext {
   editId: number | null;
   setEditId: any;
   DelJob: (jobId?: number) => void;
+  listFilteredAdmin: IFormVagas | [];
+  filterValidationAdmin: boolean;
+  writtenSearchAdmin: (search: string) => void;
 }
 
 export interface IFormVagas {
@@ -67,7 +69,9 @@ export const JobProvider = ({ children }: IJobProvider) => {
 
   const [allAdminJobs, setAllAdminJobs] = useState<IFormVagas | []>([]);
 
-  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>();
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
+    []
+  );
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   const writtenSearchAdmin = (search: string) => {
@@ -98,7 +102,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
               .join("")
           )
     );
-    setListFilteredAdmin(resultSearchAd);
+    setListFilteredAdmin(resultSearchAd as any);
     setFilterValidationAdmin(true);
   };
 
@@ -221,6 +225,9 @@ export const JobProvider = ({ children }: IJobProvider) => {
         setEditId,
         EditJob,
         DelJob,
+        listFilteredAdmin,
+        filterValidationAdmin,
+        writtenSearchAdmin,
       }}
     >
       {children}
