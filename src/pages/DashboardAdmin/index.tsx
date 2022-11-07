@@ -4,18 +4,32 @@ import Header from "../../components/HeaderAdmin"
 import JobsAdmin from "../../components/FilterJobsAdmin"
 import JobsCreateds from "../../components/JobsCreateds"
 import Welcome from "../../components/Welcome"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { JobContext } from "../../contexts/JobContext"
 import ModalEdit from "../../components/ModalEditJob"
+import api from "../../services/api"
 
 const DashboardAdmin = () => {
     const { jobId, editModal } = useContext(JobContext);
 
-    const name:string = "vinicius"
+    async function isAdmin() {
+        const id = localStorage.getItem('@kenzinhoVagas:id')
+        try {
+            const {data} = await api.get(`users/${id}`)
+            console.log(data)
+        } catch (error) {
+            
+        }
+    }
+
+    useEffect(() => {
+        isAdmin()
+    },[])
+
     return (
         <>
             <Header />
-            <Welcome name={name} />
+            <Welcome name="Admin"/>
             <CreateJob />
             <JobsAdmin />
             <JobsCreateds />

@@ -6,7 +6,7 @@ import Stack from '../../img/stack.png'
 import api from '../../services/api'
 
 function CardCandidates({ elem }) {
-    const [candidate, setCandidate] = useState(null)
+  const [candidate, setCandidate] = useState(null)
     async function getCandidate() {
         try {
             const {data} = await api.get(`users/${elem.userId}`)
@@ -19,7 +19,11 @@ function CardCandidates({ elem }) {
     useEffect(() => {
         getCandidate()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [elem])
+  
+  useEffect(() => {
+      console.log(candidate)
+    },[candidate])
 
 
   return (

@@ -12,6 +12,10 @@ const Candidates = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jobId]);
 
+  // useEffect(() => {
+  //   console.log(candidates)
+  // },[candidates])
+
   return (
     <StyleCandidates>
       <h3>Candidatos</h3>
