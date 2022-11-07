@@ -5,16 +5,24 @@ import ListJobsAdmin from "../../styles/ListJobsAdmin";
 import Card from "../CardJobsAdmin";
 
 const JobsCreateds = () => {
-  const { adminJobs, listJobs } = useContext(JobContext);
+  const { adminJobs, listJobs, listFilteredAdmin, filterValidationAdmin } =
+    useContext(JobContext);
 
-    useEffect(() => {
-        listJobs()
-    }, [])
+  useEffect(() => {
+    listJobs();
+  }, []);
 
   return (
     <ListJobsAdmin>
       <h2>Vagas criadas</h2>
-      <ul>{adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))}</ul>
+      <ul>
+        {filterValidationAdmin === true
+          ? listFilteredAdmin !== undefined
+            ? listFilteredAdmin &&
+              listFilteredAdmin.map((elem: IFormVagas) => Card(elem))
+            : adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))
+          : adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))}
+      </ul>
     </ListJobsAdmin>
   );
 };

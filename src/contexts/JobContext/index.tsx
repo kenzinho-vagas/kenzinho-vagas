@@ -20,7 +20,7 @@ interface IJobContext {
   NewJob: (data: INewJobForm) => void;
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
-  adminJobs: IFormVagas | null | undefined;
+  adminJobs: IFormVagas | [];
   jobId: number | null;
   getCandidates: () => void;
   candidates: IFormVagas[];
@@ -30,6 +30,9 @@ interface IJobContext {
   editId: number | null;
   setEditId: any;
   DelJob: (jobId?: number) => void;
+  listFilteredAdmin: IFormVagas | [];
+  filterValidationAdmin: boolean;
+  writtenSearchAdmin: (search: string) => void;
 }
 
 export interface IFormVagas {
@@ -57,12 +60,50 @@ interface PatchJob {
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
   const [jobId, setJobId] = useState<number | null>(null);
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [editId, setEditId] = useState<number | null>(null);
 
+
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
+    []
+  );
+  const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
+
+  const writtenSearchAdmin = (search: string) => {
+    const resultSearchAd = adminJobs.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+    setListFilteredAdmin(resultSearchAd as any);
+    setFilterValidationAdmin(true);
+    console.log(resultSearchAd);
+  };
 
   async function NewJob(data: INewJobForm) {
     try {
@@ -181,6 +222,9 @@ export const JobProvider = ({ children }: IJobProvider) => {
         setEditId,
         EditJob,
         DelJob,
+        listFilteredAdmin,
+        filterValidationAdmin,
+        writtenSearchAdmin,
       }}
     >
       {children}
