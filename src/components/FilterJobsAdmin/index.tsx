@@ -6,6 +6,10 @@ function JobsAdmin() {
   const { writtenSearchAdmin } = useContext(JobContext);
   const [searchValue, setSearchValue] = useState("");
 
+  const filteredCard = (value: string) => {
+    writtenSearchAdmin(value);
+  };
+
   return (
     <JobsAdminStyle>
       <div className="searchSelect">
@@ -45,7 +49,15 @@ function JobsAdmin() {
           </select>
         </div>
       </div>
-      <input type="text" id="adminJobSearch" placeholder="Pesquisar" />
+      <form>
+        <input
+          type="text"
+          id="adminJobSearch"
+          placeholder="Pesquisar"
+          onChange={(event) => setSearchValue(event.target.value)}
+        />
+        <button>Buscar</button>
+      </form>
     </JobsAdminStyle>
   );
 }
