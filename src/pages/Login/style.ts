@@ -14,6 +14,7 @@ export const DivLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: appearFromTopLeft 1s;
   }
 
   .title {
@@ -26,5 +27,16 @@ export const DivLogin = styled.div`
   .account {
     text-align: center;
     margin: 20px;
+  }
+
+  @keyframes appearFromTopLeft {
+    0% {
+      opacity: 0;
+      transform: translate(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 `;
