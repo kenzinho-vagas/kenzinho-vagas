@@ -68,6 +68,8 @@ export const LiCard = styled.li`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+    width: 100%;
     align-items: center;
     margin-bottom: 15px;
     img {
@@ -77,8 +79,8 @@ export const LiCard = styled.li`
     }
   }
   .trash {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: 0 auto;
   }
   .seeDetails {
@@ -94,6 +96,10 @@ export const LiCard = styled.li`
   }
 `;
 
+export const ContainerFilters = styled.div`
+  border-top: 2px solid var(--color-primary);
+`
+
 export const DivFilters = styled.div`
   display: flex;
   flex-direction: column;
@@ -101,25 +107,44 @@ export const DivFilters = styled.div`
   align-items: center;
 
   margin: 0px auto 20px auto;
-  border-top: 2px solid var(--color-primary);
   width: 95%;
+  
   .selectFilter {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     margin-bottom: 15px;
-    width: 90%;
+    width: 95%;
     padding-top: 30px;
 
     select {
-      margin-right: 5px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+
       border: 1px solid var(--color-primary);
       border-radius: 8px;
       padding: 2px;
       font-size: 13px;
     }
   }
+
+  button {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1.5px transparent;
+    background-color: var(--color-primary);
+    color: var(--grey-1);
+    padding: 4px;
+  }
+
+  button:hover {
+    background-color: #fff;
+    border: solid 1.5px var(--color-primary);
+    color: var(--color-primary);
+  }
+
   .searchBar {
     width: 95%;
 
@@ -129,8 +154,17 @@ export const DivFilters = styled.div`
       padding: 4px;
       display: flex;
       justify-content: space-between;
-      input {
+
+      width: 100%;
+
+      form {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        input {
         border: transparent;
+        }
       }
     }
   }

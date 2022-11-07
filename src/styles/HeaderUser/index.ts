@@ -1,24 +1,22 @@
 import styled from "styled-components";
 
 const HeaderUser = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  box-shadow: 1px 1px 10px 1px var(--color-secundary);
+
+  .rightHeader {
     display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    align-items: center;
-    box-shadow: 1px 1px 10px 1px var(--color-secundary);
+    gap: 0.5rem;
+  }
 
+  @media screen and (min-width: 768px) {
     .rightHeader {
-        display: flex;
-        gap: 0.5rem;
+      gap: 2rem;
     }
+  }
+`;
 
-    @media screen and (min-width: 768px){
-        padding: 25px;
-        
-        .rightHeader {
-        gap: 2rem;
-    }
-    }
-`
-
-export default HeaderUser
+export default HeaderUser;
