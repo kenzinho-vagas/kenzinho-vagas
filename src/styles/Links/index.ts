@@ -16,7 +16,13 @@ export const LinkPrimary = styled(Link)`
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  text-decoration: none;
+  transition: 0.5s;
+
+  :hover {
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    transition: 0.5s;
+  }
 
   @media screen and (min-width: 768px) {
     width: 130px;
@@ -40,6 +46,13 @@ export const LinkSecundary = styled(Link)`
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
+  transition: 0.5s;
+
+  :hover {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    transition: 0.5s;
+  }
 
   @media screen and (min-width: 768px) {
     width: 130px;
