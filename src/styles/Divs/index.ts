@@ -41,23 +41,21 @@ export const DivGrey = styled.div`
   }
 `;
 
-
 export const DivCard = styled.li`
   background-color: #ffffff;
   margin: 30px auto;
   width: 200px;
   padding: 15px;
-`
+`;
 
 export const LiCard = styled.li`
-    background-color: #ffffff;
-    margin: 30px auto;
-    width: 200px;
-    padding: 15px;
-    
-    border-radius: 5px;
-    border: 1px solid #1E1E1E;
+  background-color: #ffffff;
+  margin: 30px auto;
+  width: 200px;
+  padding: 15px;
 
+  border-radius: 5px;
+  border: 1px solid #1e1e1e;
 
   border-radius: 5px;
   border: 1px solid #1e1e1e;
@@ -118,13 +116,37 @@ export const DivFilters = styled.div`
     padding-top: 30px;
     
     select {
-      margin-right: 5px;
+      width: 163px;
+      margin-right: 8px;
+
       border: 1px solid var(--color-primary);
       border-radius: 8px;
+<<<<<<< HEAD
+
+      padding: 4px;
+=======
       padding: 2px;
       font-size: 13px;
+>>>>>>> bfdbf153d8bac0116a16cb6fb2fa746d5ab2b9c2
     }
   }
+
+  button {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1.5px transparent;
+    background-color: var(--color-primary);
+    color: var(--grey-1);
+    padding: 4px;
+  }
+
+  button:hover {
+    background-color: #fff;
+    border: solid 1.5px var(--color-primary);
+    color: var(--color-primary);
+  }
+
   .searchBar {
     width: 95%;
 
