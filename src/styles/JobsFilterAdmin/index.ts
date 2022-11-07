@@ -12,10 +12,12 @@ const JobsAdminStyle = styled.div`
   .filterLeft {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 8px;
   }
 
   .filterRight {
-    display: none;
+    display: flex;
+    justify-content: space-between;
   }
 
   select {

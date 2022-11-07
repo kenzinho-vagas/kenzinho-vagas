@@ -41,23 +41,21 @@ export const DivGrey = styled.div`
   }
 `;
 
-
 export const DivCard = styled.li`
   background-color: #ffffff;
   margin: 30px auto;
   width: 200px;
   padding: 15px;
-`
+`;
 
 export const LiCard = styled.li`
-    background-color: #ffffff;
-    margin: 30px auto;
-    width: 200px;
-    padding: 15px;
-    
-    border-radius: 5px;
-    border: 1px solid #1E1E1E;
+  background-color: #ffffff;
+  margin: 30px auto;
+  width: 200px;
+  padding: 15px;
 
+  border-radius: 5px;
+  border: 1px solid #1e1e1e;
 
   border-radius: 5px;
   border: 1px solid #1e1e1e;
@@ -113,7 +111,7 @@ export const DivFilters = styled.div`
     margin-bottom: 15px;
     width: 90%;
     padding-top: 30px;
-    
+
     select {
       margin-right: 5px;
       border: 1px solid var(--color-primary);
@@ -136,6 +134,7 @@ export const DivFilters = styled.div`
       }
     }
   }
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-bottom: 0px;
