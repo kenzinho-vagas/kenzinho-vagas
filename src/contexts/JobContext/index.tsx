@@ -3,7 +3,7 @@ import { INewJobForm } from "../../components/CreateJob";
 import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+// import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface IJobProvider {
   children: React.ReactNode;
@@ -114,10 +114,14 @@ export const JobProvider = ({ children }: IJobProvider) => {
   };
 
   const filterSelectAdm = (object: IFilterObjectAdm) => {
-    console.log(object);
     if (object.salary === "" && object.type === "") {
       const resultFiltred = adminJobs.filter((element) => {
-        return element.tech.join(",").includes(object.tech) === true;
+        return (
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
+        );
       });
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
@@ -132,7 +136,16 @@ export const JobProvider = ({ children }: IJobProvider) => {
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.tech === "" && object.salary === "") {
       const resultFiltred = adminJobs.filter((element) => {
-        return element.kind_of_work === object.type;
+        return (
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase() ===
+          object.type
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+        );
       });
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
@@ -141,7 +154,14 @@ export const JobProvider = ({ children }: IJobProvider) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&
-          element.kind_of_work === object.type
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase() ===
+            object.type
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLocaleLowerCase()
         );
       });
       console.log(resultFiltred);
@@ -149,8 +169,18 @@ export const JobProvider = ({ children }: IJobProvider) => {
     } else if (object.salary === "") {
       const resultFiltred = adminJobs.filter((element) => {
         return (
-          element.tech.join(",").includes(object.tech) === true &&
-          element.kind_of_work === object.type
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase() ===
+            object.type
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLocaleLowerCase()
         );
       });
       console.log(resultFiltred);
@@ -160,7 +190,10 @@ export const JobProvider = ({ children }: IJobProvider) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&
-          element.tech.join(",").includes(object.tech) === true
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
         );
       });
       console.log(resultFiltred);
@@ -170,8 +203,18 @@ export const JobProvider = ({ children }: IJobProvider) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&
-          element.tech.join(",").includes(object.tech) === true &&
-          element.kind_of_work === object.type
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase() ===
+            object.type
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLocaleLowerCase()
         );
       });
       console.log(resultFiltred);
