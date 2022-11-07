@@ -68,6 +68,8 @@ export const LiCard = styled.li`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+    width: 100%;
     align-items: center;
     margin-bottom: 15px;
     img {
@@ -77,8 +79,8 @@ export const LiCard = styled.li`
     }
   }
   .trash {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: 0 auto;
   }
   .seeDetails {
@@ -106,28 +108,24 @@ export const DivFilters = styled.div`
 
   margin: 0px auto 20px auto;
   width: 95%;
+  
   .selectFilter {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     margin-bottom: 15px;
-    width: 90%;
+    width: 95%;
     padding-top: 30px;
     
     select {
-      width: 163px;
       margin-right: 8px;
+      margin-bottom: 8px;
 
       border: 1px solid var(--color-primary);
       border-radius: 8px;
-<<<<<<< HEAD
-
-      padding: 4px;
-=======
       padding: 2px;
       font-size: 13px;
->>>>>>> bfdbf153d8bac0116a16cb6fb2fa746d5ab2b9c2
     }
   }
 
@@ -156,11 +154,21 @@ export const DivFilters = styled.div`
       padding: 4px;
       display: flex;
       justify-content: space-between;
-      input {
+
+      width: 100%;
+
+      form {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        input {
         border: transparent;
+        }
       }
     }
   }
+  
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-bottom: 0px;
