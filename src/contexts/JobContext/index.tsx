@@ -3,6 +3,7 @@ import { INewJobForm } from "../../components/CreateJob";
 import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface IJobProvider {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ interface IJobContext {
   listFilteredAdmin: IFormVagas | [];
   filterValidationAdmin: boolean;
   writtenSearchAdmin: (search: string) => void;
+  filterSelectAdm: (object: IFilterObjectAdm) => void;
 }
 
 export interface IFormVagas {
@@ -57,6 +59,12 @@ interface PatchJob {
   id?: number;
 }
 
+interface IFilterObjectAdm {
+  tech: string;
+  salary: string;
+  type: string;
+}
+
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
@@ -65,7 +73,6 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [editId, setEditId] = useState<number | null>(null);
-
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
@@ -101,8 +108,77 @@ export const JobProvider = ({ children }: IJobProvider) => {
           )
     );
     setListFilteredAdmin(resultSearchAd as any);
+
     setFilterValidationAdmin(true);
     console.log(resultSearchAd);
+  };
+
+  const filterSelectAdm = (object: IFilterObjectAdm) => {
+    console.log(object);
+    if (object.salary === "" && object.type === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return element.tech.join(",").includes(object.tech) === true;
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.type === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.salary === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return element.kind_of_work === object.type;
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.kind_of_work === object.type
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.salary === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return (
+          element.tech.join(",").includes(object.tech) === true &&
+          element.kind_of_work === object.type
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.type === "") {
+      const resultFiltred = adminJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech.join(",").includes(object.tech) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else {
+      const resultFiltred = adminJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech.join(",").includes(object.tech) === true &&
+          element.kind_of_work === object.type
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    }
+
+    return setFilterValidationAdmin(true);
   };
 
   async function NewJob(data: INewJobForm) {
@@ -121,10 +197,10 @@ export const JobProvider = ({ children }: IJobProvider) => {
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
-      notifySuccess()
+      notifySuccess();
     } catch (error) {
       console.log(error);
-      notifyError()
+      notifyError();
     }
   }
 
@@ -225,6 +301,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
         listFilteredAdmin,
         filterValidationAdmin,
         writtenSearchAdmin,
+        filterSelectAdm,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import JobsAdminStyle from "../../styles/JobsFilterAdmin";
+import SelectFilterAdmin from "../SelectFilterAdmin";
 
 function JobsAdmin() {
   const { writtenSearchAdmin } = useContext(JobContext);
@@ -12,7 +13,8 @@ function JobsAdmin() {
 
   return (
     <JobsAdminStyle>
-      <div className="searchSelect">
+      <SelectFilterAdmin />
+      {/* <div className="searchSelect">
         <div className="filterLeft">
           <select id="tecnologies" defaultValue={"default"}>
             <option value="default" disabled>
@@ -48,7 +50,7 @@ function JobsAdmin() {
             <option value="google">Google</option>
           </select>
         </div>
-      </div>
+      </div> */}
       <form
         onSubmit={(event) => (
           event.preventDefault(), filteredCard(searchValue)
