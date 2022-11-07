@@ -6,7 +6,6 @@ export const DivFooter = styled.div`
   justify-content: flex-end;
   padding: 12px;
   bottom: 0;
-  position: fixed;
   width: 100vw;
 
   p {

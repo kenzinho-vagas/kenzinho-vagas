@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const DivLogin = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 114px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 70px;
+  /* margin-top: 70px; */
 
   .contentLogin {
     width: 489px;
@@ -15,6 +15,10 @@ export const DivLogin = styled.div`
     justify-content: center;
     align-items: center;
     animation: appearFromTopLeft 1s;
+
+    @media (min-width: 768px) {
+      width: 600px;
+    }
   }
 
   .title {
