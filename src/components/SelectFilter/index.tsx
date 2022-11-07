@@ -2,11 +2,27 @@ import { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 
 const SelectFilter = () => {
-  const [selectTech, setSelectTech] = useState("");
-  const [selectSalary, setSelectSalary] = useState("");
-  const [selectType, setSelectType] = useState("");
+  const [selectTech, setSelectTech] = useState<string>("");
+  const [selectSalary, setSelectSalary] = useState<string>("");
+  const [selectType, setSelectType] = useState<string>("");
 
-  const { filterSelect } = useContext(JobContext);
+  const { filterSelect, allJobs } = useContext(JobContext);
+  const [testeTech, setTesteTech] = useState([]);
+
+  const techinfo = () => {
+    const teste = allJobs.map((element) => {
+      return element.tech;
+    });
+
+    const teste2 = teste.reduce((list, sub) => list.concat(sub), []);
+
+    var teste3 = teste2.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    });
+
+    console.log(teste3);
+    // return teste3;
+  };
 
   return (
     <>
@@ -32,6 +48,26 @@ const SelectFilter = () => {
             <option value="React">React</option>
             <option value="Java">Java</option>
             <option value="Node.js">Node.js</option>
+            {/* // {allJobs
+            //   .map((Element) => Element.tech)
+            //   .reduce((list, sub) => list.concat(sub), [])
+            //   .filter((elem, index, self) => index === self.indexOf(elem))
+            //   .map((teste, churros) => {
+            //     return (
+            //       console.log(teste),
+            //       (
+            //         <option key={churros} value="">
+            //           {teste}
+            //         </option>
+            //       )
+            //     );
+            //   })} */}
+            {/* {allJobs.map((element) => {
+              return (
+                console.log(element.tech),
+                (<option value="">{element.tech}</option>)
+              );
+            })} */}
           </select>
           <select
             onChange={(event) => setSelectSalary(event.target.value)}

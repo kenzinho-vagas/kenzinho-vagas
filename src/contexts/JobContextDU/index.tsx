@@ -20,7 +20,7 @@ export interface IJobContext {
   // setSearch: React.Dispatch<React.SetStateAction<string>>;
   ListFiltred: IJobsProps[] | [];
   filterSelect: (object: IFilterObjectUser) => void;
-  teste: boolean;
+  filterValidation: boolean;
   writtenSearch: (search: string) => void;
 }
 
@@ -45,7 +45,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
   // const [search, setSearch] = useState("");
 
   const [ListFiltred, setListFiltred] = useState<IJobsProps[] | []>([]);
-  const [teste, setTeste] = useState(false);
+  const [filterValidation, setFilterValidation] = useState(false);
 
   //filtro do neto antes -----------------------------------------------------------------------------
   // const writtenSearch = allJobs.filter(
@@ -84,7 +84,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
           )
     );
     setListFiltred(resultSearch);
-    setTeste(true);
+    setFilterValidation(true);
   };
 
   const filterSelect = (object: IFilterObjectUser) => {
@@ -151,7 +151,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       setListFiltred(resultFiltred);
     }
 
-    return setTeste(true);
+    return setFilterValidation(true);
   };
   useEffect(() => {
     async function getAllJobs() {
@@ -214,7 +214,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setID,
         ListFiltred,
         filterSelect,
-        teste,
+        filterValidation,
         writtenSearch,
       }}
     >

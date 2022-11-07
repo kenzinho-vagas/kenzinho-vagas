@@ -20,16 +20,16 @@ interface ICardsProps {
 }
 
 const Cards = ({ title }: ICardsProps) => {
-  const { savedJobs, ListFiltred, allJobs, teste } = useContext(JobContext);
+  const { savedJobs, ListFiltred, allJobs, filterValidation } =
+    useContext(JobContext);
 
   const [vazio, setVazio] = useState<[]>([]);
 
   return title === "Todas as vagas" ? (
-    teste === true ? (
+    filterValidation === true ? (
       ListFiltred[0] !== undefined ? (
         <Lists objectArray={ListFiltred} title={title} />
       ) : (
-        // console.log("deu certo pra caralho")
         <Lists objectArray={vazio} title={title} />
       )
     ) : (
@@ -38,16 +38,6 @@ const Cards = ({ title }: ICardsProps) => {
   ) : (
     <Lists objectArray={savedJobs} title={title} />
   );
-
-  // return title === "Todas as vagas" ? (
-  //   ListFiltred[0] !== undefined ? (
-  //     <Lists objectArray={ListFiltred} title={title} />
-  //   ) : (
-  //     <Lists objectArray={allJobs} title={title} />
-  //   )
-  // ) : (
-  //   <Lists objectArray={savedJobs} title={title} />
-  // );
 
   // return title === "Todas as vagas" ? (
   //   <Lists objectArray={writtenSearch} title={title} />
