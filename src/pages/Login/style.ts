@@ -6,7 +6,6 @@ export const DivLogin = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top: 70px; */
 
   .contentLogin {
     width: 489px;

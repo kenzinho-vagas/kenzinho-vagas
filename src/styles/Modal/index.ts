@@ -32,8 +32,10 @@ export const DivModal = styled.div`
         flex-direction: column;
         align-items: center;
 
-        background-color: #ffffff;
+        background-color: var(--color-white);
         border-radius: 4px;
+
+        animation: appearFromTopLeft 1s;
 
         .modalHeader {
           display: flex;
@@ -51,7 +53,7 @@ export const DivModal = styled.div`
             width: 100%;
 
             h3 {
-              color: #000000;
+              color: var(--grey-2);
               font-weight: 700;
               font-size: 20px;
               text-align: center;
@@ -71,6 +73,17 @@ export const DivModal = styled.div`
           }
         }
       }
+    }
+  }
+
+  @keyframes appearFromTopLeft {
+    0% {
+      opacity: 0;
+      transform: translate(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 `;
@@ -173,7 +186,7 @@ export const DivForm = styled.div`
         width: 100%;
 
         label {
-          color: #ffffff;
+          color: var(--color-white);
           font-size: 14px;
           font-weight: 700;
 
@@ -188,7 +201,7 @@ export const DivForm = styled.div`
 
         input::placeholder {
           font-size: 14px;
-          color: #000000;
+          color: var(--grey-2);
         }
       }
 
@@ -199,7 +212,7 @@ export const DivForm = styled.div`
         width: 100%;
 
         label {
-          color: #ffffff;
+          color: var(--color-white);
           font-size: 14px;
           font-weight: 700;
 
@@ -235,7 +248,7 @@ export const DivForm = styled.div`
       margin-bottom: 20px;
       padding: 8px;
 
-      color: #000000;
+      color: var(--grey-2);
       font-weight: 700;
       font-size: 14px;
     }
