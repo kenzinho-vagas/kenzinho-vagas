@@ -63,7 +63,7 @@ export const FooterLanding = styled.div`
     font-size: 1.6rem;
   }
 
-  @media (max-width: 931px) {
+  @media (max-width: 1070px) {
     .footerContent {
       gap: 5px;
     }
@@ -74,12 +74,13 @@ export const FooterLanding = styled.div`
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 905px) {
+    align-items: center;
     display: flex;
     flex-direction: column;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .footerContent {
       align-items: center;
       flex-direction: column;
