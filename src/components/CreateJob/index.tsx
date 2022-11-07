@@ -91,7 +91,7 @@ const CreateJob = () => {
               <input
                 type="text"
                 id="salary"
-                placeholder="R$4.500,00"
+                placeholder="Somente números"
                 {...register("salary")}
               />
               <p>{errors.salary && errors.salary.message}</p>
