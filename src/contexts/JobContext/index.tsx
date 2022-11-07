@@ -53,7 +53,6 @@ interface PatchJob {
   id?: number;
 }
 
-
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
@@ -72,7 +71,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -113,7 +112,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,

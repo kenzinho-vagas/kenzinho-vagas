@@ -110,7 +110,7 @@ const Create = styled.div`
 
   @media screen and (min-width: 1100px) {
     .divForm {
-      padding: 0 20%;
+      padding: 0 10%;
     }
   }
 

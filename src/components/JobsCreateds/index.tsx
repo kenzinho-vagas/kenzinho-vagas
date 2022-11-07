@@ -9,7 +9,7 @@ const JobsCreateds = () => {
 
     useEffect(() => {
         listJobs()
-    }, [adminJobs])
+    }, [])
 
     return (
         <ListJobsAdmin>
