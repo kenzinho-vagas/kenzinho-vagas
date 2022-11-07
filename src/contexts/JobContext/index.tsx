@@ -60,12 +60,10 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
   const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
-  const [jobId, setJobId] = useState(null);
-
+  const [jobId, setJobId] = useState<number | null>(null);
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
-
-  const [editModal, setEditModal] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editId, setEditId] = useState<number | null>(null);
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
@@ -109,10 +107,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
     try {
       const response = await api.post("users/1/companyJobs ", data);
       const id = response.data.id;
-      console.log(id);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      console.log("ResponseData", response.data);
-      console.log("Response", response);
       api.defaults.headers.authorization = `Bearer ${token}`;
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
@@ -151,7 +146,6 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.description === "") {
       delete data.description;
     }
-    console.log(data);
     try {
       const response = await api.patch(`companyJobs/${editId} `, data);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");

@@ -21,7 +21,6 @@ const ModalEdit = () => {
     async function getJob() {
         try {
             const {data} = await api.get<IFormVagas>(`companyJobs/${editId}`)
-            console.log(data)
             setJob(data)
         } catch (error) {
             console.error(error)

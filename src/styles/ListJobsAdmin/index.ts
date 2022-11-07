@@ -6,9 +6,7 @@ const ListJobsAdmin = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-
   border: 1px solid black;
-
   background-color: var(--grey-3);
 
   ul {
@@ -60,6 +58,10 @@ const ListJobsAdmin = styled.div`
       }
       :nth-last-child(1) {
         margin-right: 22%;
+      }
+
+      .buttonsJob {
+        gap: 5px;
       }
 
       button {

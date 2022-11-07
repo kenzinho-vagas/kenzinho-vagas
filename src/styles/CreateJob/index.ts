@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Create = styled.div`
   .divCreate {
     margin: 25px 5px;
-    background-color: var(--grey-1);
+    background-color: var(--grey-4);
     border: 1px solid black;
     border-radius: 5px;
 
@@ -110,7 +110,7 @@ const Create = styled.div`
 
   @media screen and (min-width: 1100px) {
     .divForm {
-      padding: 0 20%;
+      padding: 0 10%;
     }
   }
 

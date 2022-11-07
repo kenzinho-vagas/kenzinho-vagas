@@ -1,15 +1,16 @@
-import Header from "../../styles/HeaderAdmin";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
-import logo from "../../img/logo.png";
-import { DivKenzinho, DivLanding, DivOurNumbers } from "./style";
-import group from "../../img/group.png";
-import whykenzinho from "../../img/whykenzinho.png";
+import { DivKenzinho, DivLanding, DivOurNumbers, DivAllCompanies } from "./style";
 import { FooterLanding } from "./footer";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 import { ImInstagram, ImYoutube } from "react-icons/im";
 import { FaFacebookSquare, FaTwitter, FaTiktok } from "react-icons/fa";
-import { ControlledCarousel } from "./carrosselNumbers";
+import { ControlledCarousel as CarouselNumbers } from "./carrosselNumbers";
+import { ControlledCarousel as CarouselCompanies} from "./carrosselCompanies";
+import Footer from "../../components/Footer";
+import group from "../../img/group.png";
+import whykenzinho from "../../img/whykenzinho.png";
+import logo from "../../img/logo.png";
+import Header from "../../styles/HeaderAdmin";
 
 export const LandingPage = () => {
   return (
@@ -38,12 +39,15 @@ export const LandingPage = () => {
           </p>
         </div>
       </DivLanding>
-      <div>Carrossel</div>
+      <DivAllCompanies>
+        <h2 className="titleLand2">EMPRESAS QUE CONTRATAM COM A KENZINHO</h2>
+        <CarouselCompanies/>
+      </DivAllCompanies>
       <DivOurNumbers>
         <h2 className="titleLand2">NOSSOS NÚMEROS</h2>
         <ul className="listNumbers">
           <div className="mobile">
-          <ControlledCarousel/>
+            <CarouselNumbers/>
           </div>
         
           <li className="desktop">
@@ -64,7 +68,6 @@ export const LandingPage = () => {
             </h4>
             <h4>CANDIDATOS</h4>
           </li>
-          
         </ul>
       </DivOurNumbers>
       <DivKenzinho>
