@@ -96,6 +96,10 @@ export const LiCard = styled.li`
   }
 `;
 
+export const ContainerFilters = styled.div`
+  border-top: 2px solid var(--color-primary);
+`
+
 export const DivFilters = styled.div`
   display: flex;
   flex-direction: column;
@@ -103,7 +107,6 @@ export const DivFilters = styled.div`
   align-items: center;
 
   margin: 0px auto 20px auto;
-  border-top: 2px solid var(--color-primary);
   width: 95%;
   .selectFilter {
     display: flex;

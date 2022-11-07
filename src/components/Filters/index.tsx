@@ -1,4 +1,4 @@
-import { DivFilters } from "../../styles/Divs";
+import { ContainerFilters, DivFilters } from "../../styles/Divs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { JobContext } from "../../contexts/JobContextDU";
 import React, { useContext } from "react";
@@ -12,7 +12,8 @@ const Filters = () => {
   }
 
   return (
-    <DivFilters>
+    <ContainerFilters>
+      <DivFilters>
       <div className="selectFilter">
         <select id="tech">
           <option value="">Tecnologias</option>
@@ -36,6 +37,8 @@ const Filters = () => {
         </div>
       </div>
     </DivFilters>
+    </ContainerFilters>
+    
   );
 };
 
