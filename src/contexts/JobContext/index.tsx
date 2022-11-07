@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { CgSearch } from "react-icons/cg";
 import { INewJobForm } from "../../components/CreateJob";
 
 import api from "../../services/api";
@@ -53,7 +54,6 @@ interface PatchJob {
   id?: number;
 }
 
-
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
@@ -62,6 +62,37 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [listFiltredAdmin, setListFiltredAdmin] = useState(false);
+
+  const writtenSearchAdmin = (search: string) => {
+    const resultSearch = adminJobs.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+  };
 
   async function NewJob(data: INewJobForm) {
     try {
@@ -75,7 +106,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -117,7 +148,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
