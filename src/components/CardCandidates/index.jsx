@@ -11,7 +11,6 @@ function CardCandidates({ elem }) {
         try {
             const {data} = await api.get(`users/${elem.userId}`)
             setCandidate(data)
-            console.log(data)
         } catch (error) {
             console.error(error)
         }

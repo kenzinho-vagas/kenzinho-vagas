@@ -53,7 +53,6 @@ interface PatchJob {
   id?: number;
 }
 
-
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
@@ -67,15 +66,12 @@ export const JobProvider = ({ children }: IJobProvider) => {
     try {
       const response = await api.post("users/1/companyJobs ", data);
       const id = response.data.id;
-      console.log(id);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      console.log("ResponseData", response.data);
-      console.log("Response", response);
       api.defaults.headers.authorization = `Bearer ${token}`;
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -109,7 +105,6 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.description === "") {
       delete data.description;
     }
-    console.log(data);
     try {
       const response = await api.patch(`companyJobs/${editId} `, data);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
@@ -117,7 +112,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,

@@ -7,9 +7,9 @@ import Card from "../CardJobsAdmin";
 const JobsCreateds = () => {
   const { adminJobs, listJobs } = useContext(JobContext);
 
-  useEffect(() => {
-    listJobs();
-  }, [adminJobs]);
+    useEffect(() => {
+        listJobs()
+    }, [])
 
   return (
     <ListJobsAdmin>

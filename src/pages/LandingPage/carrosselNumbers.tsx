@@ -1,7 +1,6 @@
 import { SetStateAction, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
-
 export const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
 
@@ -10,7 +9,7 @@ export const ControlledCarousel = () => {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
       <Carousel.Item>
       <li>
             <h4>
@@ -39,4 +38,3 @@ export const ControlledCarousel = () => {
     </Carousel>
   );
 }
-
