@@ -117,7 +117,7 @@ export const DivFilters = styled.div`
     margin-bottom: 15px;
     width: 95%;
     padding-top: 30px;
-    
+
     select {
       margin-right: 8px;
       margin-bottom: 8px;
@@ -168,7 +168,7 @@ export const DivFilters = styled.div`
       }
     }
   }
-  
+
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-bottom: 0px;

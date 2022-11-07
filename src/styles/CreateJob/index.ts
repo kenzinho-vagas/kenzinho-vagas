@@ -9,6 +9,8 @@ const Create = styled.div`
 
     h3 {
       padding: 5px;
+      font-size: 18px;
+      font-weight: 700;
     }
     form {
       position: relative;
@@ -54,7 +56,7 @@ const Create = styled.div`
       }
 
       textarea {
-        height: 250px;
+        height: 295px;
         padding: 8px;
         resize: none;
       }
@@ -110,7 +112,7 @@ const Create = styled.div`
 
   @media screen and (min-width: 1100px) {
     .divForm {
-      padding: 0 20%;
+      padding: 0 10%;
     }
   }
 

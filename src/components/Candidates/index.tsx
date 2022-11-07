@@ -3,10 +3,6 @@ import { JobContext } from "../../contexts/JobContext";
 import StyleCandidates from "../../styles/Candidates";
 import CardCandidates from "../CardCandidates";
 import { IFormVagas } from "../../contexts/JobContext";
-import Email from "../../img/email.png";
-import Level from "../../img/level.png";
-import Linkedin from "../../img/linkedin.png";
-import Stack from "../../img/stack.png";
 
 const Candidates = () => {
   const { jobId, getCandidates, candidates  } = useContext(JobContext);
@@ -15,6 +11,10 @@ const Candidates = () => {
     getCandidates();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jobId]);
+
+  // useEffect(() => {
+  //   console.log(candidates)
+  // },[candidates])
 
   return (
     <StyleCandidates>

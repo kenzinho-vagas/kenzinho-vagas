@@ -83,7 +83,6 @@ const Candidates = styled.div`
         ul {
             gap: 50px;
             display: flex;
-            justify-content: space-between;
             
             li {
                 :nth-child(1){

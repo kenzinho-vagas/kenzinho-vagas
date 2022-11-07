@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
+import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
 
@@ -19,7 +20,7 @@ interface IJobContext {
   NewJob: (data: INewJobForm) => void;
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
-  adminJobs: IFormVagas | null | undefined;
+  adminJobs: IFormVagas | [];
   jobId: number | null;
   getCandidates: () => void;
   candidates: IFormVagas[];
@@ -29,6 +30,9 @@ interface IJobContext {
   editId: number | null;
   setEditId: any;
   DelJob: (jobId?: number) => void;
+  listFilteredAdmin: IFormVagas | [];
+  filterValidationAdmin: boolean;
+  writtenSearchAdmin: (search: string) => void;
 }
 
 export interface IFormVagas {
@@ -36,7 +40,7 @@ export interface IFormVagas {
   filter(arg0: (elem: IFormVagas) => boolean): unknown;
   company_name: string;
   specialty: string;
-  salary: number;
+  salary: string;
   kind_of_work: string;
   tech: [];
   level: string;
@@ -53,15 +57,53 @@ interface PatchJob {
   id?: number;
 }
 
-
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
-  const [jobId, setJobId] = useState(null);
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
+  const [jobId, setJobId] = useState<number | null>(null);
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
-  const [editModal, setEditModal] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editId, setEditId] = useState<number | null>(null);
+
+
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
+    []
+  );
+  const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
+
+  const writtenSearchAdmin = (search: string) => {
+    const resultSearchAd = adminJobs.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+    setListFilteredAdmin(resultSearchAd as any);
+    setFilterValidationAdmin(true);
+    console.log(resultSearchAd);
+  };
 
   async function NewJob(data: INewJobForm) {
     try {
@@ -72,15 +114,17 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
+      notifySuccess()
     } catch (error) {
       console.log(error);
+      notifyError()
     }
   }
 
@@ -94,7 +138,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.specialty === "") {
       delete data.specialty;
     }
-    if (data.salary === "") {
+    // eslint-disable-next-line no-self-compare
+    if (data.salary === data.salary) {
       delete data.salary;
     }
     if (data.level === "") {
@@ -113,7 +158,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -177,6 +222,9 @@ export const JobProvider = ({ children }: IJobProvider) => {
         setEditId,
         EditJob,
         DelJob,
+        listFilteredAdmin,
+        filterValidationAdmin,
+        writtenSearchAdmin,
       }}
     >
       {children}
