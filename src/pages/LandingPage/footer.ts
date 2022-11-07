@@ -68,10 +68,10 @@ export const FooterLanding = styled.div`
       gap: 5px;
     }
     .icons svg {
-    margin: 5px;
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
+      margin: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
   }
 
   @media (max-width: 800px) {
@@ -89,5 +89,20 @@ export const FooterLanding = styled.div`
     .followUs {
       margin-top: 20px;
     }
+  }
+`;
+
+export const FooterCopyright = styled.div`
+  background: var(--color-primary);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  p {
+    text-align: end;
+    color: var(--color-white);
+    font-size: 0.75rem;
   }
 `;
