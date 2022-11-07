@@ -1,7 +1,7 @@
-import StyleWelcome from '../../styles/Welcome'
+import StyleWelcome from "../../styles/Welcome"
 
 interface IWelcomeProps {
-    name: string | undefined
+    name: string | undefined;
 }
 
 const Welcome = ({ name } :IWelcomeProps) => {
@@ -12,4 +12,4 @@ const Welcome = ({ name } :IWelcomeProps) => {
     )
 }
 
-export default Welcome
+export default Welcome;

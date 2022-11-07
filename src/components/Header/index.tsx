@@ -1,5 +1,5 @@
-import Logo from "../../img/logo.png";
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
+import Logo from "../../img/logo.png";
 import StyleHeader from "../../styles/Header";
 
 const Header = () => {

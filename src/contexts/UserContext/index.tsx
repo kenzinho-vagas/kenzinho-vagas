@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import api from "../../services/api";
 import { AuthContext, IUserContext } from "../AuthContext";
+import api from "../../services/api";
 
 interface IProfileContextProps {
   children: React.ReactNode;
@@ -53,7 +53,6 @@ export const ProfileContext = createContext<IProfileContext>(
 
 export const ProfileProvider = ({ children }: IProfileContextProps) => {
   const [profileUser, setProfileUser] = useState<IUserProfile | null>(null);
-  console.log(profileUser);
   const [isProfileModal, setProfileModal] = useState<boolean>(false);
 
   const { loading } = useContext<IUserContext>(AuthContext);
@@ -86,6 +85,18 @@ export const ProfileProvider = ({ children }: IProfileContextProps) => {
     }
     if (body.specialty === "") {
       delete body.specialty;
+    }
+
+    try {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      const { data } = await api.patch(`/users/${userId}`, body);
+      setProfileUser(data);
+      toast.success("Perfil editado com Sucesso!!");
+      setProfileModal(!isProfileModal);
+    } catch (error) {
+      console.log(error);
+      toast.error("Opa! Algo deu errado...");
     }
 
     try {

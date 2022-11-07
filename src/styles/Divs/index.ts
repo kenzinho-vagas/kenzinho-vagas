@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivGrey = styled.div`
-  background-color: var(--grey-1);
+  background-color: var(--grey-4);
   width: 95%;
   margin: 30px auto;
   border-radius: 5px;
@@ -94,6 +94,10 @@ export const LiCard = styled.li`
   }
 `;
 
+export const ContainerFilters = styled.div`
+  border-top: 2px solid var(--color-primary);
+`
+
 export const DivFilters = styled.div`
   display: flex;
   flex-direction: column;
@@ -101,7 +105,6 @@ export const DivFilters = styled.div`
   align-items: center;
 
   margin: 0px auto 20px auto;
-  border-top: 2px solid var(--color-primary);
   width: 95%;
   .selectFilter {
     display: flex;
@@ -111,14 +114,20 @@ export const DivFilters = styled.div`
     margin-bottom: 15px;
     width: 90%;
     padding-top: 30px;
+    
     select {
       width: 163px;
       margin-right: 8px;
 
       border: 1px solid var(--color-primary);
       border-radius: 8px;
+<<<<<<< HEAD
 
       padding: 4px;
+=======
+      padding: 2px;
+      font-size: 13px;
+>>>>>>> bfdbf153d8bac0116a16cb6fb2fa746d5ab2b9c2
     }
   }
 
@@ -139,8 +148,8 @@ export const DivFilters = styled.div`
   }
 
   .searchBar {
-    min-width: 315px;
-    max-width: 400px;
+    width: 95%;
+
     .searchBarInput {
       border: 1px solid var(--color-primary);
       border-radius: 8px;
