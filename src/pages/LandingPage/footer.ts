@@ -49,7 +49,7 @@ export const FooterLanding = styled.div`
   }
 
   .followUs {
-    margin-top: 60px;
+    margin-top: 50px;
     text-align: center;
   }
 
@@ -65,13 +65,12 @@ export const FooterLanding = styled.div`
 
   @media (max-width: 1070px) {
     .footerContent {
-      gap: 5px;
+      gap: 20px;
     }
     .icons svg {
       margin: 5px;
-      cursor: pointer;
-      font-size: 1.2rem;
     }
+
   }
 
   @media (max-width: 905px) {
@@ -79,9 +78,6 @@ export const FooterLanding = styled.div`
     display: flex;
     flex-direction: column;
   }
-  .followUs {
-      margin-top: 5px;
-    }
 
   @media (max-width: 700px) {
     .footerContent {
