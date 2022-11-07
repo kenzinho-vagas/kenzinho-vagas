@@ -59,14 +59,19 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 export const JobProvider = ({ children }: IJobProvider) => {
   const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
   const [jobId, setJobId] = useState(null);
+
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
+
   const [editModal, setEditModal] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [listFilteredAdmin, setListFilteredAdmin] = useState(false);
+
+  const [allAdminJobs, setAllAdminJobs] = useState<IFormVagas | []>([]);
+
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>();
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   const writtenSearchAdmin = (search: string) => {
-    const resultSearch = adminJobs.filter(
+    const resultSearchAd = allAdminJobs.filter(
       (vacancies) =>
         vacancies.company_name
           .toLowerCase()
@@ -93,6 +98,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
               .join("")
           )
     );
+    setListFilteredAdmin(resultSearchAd);
+    setFilterValidationAdmin(true);
   };
 
   async function NewJob(data: INewJobForm) {
@@ -177,6 +184,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
     try {
       const { data } = await api.get<IFormVagas>("/companyJobs");
       setAdminJobs(data);
+      setAllAdminJobs(data);
     } catch (error) {
       console.error(error);
     }
