@@ -20,14 +20,15 @@ export const DivModal = styled.div`
       width: 90%;
       min-width: 300px;
       max-width: 700px;
+      
       position: relative;
       display: flex;
       justify-content: center;
       
-      .modal {
+      .theModal {
         width: 100%;
-        height: 100%;
-        
+        height: 100%; 
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -45,9 +46,7 @@ export const DivModal = styled.div`
           margin-bottom: 15px;
           width: 90%;
           
-          h3 {
-
-
+          
           .modalHeaderTitle {
             display: flex;
             justify-content: center;
@@ -73,7 +72,7 @@ export const DivModal = styled.div`
           }
           }
           
-        }
+        
       }
     }
   }
