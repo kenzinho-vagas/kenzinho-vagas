@@ -62,37 +62,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [listFiltredAdmin, setListFiltredAdmin] = useState(false);
-
-  const writtenSearchAdmin = (search: string) => {
-    const resultSearch = adminJobs.filter(
-      (vacancies) =>
-        vacancies.company_name
-          .toLowerCase()
-          .split(" ")
-          .filter((value) => value !== "")
-          .join("")
-          .includes(
-            search
-              .toLowerCase()
-              .split(" ")
-              .filter((value) => value !== "")
-              .join("")
-          ) ||
-        vacancies.specialty
-          .toLowerCase()
-          .split(" ")
-          .filter((value) => value !== "")
-          .join("")
-          .includes(
-            search
-              .toLowerCase()
-              .split(" ")
-              .filter((value) => value !== "")
-              .join("")
-          )
-    );
-  };
+  const [listFilteredAdmin, setListFilteredAdmin] = useState(false);
+  const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   async function NewJob(data: INewJobForm) {
     try {
