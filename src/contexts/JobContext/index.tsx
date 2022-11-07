@@ -57,10 +57,10 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
   const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
-  const [jobId, setJobId] = useState(null);
+  const [jobId, setJobId] = useState<number | null>(null);
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
-  const [editModal, setEditModal] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editId, setEditId] = useState<number | null>(null);
 
   async function NewJob(data: INewJobForm) {
     try {

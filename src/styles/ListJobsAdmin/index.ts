@@ -61,6 +61,10 @@ const ListJobsAdmin = styled.div`
         margin-right: 22%;
       }
 
+      .buttonsJob {
+        gap: 5px;
+      }
+
       button {
         min-width: 40%;
         width: fit-content;
