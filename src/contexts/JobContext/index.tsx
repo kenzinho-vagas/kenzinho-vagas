@@ -65,6 +65,36 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [listFilteredAdmin, setListFilteredAdmin] = useState(false);
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
+  const writtenSearchAdmin = (search: string) => {
+    const resultSearch = adminJobs.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+  };
+
   async function NewJob(data: INewJobForm) {
     try {
       const response = await api.post("users/1/companyJobs ", data);
