@@ -79,6 +79,9 @@ export const FooterLanding = styled.div`
     display: flex;
     flex-direction: column;
   }
+  .followUs {
+      margin-top: 5px;
+    }
 
   @media (max-width: 700px) {
     .footerContent {
@@ -88,7 +91,7 @@ export const FooterLanding = styled.div`
       text-align: center;
     }
     .followUs {
-      margin-top: 20px;
+      margin-top: 5px;
     }
   }
 `;
