@@ -14,7 +14,13 @@ const Card = (elem: IFormVagas) => {
 
   const salary = Number(elem.salary);
   return (
-    <li key={uuid()}>
+    <li
+      key={uuid()}
+      onClick={() => {
+        setJobId(elem.id);
+        getCandidates();
+      }}
+    >
       <button
         className="btnDeleteJob"
         onClick={() => {
@@ -51,7 +57,6 @@ const Card = (elem: IFormVagas) => {
         <ButtonPurple
           onClick={(e) => {
             setJobId(elem.id);
-            getCandidates();
           }}
         >
           Candidatos

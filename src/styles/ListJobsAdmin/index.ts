@@ -29,6 +29,7 @@ const ListJobsAdmin = styled.div`
       padding: 25px 10px 10px 10px;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
 
       h3 {
         text-align: center;
@@ -67,6 +68,10 @@ const ListJobsAdmin = styled.div`
       }
     }
 
+    li:focus {
+      background-color: aliceblue;
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    }
     .buttonsJob {
       display: flex;
       width: 100%;
