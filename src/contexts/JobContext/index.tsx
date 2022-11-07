@@ -19,7 +19,7 @@ interface IJobContext {
   NewJob: (data: INewJobForm) => void;
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
-  adminJobs: IFormVagas | null | undefined;
+  adminJobs: IFormVagas | [];
   jobId: number | null;
   getCandidates: () => void;
   candidates: IFormVagas[];
@@ -59,7 +59,7 @@ interface PatchJob {
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
   const [jobId, setJobId] = useState(null);
 
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
@@ -67,15 +67,13 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [editModal, setEditModal] = useState(false);
   const [editId, setEditId] = useState(null);
 
-  const [allAdminJobs, setAllAdminJobs] = useState<IFormVagas | []>([]);
-
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
   );
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   const writtenSearchAdmin = (search: string) => {
-    const resultSearchAd = allAdminJobs.filter(
+    const resultSearchAd = adminJobs.filter(
       (vacancies) =>
         vacancies.company_name
           .toLowerCase()
@@ -104,6 +102,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
     );
     setListFilteredAdmin(resultSearchAd as any);
     setFilterValidationAdmin(true);
+    console.log(resultSearchAd);
   };
 
   async function NewJob(data: INewJobForm) {
@@ -188,7 +187,6 @@ export const JobProvider = ({ children }: IJobProvider) => {
     try {
       const { data } = await api.get<IFormVagas>("/companyJobs");
       setAdminJobs(data);
-      setAllAdminJobs(data);
     } catch (error) {
       console.error(error);
     }

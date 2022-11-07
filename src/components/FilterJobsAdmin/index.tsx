@@ -49,7 +49,11 @@ function JobsAdmin() {
           </select>
         </div>
       </div>
-      <form>
+      <form
+        onSubmit={(event) => (
+          event.preventDefault(), filteredCard(searchValue)
+        )}
+      >
         <input
           type="text"
           id="adminJobSearch"
