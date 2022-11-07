@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-            "typeRoots": ["./src/@types", "./node_modules/@types"],
+            "typeRoots": ["./src/@types", "./node_modules/@types", "node_modules/yup"],
             "target": "es5",
             "lib": [
             "dom",
