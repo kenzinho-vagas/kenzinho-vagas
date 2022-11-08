@@ -1,16 +1,22 @@
 import Logo from "../../img/logo.png";
 import StyleHeader from "../../styles/HeaderUser";
-import { LinkSecundary } from "../../styles/Links";
-import { ButtonPurple } from "../../styles/Buttons";
+import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { useContext } from "react";
 import { IProfileContext, ProfileContext} from "../../contexts/UserContext";
+import { JobContext } from "../../contexts/JobContextDU";
+import { useNavigate } from "react-router-dom";
 
 
 const HeaderUser = () => {
-    const {isProfileModal, setProfileModal} = useContext<IProfileContext>(ProfileContext);
+    const navigate = useNavigate()
+    const {isProfileModal, setProfileModal, setProfileUser,} = useContext<IProfileContext>(ProfileContext);
+    const {setSavedJobs} = useContext(JobContext)
 
     function logout () {
         window.localStorage.clear();
+        setProfileUser(null);
+        setSavedJobs([]);
+        navigate("/")
     }
 
     return (
@@ -18,7 +24,7 @@ const HeaderUser = () => {
             <img src={Logo} alt="Logo Kenzinho" />
             <div className="rightHeader">
                 <ButtonPurple onClick={() => setProfileModal(!isProfileModal)} className='buttonHeaderDesktop'>Perfil</ButtonPurple>
-                <LinkSecundary to={'/'} className='buttonHeaderDesktop' onClick={logout}>Logout</LinkSecundary>
+                <ButtonWhite className='buttonHeaderDesktop' onClick={logout}>Logout</ButtonWhite>
             </div>
         </StyleHeader>
     )

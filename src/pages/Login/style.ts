@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DivLogin = styled.div`
   width: 100%;
-  height: calc(100vh - -50px);
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 90%;
+  margin: 100px 0;
 
   .contentLogin {
     width: 489px;

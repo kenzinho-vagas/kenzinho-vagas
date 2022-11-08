@@ -64,7 +64,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
-  const [editId, setEditId] = useState<number | null | undefined>(null);
+  const [editId, setEditId] = useState<number | null | undefined >(null);
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
