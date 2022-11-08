@@ -15,6 +15,7 @@ export const DivGrey = styled.div`
     font-size: 16px;
     margin: 10px;
   }
+
   .cards {
     display: flex;
     justify-content: center;
@@ -33,7 +34,14 @@ export const DivGrey = styled.div`
         justify-content: flex-start;
 
         ::-webkit-scrollbar {
-          background: none;
+          background-color: var(--grey-1);
+          height: 8px;
+          padding: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: var(--color-primary);
+          border-radius: 8px;
         }
       }
     }
