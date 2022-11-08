@@ -41,9 +41,12 @@ const SelectFilterAdmin = () => {
           defaultValue={"default"}
         >
           <option value="">Tipo</option>
-          <option value="Remoto">Remoto</option>
+          {/* <option value="Remoto">Remoto</option>
           <option value="Híbrido">Hibrido</option>
-          <option value="Presencial">Presencial</option>
+          <option value="Presencial">Presencial</option> */}
+          <option value="Rem">Remoto</option>
+          <option value="Híb">Hibrido</option>
+          <option value="Pre">Presencial</option>
         </select>
         {/* </div> */}
         {/* <div className="filterRight"> */}

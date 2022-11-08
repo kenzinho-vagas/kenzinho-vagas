@@ -142,11 +142,13 @@ export const JobProvider = ({ children }: IJobProvider) => {
           element.kind_of_work
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
-            .toLocaleLowerCase() ===
-          object.type
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
             .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
         );
       });
       console.log(resultFiltred);
@@ -159,11 +161,13 @@ export const JobProvider = ({ children }: IJobProvider) => {
           element.kind_of_work
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
-            .toLocaleLowerCase() ===
-            object.type
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLocaleLowerCase()
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
         );
       });
       console.log(resultFiltred);
@@ -178,11 +182,13 @@ export const JobProvider = ({ children }: IJobProvider) => {
           element.kind_of_work
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
-            .toLocaleLowerCase() ===
-            object.type
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLocaleLowerCase()
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
         );
       });
       console.log(resultFiltred);
@@ -212,11 +218,13 @@ export const JobProvider = ({ children }: IJobProvider) => {
           element.kind_of_work
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
-            .toLocaleLowerCase() ===
-            object.type
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLocaleLowerCase()
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
         );
       });
       console.log(resultFiltred);
