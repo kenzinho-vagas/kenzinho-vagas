@@ -14,10 +14,21 @@ export interface IJobContext {
   id: number | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteJob: React.Dispatch<React.SetStateAction<boolean>>;
+  ListFiltred: IJobsProps[] | [];
+  filterSelect: (object: IFilterObjectUser) => void;
+  filterValidation: boolean;
+  writtenSearch: (search: string) => void;
   setID: React.Dispatch<React.SetStateAction<number | undefined>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  writtenSearch: IJobsProps[];
+}
+
+
+
+interface IFilterObjectUser {
+  tech: string;
+  salary: string;
+  type: string;
 }
 
 export const JobContext = createContext<IJobContext>({} as IJobContext);
@@ -205,6 +216,8 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         filterSelect,
         filterValidation,
         writtenSearch,
+        search,
+        setSearch
       }}
     >
       {children}
