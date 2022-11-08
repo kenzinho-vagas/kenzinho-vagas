@@ -1,16 +1,16 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
 import { notifySuccess, notifyError } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
-
 import Wage from "../../img/wage.png";
 import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";
 import Case from "../../img/case.png";
 import api from "../../services/api";
+import { useContext } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 
 interface IJobDetailsModalProps {
