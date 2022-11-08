@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   }
   async function registerUser(data: IUser) {
     try {
-      const res = await api.post<ILogin>("/signup", data);
+      await api.post<ILogin>("/signup", data);
       toast("Usuário cadastrado com sucesso!");
       navigate("/login");
     } catch (error) {
