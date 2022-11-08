@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
 import api from "../../services/api";
+import { AuthContext } from "../AuthContext";
+import { useContext } from "react";
 
 interface IJobCountextProps {
   children: React.ReactNode;
@@ -10,6 +12,7 @@ interface IJobCountextProps {
 export interface IJobContext {
   allJobs: IJobsProps[];
   savedJobs: IJobsProps[];
+  setSavedJobs: React.Dispatch<React.SetStateAction< IJobsProps[]>>;
   showModal: boolean;
   id: number | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,6 +39,7 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 export const JobProvider = ({ children }: IJobCountextProps) => {
   const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
   const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([]);
+  const {loading} = useContext(AuthContext)
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteJob, setDeleteJob] = useState<boolean>(false);
@@ -179,13 +183,13 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
         console.log('67')
         setSavedJobs(data);
-      } catch (error) {
+        } catch (error) {
         console.error(error);
       }
     }
 
     getSavedJobs();
-  }, []);
+  }, [loading, savedJobs]); 
 
   useEffect(() => {
     async function deleteSpecificJob() {
@@ -207,6 +211,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       value={{
         allJobs,
         savedJobs,
+        setSavedJobs,
         showModal,
         id,
         setShowModal,

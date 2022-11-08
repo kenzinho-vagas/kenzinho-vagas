@@ -4,6 +4,7 @@ export const ButtonPurple = styled.button`
   background-color: var(--color-primary);
   padding: 5px 10px;
   min-width: 60px;
+  height: 40px;
   color: white;
   font-weight: 700;
   text-transform: uppercase;
@@ -33,7 +34,7 @@ export const ButtonWhite = styled.button`
   background-color: white;
   padding: 5px 10px;
   min-width: 60px;
-  height: 30px;
+  height: 40px;
   color: var(--color-primary);
   font-weight: 700;
   text-transform: uppercase;
