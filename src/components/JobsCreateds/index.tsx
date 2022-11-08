@@ -3,6 +3,7 @@ import { JobContext } from "../../contexts/JobContext";
 import { IFormVagas } from "../../contexts/JobContext";
 import ListJobsAdmin from "../../styles/ListJobsAdmin";
 import Card from "../CardJobsAdmin";
+import NoVacanciesFound from "../NoVacanciesFound";
 
 const JobsCreateds = () => {
   const { adminJobs, listJobs, listFilteredAdmin, filterValidationAdmin } =
@@ -16,12 +17,16 @@ const JobsCreateds = () => {
     <ListJobsAdmin>
       <h2>Vagas criadas</h2>
       <ul>
-        {filterValidationAdmin === true
-          ? listFilteredAdmin !== undefined
-            ? listFilteredAdmin &&
-              listFilteredAdmin.map((elem: IFormVagas) => Card(elem))
-            : adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))
-          : adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))}
+        {filterValidationAdmin === true ? (
+          listFilteredAdmin[0] !== undefined ? (
+            listFilteredAdmin &&
+            listFilteredAdmin.map((elem: IFormVagas) => Card(elem))
+          ) : (
+            <NoVacanciesFound />
+          )
+        ) : (
+          adminJobs && adminJobs.map((elem: IFormVagas) => Card(elem))
+        )}
       </ul>
     </ListJobsAdmin>
   );
