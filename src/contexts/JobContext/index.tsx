@@ -31,7 +31,7 @@ interface IJobContext {
   editId: number | null | undefined;
   setEditId: Dispatch<SetStateAction<number | null | undefined>>;
   DelJob: (jobId?: number) => void;
-  listFilteredAdmin: IFormVagas | [];
+  listFilteredAdmin: IFormVagas[] | [];
   filterValidationAdmin: boolean;
   writtenSearchAdmin: (search: string) => void;
   filterSelectAdm: (object: IFilterObjectAdm) => void;
@@ -74,7 +74,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [editModal, setEditModal] = useState<boolean>(false);
   const [editId, setEditId] = useState<number | null | undefined>(null);
 
-  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas[] | []>(
     []
   );
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
