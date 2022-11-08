@@ -51,7 +51,6 @@ const CreateJob = () => {
   });
 
   const submitForm = (data: INewJobForm) => {
-    const tech = data.tech.split(',')
     NewJob(data);
     reset();
   };

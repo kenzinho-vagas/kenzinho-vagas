@@ -113,14 +113,14 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs();
-
+      
       const DataPath = {
         tech: techsJobCorrect,
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
       notifySuccess();
+      listJobs();
     } catch (error) {
       console.log(error);
       notifyError();
