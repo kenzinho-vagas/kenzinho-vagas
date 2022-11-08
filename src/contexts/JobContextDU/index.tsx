@@ -25,10 +25,11 @@ export interface IJobContext {
   setID: React.Dispatch<React.SetStateAction<number | undefined>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  saveJob: any;
-  setSaveJob: any;
-  setSpecificJob: any;
-  specificJob: any;
+  saveJob: boolean;
+  setSaveJob: React.Dispatch<React.SetStateAction<boolean>>;
+  setSpecificJob: React.Dispatch<React.SetStateAction<IJobsProps[] | []>>;
+  specificJob: IJobsProps[] | [];
+  deleteSpecificJob: (id: number | undefined) => void;
 }
 
 interface IFilterObjectUser {
@@ -81,6 +82,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
             await api.post(`/users/${userID}/jobs`, body);
             notifySuccess();
             getSavedJobs();
+            setSaveJob(false);
           } else {
             notifyError();
             
@@ -215,7 +217,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     }
 
     getAllJobs();
-  }, []);
+  }, [loading]);
 
   async function getSavedJobs() {
     try {
@@ -234,21 +236,17 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     getSavedJobs();
   }, [loading]);
 
-  useEffect(() => {
-    async function deleteSpecificJob() {
-      if (deleteJob) {
-        try {
-          await api.delete(`/jobs/${id}`);
-          notifySuccess();
-          getSavedJobs();
-        } catch (error) {
-          notifyError();
-        }
-      }
+  async function deleteSpecificJob(id: number | undefined) {
+    try {
+      await api.delete(`/jobs/${id}`);
+      notifySuccess();
+      getSavedJobs();
+      const delJob = savedJobs.filter((job) => job.id !== id);
+      setSavedJobs(delJob);
+    } catch (error) {
+      notifyError();
     }
-
-    deleteSpecificJob();
-  }, [deleteJob, id]);
+  }
 
   return (
     <JobContext.Provider
@@ -271,6 +269,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setSaveJob,
         setSpecificJob,
         specificJob,
+        deleteSpecificJob,
       }}
     >
       {children}
