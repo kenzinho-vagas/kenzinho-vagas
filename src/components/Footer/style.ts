@@ -6,7 +6,7 @@ export const DivFooter = styled.div`
   justify-content: flex-end;
   padding: 12px;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
 
   p {
     font-size: 12px;

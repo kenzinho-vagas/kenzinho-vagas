@@ -27,7 +27,8 @@ export const DivGrey = styled.div`
         display: flex;
         flex-direction: row;
         width: 100%;
-        overflow: scroll;
+        height: 349px;
+        overflow: auto;
         gap: 30px;
         justify-content: flex-start;
       }
@@ -50,7 +51,7 @@ export const DivCard = styled.li`
 
 export const LiCard = styled.li`
   background-color: #ffffff;
-  margin: 30px auto;
+  margin: 30px;
   width: 200px;
   padding: 15px;
 
@@ -82,6 +83,7 @@ export const LiCard = styled.li`
     width: 25px;
     height: 25px;
     margin: 0 auto;
+    cursor: pointer;
   }
   .seeDetails {
     background-color: var(--color-primary);
@@ -98,7 +100,7 @@ export const LiCard = styled.li`
 
 export const ContainerFilters = styled.div`
   border-top: 2px solid var(--color-primary);
-`
+`;
 
 export const DivFilters = styled.div`
   display: flex;
@@ -108,7 +110,7 @@ export const DivFilters = styled.div`
 
   margin: 0px auto 20px auto;
   width: 95%;
-  
+
   .selectFilter {
     display: flex;
     justify-content: center;
@@ -137,12 +139,14 @@ export const DivFilters = styled.div`
     background-color: var(--color-primary);
     color: var(--grey-1);
     padding: 4px;
+    transition: 0.5s;
   }
 
   button:hover {
     background-color: #fff;
     border: solid 1.5px var(--color-primary);
     color: var(--color-primary);
+    transition: 0.5s;
   }
 
   .searchBar {
@@ -163,7 +167,7 @@ export const DivFilters = styled.div`
         justify-content: space-between;
 
         input {
-        border: transparent;
+          border: transparent;
         }
       }
     }

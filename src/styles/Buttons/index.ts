@@ -15,6 +15,13 @@ export const ButtonPurple = styled.button`
   justify-content: center;
   font-size: 0.75rem;
   cursor: pointer;
+  transition: 0.5s;
+
+  :hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    transition: 0.5s;
+  }
 
   @media screen and (min-width: 768px) {
     width: 130px;
