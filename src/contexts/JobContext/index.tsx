@@ -20,15 +20,15 @@ interface IJobContext {
   NewJob: (data: INewJobForm) => void;
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
-  adminJobs: IFormVagas | [];
+  adminJobs: IFormVagas | null | undefined;
   jobId: number | null | undefined;
   getCandidates: () => void;
   candidates: IFormVagas[];
   setJobId: Dispatch<SetStateAction<number | null | undefined>>;
   setEditModal: Dispatch<SetStateAction<boolean>>;
   editModal: boolean;
-  editId: number | null;
-  setEditId: Dispatch<SetStateAction<number | null>>;
+  editId: number | null | undefined;
+  setEditId: Dispatch<SetStateAction<number | null | undefined>>;
   DelJob: (jobId?: number) => void;
   listFilteredAdmin: IFormVagas | [];
   filterValidationAdmin: boolean;
@@ -60,11 +60,11 @@ interface PatchJob {
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | null | undefined>();
   const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
-  const [editId, setEditId] = useState<number | null>(null);
+  const [editId, setEditId] = useState<number | null | undefined>(null);
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
@@ -72,7 +72,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   const writtenSearchAdmin = (search: string) => {
-    const resultSearchAd = adminJobs.filter(
+    const resultSearchAd = adminJobs!.filter(
       (vacancies) =>
         vacancies.company_name
           .toLowerCase()

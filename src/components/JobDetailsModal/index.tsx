@@ -5,7 +5,7 @@ import { notifySuccess, notifyError } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
-import {IFormVagas} from '../../contexts/JobContext'
+import { IFormVagas } from "../../contexts/JobContext";
 import Wage from "../../img/wage.png";
 import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";
@@ -13,7 +13,7 @@ import Case from "../../img/case.png";
 import api from "../../services/api";
 
 interface IJobDetailsModalProps {
-  jobID: number | undefined;
+  jobID: number | null | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -47,16 +47,22 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
           }
           const userID = localStorage.getItem("@kenzinhoVagas:id");
           body.userId = Number(userID);
-          const {data} = await api.get<IFormVagas[]>(`/users/${userID}/jobs`)
-          console.log(data)
-          const alreadyExist = data.findIndex((elem: any) => elem.company_name === body.company_name && elem.kind_of_work === body.kind_of_work && elem.salary === body.salary && elem.specialty === body.specialty)
-          console.log(alreadyExist)
+          const { data } = await api.get<IFormVagas[]>(`/users/${userID}/jobs`);
+          console.log(data);
+          const alreadyExist = data.findIndex(
+            (elem: any) =>
+              elem.company_name === body.company_name &&
+              elem.kind_of_work === body.kind_of_work &&
+              elem.salary === body.salary &&
+              elem.specialty === body.specialty
+          );
+          console.log(alreadyExist);
           if (alreadyExist === -1) {
             await api.post(`/users/${userID}/jobs`, body);
             notifySuccess();
           } else {
-            notifyError()
-            console.log('achou')
+            notifyError();
+            console.log("achou");
           }
         } catch (error) {
           console.error(error);
