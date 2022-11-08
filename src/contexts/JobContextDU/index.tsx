@@ -23,8 +23,6 @@ export interface IJobContext {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-
-
 interface IFilterObjectUser {
   tech: string;
   salary: string;
@@ -177,7 +175,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         api.defaults.headers.authorization = `Bearer ${token}`;
 
         const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
-        console.log('67')
+        console.log("67");
         setSavedJobs(data);
       } catch (error) {
         console.error(error);
@@ -217,7 +215,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         filterValidation,
         writtenSearch,
         search,
-        setSearch
+        setSearch,
       }}
     >
       {children}

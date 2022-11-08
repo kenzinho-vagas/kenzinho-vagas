@@ -114,6 +114,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
   };
 
   const filterSelectAdm = (object: IFilterObjectAdm) => {
+    console.log(adminJobs);
+    console.log(object);
     if (object.salary === "" && object.type === "") {
       const resultFiltred = adminJobs.filter((element) => {
         return (

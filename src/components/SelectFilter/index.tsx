@@ -9,20 +9,20 @@ const SelectFilter = () => {
   const { filterSelect, allJobs } = useContext(JobContext);
   const [testeTech, setTesteTech] = useState([]);
 
-  const techinfo = () => {
-    const teste = allJobs.map((element) => {
-      return element.tech;
-    });
+  // const techinfo = () => {
+  //   const teste = allJobs.map((element) => {
+  //     return element.tech;
+  //   });
 
-    const teste2 = teste.reduce((list, sub) => list.concat(sub), []);
+  //   const teste2 = teste.reduce((list, sub) => list.concat(sub), []);
 
-    var teste3 = teste2.filter(function (elem, index, self) {
-      return index === self.indexOf(elem);
-    });
+  //   var teste3 = teste2.filter(function (elem, index, self) {
+  //     return index === self.indexOf(elem);
+  //   });
 
-    console.log(teste3);
-    // return teste3;
-  };
+  //   console.log(teste3);
+  //   return teste3;
+  // };
 
   return (
     <>
