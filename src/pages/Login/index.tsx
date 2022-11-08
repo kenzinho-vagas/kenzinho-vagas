@@ -10,6 +10,7 @@ import { LinkPrimary, LinkSecundary } from "../../styles/Links";
 import Header from "../../styles/Header";
 import logo from "../../img/logo.png";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../../components/Footer";
 
 export const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -63,6 +64,7 @@ export const Login = () => {
           </FormsLog>
         </div>
       </DivLogin>
+      <Footer />
     </>
   );
 };

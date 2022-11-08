@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const DashboardAdmin = () => {
-    const { jobId, editModal } = useContext(JobContext);
-    const [admin, setAdmin] = useState<boolean>(false)
+  const { jobId, editModal } = useContext(JobContext);
+  const [admin, setAdmin] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const DashboardAdmin = () => {
         console.log("nao é admin");
         return navigate("/dashboardUser");
       } else {
-          setAdmin(true)
+        setAdmin(true);
       }
     } catch (error) {
       console.error(error);
@@ -36,18 +36,18 @@ const DashboardAdmin = () => {
     isAdmin();
   }, []);
 
-    return (
-        admin ? (
-            <>
-            <Header />
-            <Welcome name="Admin" />
-            <CreateJob />
-            <JobsAdmin />
-            <JobsCreateds />
-            {jobId && <Candidates />}
-            {editModal && <ModalEdit />}
-          </>
-      ) : <h1>Loading...</h1>
-    )
+  return admin ? (
+    <>
+      <Header />
+      <Welcome name="Admin" />
+      <CreateJob />
+      <JobsAdmin />
+      <JobsCreateds />
+      {jobId && <Candidates />}
+      {editModal && <ModalEdit />}
+    </>
+  ) : (
+    <h1>Loading...</h1>
+  );
 };
 export default DashboardAdmin;

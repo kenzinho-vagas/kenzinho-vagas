@@ -1,41 +1,56 @@
-import { DivFilters } from "../../styles/Divs";
+import { ContainerFilters, DivFilters } from "../../styles/Divs";
 import { AiOutlineSearch } from "react-icons/ai";
+import React, { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
-import React, { useContext } from "react";
+import SelectFilter from "../SelectFilter";
 
 const Filters = () => {
-  const { search, setSearch } = useContext(JobContext);
+  const { writtenSearch } = useContext(JobContext);
+  const [valueSeacrh, setValueSeacrh] = useState("");
 
-  function filterCard(event: React.ChangeEvent<HTMLInputElement>) {
-    event.preventDefault();
-    setSearch(event.target.value);
-  }
+  // function filterCard(event: React.ChangeEvent<HTMLInputElement>) {
+  //   event.preventDefault();
+  //   setSearch(event.target.value);
+  // }
+
+  const filterCard = (value: string) => {
+    writtenSearch(value);
+  };
 
   return (
-    <DivFilters>
-      <div className="selectFilter">
-        <select id="tech">
-          <option value="">Tecnologias</option>
-        </select>
-        <select id="wage">
-          <option value="">Salários</option>
-        </select>
-        <select id="kindWork">
-          <option value="">Tipo de vaga</option>
-        </select>
-      </div>
-      <div className="searchBar">
-        <div className="searchBarInput">
-          <input
-            type="text"
-            placeholder="Pesquisar"
-            value={search}
-            onChange={(event) => filterCard(event)}
-          />
-          <AiOutlineSearch />
+    <ContainerFilters>
+      <DivFilters>
+        <SelectFilter />
+        <div className="searchBar">
+          <div className="searchBarInput">
+            <form
+              onSubmit={(event) => (
+                event.preventDefault(), filterCard(valueSeacrh)
+              )}
+              action=""
+            >
+              <input
+                type="text"
+                placeholder="Pesquisar"
+                // value={search}
+                onChange={(event) => setValueSeacrh(event.target.value)}
+              />
+              <button>Buscar</button>
+            </form>
+            {/* <AiOutlineSearch /> */}
+            {/* <div className="searchBar">
+          <div className="searchBarInput">
+            <input
+              type="text"
+              placeholder="Pesquisar"
+              value={search}
+              onChange={(event) => filterCard(event)}
+            />
+            <AiOutlineSearch /> */}
+          </div>
         </div>
-      </div>
-    </DivFilters>
+      </DivFilters>
+    </ContainerFilters>
   );
 };
 

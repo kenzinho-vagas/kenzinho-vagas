@@ -1,12 +1,16 @@
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
-import { DivKenzinho, DivLanding, DivOurNumbers, DivAllCompanies } from "./style";
-import { FooterLanding } from "./footer";
+import {
+  DivKenzinho,
+  DivLanding,
+  DivOurNumbers,
+  DivAllCompanies,
+} from "./style";
+import { FooterCopyright, FooterLanding } from "./footer";
 import { Link } from "react-router-dom";
 import { ImInstagram, ImYoutube } from "react-icons/im";
 import { FaFacebookSquare, FaTwitter, FaTiktok } from "react-icons/fa";
 import { ControlledCarousel as CarouselNumbers } from "./carrosselNumbers";
-import { ControlledCarousel as CarouselCompanies} from "./carrosselCompanies";
-import Footer from "../../components/Footer";
+import { ControlledCarousel as CarouselCompanies } from "./carrosselCompanies";
 import group from "../../img/group.png";
 import whykenzinho from "../../img/whykenzinho.png";
 import logo from "../../img/logo.png";
@@ -41,15 +45,15 @@ export const LandingPage = () => {
       </DivLanding>
       <DivAllCompanies>
         <h2 className="titleLand2">EMPRESAS QUE CONTRATAM COM A KENZINHO</h2>
-        <CarouselCompanies/>
+        <CarouselCompanies />
       </DivAllCompanies>
       <DivOurNumbers>
         <h2 className="titleLand2">NOSSOS NÚMEROS</h2>
         <ul className="listNumbers">
           <div className="mobile">
-            <CarouselNumbers/>
+            <CarouselNumbers />
           </div>
-        
+
           <li className="desktop">
             <h4>
               <span>+1000</span>
@@ -136,8 +140,9 @@ export const LandingPage = () => {
           </div>
         </div>
       </FooterLanding>
-      <Footer />
-   
+      <FooterCopyright>
+        <p>© 2022 - 2022 KenzinhoVagas. - Todos os direitos reservados.</p>
+      </FooterCopyright>
     </>
   );
 };

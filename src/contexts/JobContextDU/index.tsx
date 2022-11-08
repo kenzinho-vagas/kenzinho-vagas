@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "../../toast";
 import { IJobsProps } from "../../components/Cards";
 import api from "../../services/api";
@@ -32,12 +32,115 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
 
   const [search, setSearch] = useState("");
 
-  const writtenSearch = allJobs.filter(
-    (vacancies) =>
-      vacancies.company_name.toLowerCase().includes(search.toLowerCase()) ||
-      vacancies.specialty.toLowerCase().includes(search.toLowerCase())
-  );
+  const [ListFiltred, setListFiltred] = useState<IJobsProps[] | []>([]);
+  const [filterValidation, setFilterValidation] = useState(false);
 
+  //filtro do neto antes -----------------------------------------------------------------------------
+  // const writtenSearch = allJobs.filter(
+  //   (vacancies) =>
+  //     vacancies.company_name.toLowerCase().includes(search.toLowerCase()) ||
+  //     vacancies.specialty.toLowerCase().includes(search.toLowerCase())
+  // );
+  //filtro do neto antes -----------------------------------------------------------------------------
+
+  const writtenSearch = (search: string) => {
+    const resultSearch = allJobs.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+    setListFiltred(resultSearch);
+    setFilterValidation(true);
+  };
+
+  const filterSelect = (object: IFilterObjectUser) => {
+    if (object.salary === "" && object.type === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return element.tech.join(",").includes(object.tech) === true;
+      });
+
+      setListFiltred(resultFiltred);
+    } else if (object.tech === "" && object.type === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000
+        );
+      });
+
+      setListFiltred(resultFiltred);
+    } else if (object.tech === "" && object.salary === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return element.kind_of_work === object.type;
+      });
+
+      setListFiltred(resultFiltred);
+    } else if (object.tech === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.kind_of_work === object.type
+        );
+      });
+
+      setListFiltred(resultFiltred);
+    } else if (object.salary === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return (
+          element.tech.join(",").includes(object.tech) === true &&
+          element.kind_of_work === object.type
+        );
+      });
+
+      setListFiltred(resultFiltred);
+    } else if (object.type === "") {
+      const resultFiltred = allJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech.join(",").includes(object.tech) === true
+        );
+      });
+
+      setListFiltred(resultFiltred);
+    } else {
+      const resultFiltred = allJobs.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech.join(",").includes(object.tech) === true &&
+          element.kind_of_work === object.type
+        );
+      });
+
+      setListFiltred(resultFiltred);
+    }
+
+    return setFilterValidation(true);
+  };
   useEffect(() => {
     async function getAllJobs() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
@@ -45,7 +148,6 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       if (token) {
         try {
           const { data } = await api.get<IJobsProps[]>("/companyJobs");
-
           setAllJobs(data);
         } catch (error) {
           console.error(error);
@@ -99,8 +201,9 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setShowModal,
         setDeleteJob,
         setID,
-        search,
-        setSearch,
+        ListFiltred,
+        filterSelect,
+        filterValidation,
         writtenSearch,
       }}
     >

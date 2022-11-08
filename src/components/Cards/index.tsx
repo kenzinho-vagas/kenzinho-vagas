@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 import Lists from "../Lists";
 
@@ -20,13 +20,30 @@ interface ICardsProps {
 }
 
 const Cards = ({ title }: ICardsProps) => {
-  const { savedJobs, writtenSearch } = useContext(JobContext);
+  const { savedJobs, ListFiltred, allJobs, filterValidation } =
+    useContext(JobContext);
+
+  const [vazio, setVazio] = useState<[]>([]);
 
   return title === "Todas as vagas" ? (
-    <Lists objectArray={writtenSearch} title={title} />
+    filterValidation === true ? (
+      ListFiltred[0] !== undefined ? (
+        <Lists objectArray={ListFiltred} title={title} />
+      ) : (
+        <Lists objectArray={vazio} title={title} />
+      )
+    ) : (
+      <Lists objectArray={allJobs} title={title} />
+    )
   ) : (
     <Lists objectArray={savedJobs} title={title} />
   );
+
+  // return title === "Todas as vagas" ? (
+  //   <Lists objectArray={writtenSearch} title={title} />
+  // ) : (
+  //   <Lists objectArray={savedJobs} title={title} />
+  // );
 };
 
 export default Cards;

@@ -58,7 +58,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     <DivModal>
       <div className="containerModal">
         <div className="overlayModal">
-          <div className="modal">
+          <div className="theModal">
             <DivModaldetails>
               {specificJob.map((object: IJobsProps) => (
                 <li key={object.id}>
@@ -84,7 +84,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     </div>
                     <div className="infoJobsDetail">
                       <img src={Wage} alt="coins" />
-                      <p>{object.salary}</p>
+                      <p>R$ {object.salary}</p>
                     </div>
                   </div>
                   <div className="description">

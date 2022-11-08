@@ -4,11 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { JobContext } from "../../contexts/JobContext";
 import * as yup from "yup";
+import { currencyMask } from "../../masks/mask";
 
 export interface INewJobForm {
   company_name: string;
   specialty: string;
-  salary: number;
+  salary: string;
   kind_of_work: string;
   tech: string;
   level: string;
@@ -29,11 +30,10 @@ export interface IEditJobForm {
 
 const CreateJob = () => {
   const { NewJob } = useContext(JobContext);
-
   const formSchema = yup.object().shape({
     company_name: yup.string().required("Campo obrigátorio"),
     specialty: yup.string().required("Campo obrigátorio"),
-    salary: yup.string().required("Campo obrigátorio"),
+    salary: yup.number().required("Campo obrigátorio"),
     kind_of_work: yup.string().required("Campo obrigátorio"),
     tech: yup.string().required("Campo obrigátorio"),
     level: yup.string(),
@@ -89,10 +89,14 @@ const CreateJob = () => {
               <p>{errors.kind_of_work && errors.kind_of_work.message}</p>
               <label htmlFor="salary">Salário</label>
               <input
-                type="text"
+                type="currency"
                 id="salary"
-                placeholder="R$4.500,00"
-                {...register("salary")}
+                placeholder="Somente números"
+                inputMode="numeric"
+                onChange={(event) => {
+                  const { value } = event.target;
+                  event.target.value = currencyMask(value);
+                }}
               />
               <p>{errors.salary && errors.salary.message}</p>
               <label htmlFor="tecnology">Tecnologia</label>
