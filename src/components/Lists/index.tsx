@@ -17,7 +17,7 @@ interface IListsProps {
 
 const Lists = ({ objectArray, title }: IListsProps) => {
   const { id, showModal, setShowModal, setDeleteJob, setID } =
-    useContext<IJobContext>(JobContext);
+  useContext<IJobContext>(JobContext);
 
   return (
     <div className="containerCards">

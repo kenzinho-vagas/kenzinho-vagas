@@ -4,6 +4,7 @@ import { IJobsProps } from "../../components/Cards";
 import api from "../../services/api";
 import { AuthContext } from "../AuthContext";
 import { useContext } from "react";
+import { IFormVagas } from "../../contexts/JobContext";
 
 interface IJobCountextProps {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ interface IJobCountextProps {
 export interface IJobContext {
   allJobs: IJobsProps[];
   savedJobs: IJobsProps[];
-  setSavedJobs: React.Dispatch<React.SetStateAction< IJobsProps[]>>;
+  setSavedJobs: React.Dispatch<React.SetStateAction<IJobsProps[]>>;
   showModal: boolean;
   id: number | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +25,10 @@ export interface IJobContext {
   setID: React.Dispatch<React.SetStateAction<number | undefined>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  saveJob: any;
+  setSaveJob: any;
+  setSpecificJob: any;
+  specificJob: any;
 }
 
 interface IFilterObjectUser {
@@ -37,7 +42,7 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 export const JobProvider = ({ children }: IJobCountextProps) => {
   const [allJobs, setAllJobs] = useState<IJobsProps[] | []>([]);
   const [savedJobs, setSavedJobs] = useState<IJobsProps[] | []>([]);
-  const {loading} = useContext(AuthContext)
+  const { loading } = useContext(AuthContext);
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteJob, setDeleteJob] = useState<boolean>(false);
@@ -47,6 +52,46 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
 
   const [ListFiltred, setListFiltred] = useState<IJobsProps[] | []>([]);
   const [filterValidation, setFilterValidation] = useState(false);
+
+  const [saveJob, setSaveJob] = useState<boolean>(false);
+  const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([]);
+
+  useEffect(() => {
+    async function postSpecificJob() {
+      if (saveJob) {
+        try {
+          const body = specificJob[0];
+          console.log(body);
+          if (body.id) {
+            delete body.id;
+          }
+          const userID = localStorage.getItem("@kenzinhoVagas:id");
+          body.userId = Number(userID);
+          const { data } = await api.get<IFormVagas[]>(`/users/${userID}/jobs`);
+          console.log(data);
+          const alreadyExist = data.findIndex(
+            (elem: any) =>
+              elem.company_name === body.company_name &&
+              elem.kind_of_work === body.kind_of_work &&
+              elem.salary === body.salary &&
+              elem.specialty === body.specialty
+          );
+          console.log(alreadyExist);
+          if (alreadyExist === -1) {
+            await api.post(`/users/${userID}/jobs`, body);
+            notifySuccess();
+            getSavedJobs();
+          } else {
+            notifyError();
+            console.log("achou");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+    postSpecificJob();
+  }, [saveJob]);
 
   //filtro do neto antes -----------------------------------------------------------------------------
   // const writtenSearch = allJobs.filter(
@@ -154,6 +199,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
 
     return setFilterValidation(true);
   };
+
   useEffect(() => {
     async function getAllJobs() {
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
@@ -171,23 +217,22 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     getAllJobs();
   }, []);
 
-  useEffect(() => {
-    async function getSavedJobs() {
-      try {
-        const userID = localStorage.getItem("@kenzinhoVagas:id");
-        const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-        api.defaults.headers.authorization = `Bearer ${token}`;
+  async function getSavedJobs() {
+    try {
+      const userID = localStorage.getItem("@kenzinhoVagas:id");
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-        const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
-        console.log("67");
-        setSavedJobs(data);
-        } catch (error) {
-        console.error(error);
-      }
+      const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
+      console.log("67");
+      setSavedJobs(data);
+    } catch (error) {
+      console.error(error);
     }
-
+  }
+  useEffect(() => {
     getSavedJobs();
-  }, [loading, savedJobs]); 
+  }, [loading]);
 
   useEffect(() => {
     async function deleteSpecificJob() {
@@ -195,6 +240,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         try {
           await api.delete(`/jobs/${id}`);
           notifySuccess();
+          getSavedJobs();
         } catch (error) {
           notifyError();
         }
@@ -221,6 +267,10 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         writtenSearch,
         search,
         setSearch,
+        saveJob,
+        setSaveJob,
+        setSpecificJob,
+        specificJob,
       }}
     >
       {children}
