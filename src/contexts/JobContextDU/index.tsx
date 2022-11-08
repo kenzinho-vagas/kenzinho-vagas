@@ -25,10 +25,10 @@ export interface IJobContext {
   setID: React.Dispatch<React.SetStateAction<number | undefined>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  saveJob: any;
-  setSaveJob: any;
-  setSpecificJob: any;
-  specificJob: any;
+  saveJob: boolean;
+  setSaveJob: React.Dispatch<React.SetStateAction<boolean>>;
+  setSpecificJob: React.Dispatch<React.SetStateAction<IJobsProps[] | []>>;
+  specificJob: IJobsProps[] | [];
   deleteSpecificJob: (id: number | undefined) => void;
 }
 
