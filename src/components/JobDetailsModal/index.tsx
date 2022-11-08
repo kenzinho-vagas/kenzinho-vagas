@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
 import { notifySuccess, notifyError } from "../../toast";
@@ -19,8 +19,8 @@ interface IJobDetailsModalProps {
 }
 
 const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
-  const { setSpecificJob, specificJob, setSaveJob, saveJob } = useContext(JobContext);
-
+  const { setSpecificJob, specificJob, setSaveJob, saveJob } =
+    useContext(JobContext);
 
   useEffect(() => {
     async function getSpecificJob() {
@@ -37,7 +37,6 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     getSpecificJob();
   }, []);
 
-  
   return (
     <DivModal>
       <div className="containerModal">
@@ -45,7 +44,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
           <div className="theModal">
             <DivModaldetails>
               {specificJob.map((object: IJobsProps) => (
-                <li key={object.id}>
+                <li key={object.userId}>
                   <h3 className="modalTitle">Programador {object.specialty}</h3>
                   <ul className="technologies">
                     {typeof object.tech === "object" &&

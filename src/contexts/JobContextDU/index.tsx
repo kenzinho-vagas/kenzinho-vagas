@@ -29,6 +29,7 @@ export interface IJobContext {
   setSaveJob: any;
   setSpecificJob: any;
   specificJob: any;
+  deleteSpecificJob: (id: number | undefined) => void;
 }
 
 interface IFilterObjectUser {
@@ -234,21 +235,17 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     getSavedJobs();
   }, [loading]);
 
-  useEffect(() => {
-    async function deleteSpecificJob() {
-      if (deleteJob) {
-        try {
-          await api.delete(`/jobs/${id}`);
-          notifySuccess();
-          getSavedJobs();
-        } catch (error) {
-          notifyError();
-        }
-      }
+  async function deleteSpecificJob(id: number | undefined) {
+    try {
+      await api.delete(`/jobs/${id}`);
+      notifySuccess();
+      getSavedJobs();
+      const delJob = savedJobs.filter((job) => job.id !== id);
+      setSavedJobs(delJob);
+    } catch (error) {
+      notifyError();
     }
-
-    deleteSpecificJob();
-  }, [deleteJob, id]);
+  }
 
   return (
     <JobContext.Provider
@@ -271,6 +268,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         setSaveJob,
         setSpecificJob,
         specificJob,
+        deleteSpecificJob,
       }}
     >
       {children}
