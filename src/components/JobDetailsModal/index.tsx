@@ -31,7 +31,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     }
 
     getSpecificJob()
-  }, [])
+  }, [specificJob])
 
   useEffect(() => {
       async function postSpecificJob() {
