@@ -12,7 +12,7 @@ export interface IJobsProps {
   jobURL: string;
   description: string;
   userId: number;
-  id: number;
+  id?: number;
 }
 
 interface ICardsProps {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { notifyError, notifySuccess } from "../../toast";
+import { notifySuccess } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
@@ -12,7 +12,7 @@ import Case from "../../img/case.png";
 import api from "../../services/api";
 
 interface IJobDetailsModalProps {
-  jobID: number;
+  jobID: number | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -37,12 +37,17 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
       async function postSpecificJob() {
           if (saveJob) {
               try {
-                  const body = specificJob[0]
-                  const userID = localStorage.getItem("@kenzinhoVagas:id");
+                const body = specificJob[0]
+                console.log(body)
+                if (body.id) {
+                  delete body.id
+                }
+                const userID = localStorage.getItem("@kenzinhoVagas:id");
+                body.userId = Number(userID)
                   await api.post(`/users/${userID}/jobs`, body)
                   notifySuccess()
               } catch (error) {
-                  notifyError()
+                  console.error(error)
               }
           }
       }

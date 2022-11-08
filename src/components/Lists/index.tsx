@@ -27,7 +27,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
             <CardTitle>Programador {object.specialty}</CardTitle>
 
             <div className="cardInfo">
-              <img src={Case} alt="case" />
+              <img src={Case} alt="case" />;  
               <CardText>{object.company_name}</CardText>
             </div>
 
