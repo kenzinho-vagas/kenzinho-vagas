@@ -11,17 +11,19 @@ export interface IJobContext {
   allJobs: IJobsProps[];
   savedJobs: IJobsProps[];
   showModal: boolean;
-  id: number;
+  id: number | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteJob: React.Dispatch<React.SetStateAction<boolean>>;
-  setID: React.Dispatch<React.SetStateAction<number>>;
-  // search: string;
-  // setSearch: React.Dispatch<React.SetStateAction<string>>;
   ListFiltred: IJobsProps[] | [];
   filterSelect: (object: IFilterObjectUser) => void;
   filterValidation: boolean;
   writtenSearch: (search: string) => void;
+  setID: React.Dispatch<React.SetStateAction<number | undefined>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
+
+
 
 interface IFilterObjectUser {
   tech: string;
@@ -37,7 +39,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [deleteJob, setDeleteJob] = useState<boolean>(false);
-  const [id, setID] = useState<number>(0);
+  const [id, setID] = useState<number | undefined>(0);
 
   const [search, setSearch] = useState("");
 
@@ -175,6 +177,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         api.defaults.headers.authorization = `Bearer ${token}`;
 
         const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
+        console.log('67')
         setSavedJobs(data);
       } catch (error) {
         console.error(error);
@@ -182,7 +185,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     }
 
     getSavedJobs();
-  }, [savedJobs]);
+  }, []);
 
   useEffect(() => {
     async function deleteSpecificJob() {
@@ -213,6 +216,8 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
         filterSelect,
         filterValidation,
         writtenSearch,
+        search,
+        setSearch
       }}
     >
       {children}

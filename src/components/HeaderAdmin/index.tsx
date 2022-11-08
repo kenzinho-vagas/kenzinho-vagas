@@ -7,9 +7,6 @@ const Header = () => {
     <StyleHeader>
       <img src={Logo} alt="Logo Kenzinho" />
       <div className="rightHeader">
-        <LinkPrimary to={"/"} className="buttonHeaderDesktop">
-          Perfil
-        </LinkPrimary>
         <LinkSecundary to={"/"} className="buttonHeaderDesktop">
           Logout
         </LinkSecundary>
