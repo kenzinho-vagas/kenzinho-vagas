@@ -117,7 +117,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
     console.log(adminJobs);
     console.log(object);
     if (object.salary === "" && object.type === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           element.tech
             .join(",")
@@ -128,7 +128,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.tech === "" && object.type === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000
@@ -137,7 +137,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.tech === "" && object.salary === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           element.kind_of_work
             .normalize("NFD")
@@ -154,7 +154,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.tech === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&
@@ -173,7 +173,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.salary === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           element.tech
             .join(",")
@@ -194,7 +194,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else if (object.type === "") {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&
@@ -207,7 +207,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       console.log(resultFiltred);
       setListFilteredAdmin(resultFiltred as any);
     } else {
-      const resultFiltred = adminJobs.filter((element) => {
+      const resultFiltred = adminJobs!.filter((element) => {
         return (
           +element.salary >= +object.salary &&
           +element.salary <= +object.salary + 5000 &&

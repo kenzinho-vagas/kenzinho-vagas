@@ -41,14 +41,14 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
       if (saveJob) {
         try {
           const body = specificJob[0];
-          console.log(body);
+          
           if (body.id) {
             delete body.id;
           }
           const userID = localStorage.getItem("@kenzinhoVagas:id");
           body.userId = Number(userID);
           const { data } = await api.get<IFormVagas[]>(`/users/${userID}/jobs`);
-          console.log(data);
+          
           const alreadyExist = data.findIndex(
             (elem: any) =>
               elem.company_name === body.company_name &&
@@ -56,13 +56,13 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
               elem.salary === body.salary &&
               elem.specialty === body.specialty
           );
-          console.log(alreadyExist);
+          
           if (alreadyExist === -1) {
             await api.post(`/users/${userID}/jobs`, body);
             notifySuccess();
           } else {
             notifyError();
-            console.log("achou");
+            
           }
         } catch (error) {
           console.error(error);

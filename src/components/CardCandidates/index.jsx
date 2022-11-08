@@ -21,7 +21,7 @@ function CardCandidates({ elem }) {
     }, [elem])
   
   useEffect(() => {
-      console.log(candidate)
+      
     },[candidate])
 
 
