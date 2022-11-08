@@ -75,6 +75,7 @@ export const FormsLog = styled.form`
     .divFormCad {
       flex-direction: column;
       gap: 0px;
+      
     }
   }
   input,

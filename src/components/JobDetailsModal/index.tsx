@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { notifySuccess } from "../../toast";
+import { notifySuccess, notifyError } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
+import {IFormVagas} from '../../contexts/JobContext'
 import Wage from "../../img/wage.png";
 import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";
@@ -23,35 +24,46 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
   useEffect(() => {
     async function getSpecificJob() {
       try {
-        const { data } = await api.get<IJobsProps[]>(`/companyJobs?id=${jobID}`);
+        const { data } = await api.get<IJobsProps[]>(
+          `/companyJobs?id=${jobID}`
+        );
         setSpecificJob(data);
       } catch (error) {
         console.error(error);
       }
     }
 
-    getSpecificJob()
-  }, [])
+    getSpecificJob();
+  }, []);
 
   useEffect(() => {
-      async function postSpecificJob() {
-          if (saveJob) {
-              try {
-                const body = specificJob[0]
-                console.log(body)
-                if (body.id) {
-                  delete body.id
-                }
-                const userID = localStorage.getItem("@kenzinhoVagas:id");
-                body.userId = Number(userID)
-                  await api.post(`/users/${userID}/jobs`, body)
-                  notifySuccess()
-              } catch (error) {
-                  console.error(error)
-              }
+    async function postSpecificJob() {
+      if (saveJob) {
+        try {
+          const body = specificJob[0];
+          console.log(body);
+          if (body.id) {
+            delete body.id;
           }
+          const userID = localStorage.getItem("@kenzinhoVagas:id");
+          body.userId = Number(userID);
+          const {data} = await api.get<IFormVagas[]>(`/users/${userID}/jobs`)
+          console.log(data)
+          const alreadyExist = data.findIndex((elem: any) => elem.company_name === body.company_name && elem.kind_of_work === body.kind_of_work && elem.salary === body.salary && elem.specialty === body.specialty)
+          console.log(alreadyExist)
+          if (alreadyExist === -1) {
+            await api.post(`/users/${userID}/jobs`, body);
+            notifySuccess();
+          } else {
+            notifyError()
+            console.log('achou')
+          }
+        } catch (error) {
+          console.error(error);
+        }
       }
-      postSpecificJob()
+    }
+    postSpecificJob();
   }, [saveJob]);
 
   return (
