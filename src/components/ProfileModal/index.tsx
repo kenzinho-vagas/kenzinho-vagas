@@ -23,7 +23,7 @@ const ProfileModal = () => {
        <DivModal>
             <div className="containerModal">
                 <div className="overlayModal">
-                    <div className="modal">
+                    <div className="theModal">
                         <div className="modalHeader">
                             <div className="modalHeaderTitle">
                             <h3>EDITAR PERFIL</h3>

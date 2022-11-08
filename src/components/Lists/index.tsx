@@ -27,7 +27,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
             <CardTitle>Programador {object.specialty}</CardTitle>
 
             <div className="cardInfo">
-              <img src={Case} alt="case" />
+              <img src={Case} alt="case" />;  
               <CardText>{object.company_name}</CardText>
             </div>
 
@@ -43,7 +43,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
 
             <div className="cardInfo">
               <img src={Wage} alt="wage" />
-              <CardText>{object.salary}</CardText>
+              <CardText>R$ {object.salary}</CardText>
             </div>
 
             {title === "Todas as vagas" ? (
@@ -61,6 +61,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
               <img
                 src={Trash}
                 alt="Trash"
+                className="trash"
                 onClick={() => {
                   setDeleteJob(true);
                   setID(object.id);

@@ -13,8 +13,6 @@ const Header = styled.header`
   }
 
   @media screen and (min-width: 768px) {
-    padding: 25px;
-
     .rightHeader {
       gap: 2rem;
     }

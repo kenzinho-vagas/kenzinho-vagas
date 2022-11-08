@@ -7,7 +7,6 @@ export const DivModal = styled.div`
   height: 100vh;
   z-index: 101;
 
-
   .containerModal {
     display: flex;
     align-items: center;
@@ -15,26 +14,29 @@ export const DivModal = styled.div`
     width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.35);
-    
+
     .overlayModal {
       width: 90%;
       min-width: 300px;
       max-width: 700px;
+
       position: relative;
       display: flex;
       justify-content: center;
-      
-      .modal {
+
+      .theModal {
         width: 100%;
         height: 100%;
-        
+
         display: flex;
         flex-direction: column;
         align-items: center;
-        
-        background-color: #ffffff;
+
+        background-color: var(--color-white);
         border-radius: 4px;
-        
+
+        animation: appearFromTopLeft 1s;
+
         .modalHeader {
           display: flex;
           flex-direction: row;
@@ -44,9 +46,6 @@ export const DivModal = styled.div`
           margin: 20px;
           margin-bottom: 15px;
           width: 90%;
-          
-          h3 {
-
 
           .modalHeaderTitle {
             display: flex;
@@ -54,37 +53,46 @@ export const DivModal = styled.div`
             width: 100%;
 
             h3 {
-            color: #000000;
-            font-weight: 700;
-            font-size: 20px;
-            text-align: center;
+              color: var(--grey-2);
+              font-weight: 700;
+              font-size: 20px;
+              text-align: center;
+            }
           }
-          }
-          
+
           .modalHeaderBtn {
             display: flex;
             width: 10%;
             justify-content: flex-end;
 
             .iconClose {
-            color: var(--color-primary);
-            height: 25px;
-            display: flex;
+              color: var(--color-primary);
+              height: 25px;
+              display: flex;
+            }
           }
-          }
-          
         }
       }
     }
   }
-}
+
+  @keyframes appearFromTopLeft {
+    0% {
+      opacity: 0;
+      transform: translate(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
 `;
 
 export const ModalEditStyle = styled.div`
-box-sizing: border-box;
+  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -92,7 +100,7 @@ box-sizing: border-box;
   justify-content: center;
   align-items: center;
   overflow: auto;
-  
+
   .divForm {
     border-radius: 5px;
     width: 90%;
@@ -103,7 +111,7 @@ box-sizing: border-box;
     color: white;
     padding: 5px;
     position: relative;
-    
+
     .btnCloseModal {
       position: absolute;
       top: 2px;
@@ -122,9 +130,8 @@ box-sizing: border-box;
         padding: 5px;
       }
     }
-
   }
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     .divForm {
       flex-direction: row;
       max-width: 800px;
@@ -160,9 +167,9 @@ export const DivForm = styled.div`
   padding: 8px;
 
   form {
-      display: flex;
-      flex-direction: column;
-      width: 90%;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
 
     .formColumns {
       display: flex;
@@ -179,10 +186,10 @@ export const DivForm = styled.div`
         width: 100%;
 
         label {
-          color: #ffffff;
+          color: var(--color-white);
           font-size: 14px;
           font-weight: 700;
-          
+
           margin-bottom: 5px;
         }
 
@@ -194,7 +201,7 @@ export const DivForm = styled.div`
 
         input::placeholder {
           font-size: 14px;
-          color: #000000;
+          color: var(--grey-2);
         }
       }
 
@@ -205,23 +212,26 @@ export const DivForm = styled.div`
         width: 100%;
 
         label {
-          color: #ffffff;
+          color: var(--color-white);
           font-size: 14px;
           font-weight: 700;
-          
+
           margin-bottom: 5px;
         }
-        
-        input, select {
+
+        input,
+        select {
           margin-bottom: 20px;
           padding: 8px;
           border-radius: 4px;
 
           font-size: 16px;
-          color: #000000;
+          color: var(--grey-2);
         }
 
-       
+        input::placeholder {
+          color: var(--grey-2);
+        }
       }
 
       @media screen and (min-width: 768px) {
@@ -238,9 +248,9 @@ export const DivForm = styled.div`
       margin-bottom: 20px;
       padding: 8px;
 
-      color: #000000;
+      color: var(--grey-2);
       font-weight: 700;
       font-size: 14px;
     }
   }
-`
+`;
