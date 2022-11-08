@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivGrey = styled.div`
   background-color: var(--grey-4);
   width: 95%;
-  margin: 30px auto;
+  margin: 30px auto 66px auto;
   border-radius: 5px;
   border: 1px solid #1e1e1e;
 
@@ -31,6 +31,10 @@ export const DivGrey = styled.div`
         overflow: auto;
         gap: 30px;
         justify-content: flex-start;
+
+        ::-webkit-scrollbar {
+          background: none;
+        }
       }
     }
   }
@@ -52,7 +56,7 @@ export const DivCard = styled.li`
 export const LiCard = styled.li`
   background-color: #ffffff;
   margin: 30px;
-  width: 200px;
+  min-width: 200px;
   padding: 15px;
 
   border-radius: 5px;
@@ -108,7 +112,7 @@ export const DivFilters = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 0px auto 20px auto;
+  margin: 20px auto 20px auto;
   width: 95%;
 
   .selectFilter {

@@ -27,7 +27,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
             <CardTitle>Programador {object.specialty}</CardTitle>
 
             <div className="cardInfo">
-              <img src={Case} alt="case" />;  
+              <img src={Case} alt="case" />;
               <CardText>{object.company_name}</CardText>
             </div>
 
@@ -43,7 +43,12 @@ const Lists = ({ objectArray, title }: IListsProps) => {
 
             <div className="cardInfo">
               <img src={Wage} alt="wage" />
-              <CardText>R$ {object.salary}</CardText>
+              <CardText>
+                {Number(object.salary).toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </CardText>
             </div>
 
             {title === "Todas as vagas" ? (
