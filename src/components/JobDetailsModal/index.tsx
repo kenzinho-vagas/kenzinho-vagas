@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 
 interface IJobDetailsModalProps {
-  jobID: number | undefined;
+  jobID: number | null | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

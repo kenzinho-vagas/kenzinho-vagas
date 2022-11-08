@@ -3,6 +3,7 @@ import { INewJobForm } from "../../components/CreateJob";
 import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
+// import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface IJobProvider {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ interface IJobContext {
   NewJob: (data: INewJobForm) => void;
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
-  adminJobs: IFormVagas | [];
+  adminJobs: IFormVagas | null | undefined;
   jobId: number | null | undefined;
   getCandidates: () => void;
   candidates: IFormVagas[];
@@ -30,9 +31,10 @@ interface IJobContext {
   editId: number | null | undefined;
   setEditId: Dispatch<SetStateAction<number | null | undefined>>;
   DelJob: (jobId?: number) => void;
-  listFilteredAdmin: IFormVagas | [];
+  listFilteredAdmin: IFormVagas[] | [];
   filterValidationAdmin: boolean;
   writtenSearchAdmin: (search: string) => void;
+  filterSelectAdm: (object: IFilterObjectAdm) => void;
 }
 
 export interface IFormVagas {
@@ -57,22 +59,28 @@ interface PatchJob {
   id?: number;
 }
 
+interface IFilterObjectAdm {
+  tech: string;
+  salary: string;
+  type: string;
+}
+
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | null | undefined>(null);
   const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
-  const [editId, setEditId] = useState<number | null | undefined >(null);
+  const [editId, setEditId] = useState<number | null | undefined>(null);
 
-  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas[] | []>(
     []
   );
   const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
 
   const writtenSearchAdmin = (search: string) => {
-    const resultSearchAd = adminJobs.filter(
+    const resultSearchAd = adminJobs!.filter(
       (vacancies) =>
         vacancies.company_name
           .toLowerCase()
@@ -100,8 +108,130 @@ export const JobProvider = ({ children }: IJobProvider) => {
           )
     );
     setListFilteredAdmin(resultSearchAd as any);
+
     setFilterValidationAdmin(true);
     console.log(resultSearchAd);
+  };
+
+  const filterSelectAdm = (object: IFilterObjectAdm) => {
+    console.log(adminJobs);
+    console.log(object);
+    if (object.salary === "" && object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.salary === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.salary === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    }
+
+    return setFilterValidationAdmin(true);
   };
 
   async function NewJob(data: INewJobForm) {
@@ -224,6 +354,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
         listFilteredAdmin,
         filterValidationAdmin,
         writtenSearchAdmin,
+        filterSelectAdm,
       }}
     >
       {children}
