@@ -11,6 +11,7 @@ import { ImInstagram, ImYoutube } from "react-icons/im";
 import { FaFacebookSquare, FaTwitter, FaTiktok } from "react-icons/fa";
 import { ControlledCarousel as CarouselNumbers } from "./carrosselNumbers";
 import { ControlledCarousel as CarouselCompanies } from "./carrosselCompanies";
+import {BsArrowUpRight} from "react-icons/bs"
 import group from "../../img/group.png";
 import whykenzinho from "../../img/whykenzinho.png";
 import logo from "../../img/logo.png";
@@ -38,9 +39,12 @@ export const LandingPage = () => {
           <h1 className="titleLand">
             AS MELHORES VAGAS PARA PROFISSIONAIS E ESTUDANTES DE TECNOLOGIA
           </h1>
+          <Link to={"/register"}>
           <p className="textLand">
-            Cadastre-se e comece sua experiência com a Kenzinho
+            Cadastre-se e comece sua experiência com a Kenzinho 
+            <BsArrowUpRight/>
           </p>
+          </Link>
         </div>
       </DivLanding>
       <DivAllCompanies>

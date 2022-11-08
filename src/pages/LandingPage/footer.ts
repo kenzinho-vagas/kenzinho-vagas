@@ -49,7 +49,7 @@ export const FooterLanding = styled.div`
   }
 
   .followUs {
-    margin-top: 60px;
+    margin-top: 50px;
     text-align: center;
   }
 
@@ -63,23 +63,23 @@ export const FooterLanding = styled.div`
     font-size: 1.6rem;
   }
 
-  @media (max-width: 931px) {
+  @media (max-width: 1070px) {
     .footerContent {
-      gap: 5px;
+      gap: 20px;
     }
     .icons svg {
       margin: 5px;
-      cursor: pointer;
-      font-size: 1.2rem;
     }
+
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 905px) {
+    align-items: center;
     display: flex;
     flex-direction: column;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .footerContent {
       align-items: center;
       flex-direction: column;
@@ -87,7 +87,7 @@ export const FooterLanding = styled.div`
       text-align: center;
     }
     .followUs {
-      margin-top: 20px;
+      margin-top: 5px;
     }
   }
 `;

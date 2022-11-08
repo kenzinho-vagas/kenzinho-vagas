@@ -16,6 +16,28 @@ export const DivLanding = styled.div`
   }
   .textLand {
     width: 90%;
+    color: var(--color-white);
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .textLand::after {
+    content: "";
+    position: absolute;
+    width: 450px;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-white);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .textLand:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 
   .div1 {
@@ -134,18 +156,17 @@ export const DivOurNumbers = styled.div`
     color: var(--color-primary);
   }
 
-  .mobile{
+  .mobile {
     display: none;
   }
-  @media (max-width: 700px){
-    .desktop{
-      display:none;
+  @media (max-width: 700px) {
+    .desktop {
+      display: none;
     }
-    .mobile{
+    .mobile {
       display: flex;
     }
   }
-  
 `;
 
 export const DivKenzinho = styled.div`
