@@ -1,7 +1,5 @@
-import {  useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { notifySuccess, notifyError } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
@@ -19,8 +17,8 @@ interface IJobDetailsModalProps {
 }
 
 const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
-  const { setSpecificJob, specificJob, setSaveJob, saveJob } = useContext(JobContext);
-
+  const { setSpecificJob, specificJob, setSaveJob, saveJob } =
+    useContext(JobContext);
 
   useEffect(() => {
     async function getSpecificJob() {
@@ -37,7 +35,11 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     getSpecificJob();
   }, []);
 
-  
+  // function apply() {
+  //   setSaveJob(!saveJob);
+  //   // setShowModal(false);
+  // }
+
   return (
     <DivModal>
       <div className="containerModal">
@@ -45,7 +47,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
           <div className="theModal">
             <DivModaldetails>
               {specificJob.map((object: IJobsProps) => (
-                <li key={object.id}>
+                <li key={object.userId}>
                   <h3 className="modalTitle">Programador {object.specialty}</h3>
                   <ul className="technologies">
                     {typeof object.tech === "object" &&
@@ -78,7 +80,12 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     <ButtonWhite onClick={() => setShowModal(false)}>
                       Fechar
                     </ButtonWhite>
-                    <ButtonPurple onClick={() => setSaveJob(!saveJob)}>
+                    <ButtonPurple
+                      onClick={() => {
+                        setSaveJob(!saveJob);
+                        setShowModal(false);
+                      }}
+                    >
                       Candidatar
                     </ButtonPurple>
                   </div>

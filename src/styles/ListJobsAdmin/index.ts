@@ -7,8 +7,8 @@ const ListJobsAdmin = styled.div`
   flex-direction: column;
   border-radius: 5px;
   border: 1px solid black;
-  background-color: var(--grey-3);
-  h2{
+  background-color: var(--grey-1);
+  h2 {
     font-size: 18px;
     font-weight: 700;
   }
@@ -18,6 +18,17 @@ const ListJobsAdmin = styled.div`
     overflow-x: auto;
     gap: 80px;
     padding: 20px 0px;
+
+    ::-webkit-scrollbar {
+      background-color: var(--grey-1);
+      height: 8px;
+      padding: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 8px;
+    }
 
     li {
       position: relative;

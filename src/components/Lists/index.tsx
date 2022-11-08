@@ -16,8 +16,8 @@ interface IListsProps {
 }
 
 const Lists = ({ objectArray, title }: IListsProps) => {
-  const { id, showModal, setShowModal, setDeleteJob, setID } =
-  useContext<IJobContext>(JobContext);
+  const { id, showModal, setShowModal, deleteSpecificJob, setID } =
+    useContext<IJobContext>(JobContext);
 
   return (
     <div className="containerCards">
@@ -68,7 +68,7 @@ const Lists = ({ objectArray, title }: IListsProps) => {
                 alt="Trash"
                 className="trash"
                 onClick={() => {
-                  setDeleteJob(true);
+                  deleteSpecificJob(object.id);
                   setID(object.id);
                 }}
               />

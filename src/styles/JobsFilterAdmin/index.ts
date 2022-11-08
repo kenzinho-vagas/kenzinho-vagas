@@ -48,8 +48,15 @@ const JobsAdminStyle = styled.div`
   form button {
     background-color: var(--color-primary);
     color: var(--color-white);
-    border: var(--color-primary);
+    border: 1px solid var(--color-primary);
     border-radius: 5px;
+    transition: 0.5s;
+
+    :hover {
+      background-color: var(--color-white);
+      color: var(--color-primary);
+      transition: 0.5s;
+    }
   }
 
   @media screen and (min-width: 768px) {
