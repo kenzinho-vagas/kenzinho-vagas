@@ -5,12 +5,14 @@ import { Register } from "../pages/Register";
 import DashboardAdmin from "../pages/DashboardAdmin";
 import DashboardUser from "../pages/DashboardUser";
 import { ProtectedRoutes } from "../contexts/ProtectedRouter";
+import { AboutUs } from "../pages/AboutUs";
 
 const RoutesMain = () => (
   <Routes>
     <Route path="/" element={<LandingPage />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
+    <Route path="/aboutus" element={<AboutUs />} />
     <Route element={<ProtectedRoutes />}>
       <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
       <Route path="/dashboardUser" element={<DashboardUser />} />

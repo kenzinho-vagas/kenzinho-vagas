@@ -23,7 +23,7 @@ export const LandingPage = () => {
       <Header>
         <img src={logo} alt="Logo Kenzinho" />
         <div className="rightHeader">
-          <LinkPrimary to={"/"} className="buttonHeaderDesktop">
+          <LinkPrimary to={"/aboutus"} className="buttonHeaderDesktop">
             Sobre Nós
           </LinkPrimary>
           <LinkSecundary to={"/login"} className="buttonHeaderDesktop">
