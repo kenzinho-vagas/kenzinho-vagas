@@ -82,6 +82,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
             await api.post(`/users/${userID}/jobs`, body);
             notifySuccess();
             getSavedJobs();
+            setSaveJob(false);
           } else {
             notifyError();
             console.log("achou");
@@ -216,7 +217,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     }
 
     getAllJobs();
-  }, []);
+  }, [loading]);
 
   async function getSavedJobs() {
     try {

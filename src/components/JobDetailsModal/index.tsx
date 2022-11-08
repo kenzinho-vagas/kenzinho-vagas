@@ -37,6 +37,11 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     getSpecificJob();
   }, []);
 
+  // function apply() {
+  //   setSaveJob(!saveJob);
+  //   // setShowModal(false);
+  // }
+
   return (
     <DivModal>
       <div className="containerModal">
@@ -77,7 +82,12 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     <ButtonWhite onClick={() => setShowModal(false)}>
                       Fechar
                     </ButtonWhite>
-                    <ButtonPurple onClick={() => setSaveJob(!saveJob)}>
+                    <ButtonPurple
+                      onClick={() => {
+                        setSaveJob(!saveJob);
+                        setShowModal(false);
+                      }}
+                    >
                       Candidatar
                     </ButtonPurple>
                   </div>
