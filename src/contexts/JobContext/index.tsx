@@ -27,8 +27,8 @@ interface IJobContext {
   setJobId: Dispatch<SetStateAction<number | null | undefined>>;
   setEditModal: Dispatch<SetStateAction<boolean>>;
   editModal: boolean;
-  editId: number | null;
-  setEditId: Dispatch<SetStateAction<number | null>>;
+  editId: number | null | undefined;
+  setEditId: Dispatch<SetStateAction<number | null | undefined>>;
   DelJob: (jobId?: number) => void;
   listFilteredAdmin: IFormVagas | [];
   filterValidationAdmin: boolean;
@@ -64,7 +64,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
   const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
-  const [editId, setEditId] = useState<number | null>(null);
+  const [editId, setEditId] = useState<number | null | undefined >(null);
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
