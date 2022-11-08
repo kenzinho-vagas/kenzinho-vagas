@@ -71,7 +71,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     }
 
     getSavedJobs();
-  }, [savedJobs]);
+  }, []);
 
   useEffect(() => {
     async function deleteSpecificJob() {

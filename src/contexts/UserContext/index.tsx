@@ -51,7 +51,6 @@ export const ProfileContext = createContext<IProfileContext>({} as IProfileConte
 
 export const ProfileProvider = ({children}: IProfileContextProps) => {
     const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
-    console.log(profileUser)
     const [isProfileModal, setProfileModal] = useState<boolean>(false)
 
     const {loading} = useContext<IUserContext>(AuthContext)
@@ -61,14 +60,16 @@ export const ProfileProvider = ({children}: IProfileContextProps) => {
             const token = localStorage.getItem("@kenzinhoVagas:accessToken")
             const userId = localStorage.getItem("@kenzinhoVagas:id")
 
-            try {
-                api.defaults.headers.authorization = `Bearer ${token}`;
-                const {data} = await api.get<IUserProfile>(`/users/${userId}`)
-                setProfileUser(data)
-            }
-            catch (error){
-                console.log(error)
-                
+            if (token) {
+                try {
+                    api.defaults.headers.authorization = `Bearer ${token}`;
+                    const {data} = await api.get<IUserProfile>(`/users/${userId}`)
+                    setProfileUser(data)
+                }
+                catch (error){
+                    console.log(error)
+                    
+                }
             }
           
         }

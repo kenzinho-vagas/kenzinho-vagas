@@ -1,4 +1,5 @@
 import { SetStateAction, useEffect, useState } from 'react';
+import { IJobsProps } from '../../components/Cards';
 import Carousel from 'react-bootstrap/Carousel';
 import api from '../../services/api';
 
@@ -10,23 +11,46 @@ interface ICompany {
     id: number
 }
 
+interface ICompanyInfo {
+  name: string, 
+  jobs: number
+}
+
 export const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
   const [allCompanies, setAllCompanies] = useState<ICompany[] | []>([])
+  const [companiesData, setCompaniesData] = useState<ICompanyInfo[]| []>([])
 
   useEffect(() => {
     async function getCompanies() {
-        try {
+        if (allCompanies) {
+          try {
             const { data } = await api.get<ICompany[]>("/users?isAdmin=true")
             setAllCompanies(data)
-        } catch (error) {
+          } catch (error) {
             console.error(error)
+          }
         }
     }
 
     getCompanies()
   }, [])
 
+  useEffect(() => {
+    async function getJobsCompanies() {
+      try {
+        allCompanies.forEach(async (company) => {
+          const { data } = await api.get<IJobsProps[]>(`/companyJobs?company_name=${company.name}`)
+          setCompaniesData((previousData) => [...previousData, {name: company.name, jobs: data.length}])
+        })
+      } catch (error) {
+          console.error(error)
+      }
+    }
+    
+    getJobsCompanies()
+  }, [allCompanies])
+  
   const handleSelect = (selectedIndex: SetStateAction<number>) => {
     setIndex(selectedIndex);
   };
@@ -34,15 +58,14 @@ export const ControlledCarousel = () => {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect} slide={false} variant="dark">
         {
-            allCompanies.map(company => (
-                <Carousel.Item>
-                    <h2>{ company.name }</h2>
-                    <div>
-                      <h3>Número de vagas</h3>
-                      <p>Lorem ipsum</p>
-                    </div>
-                </Carousel.Item>
-            ))
+            companiesData.map((company, index) => {
+                return (
+                  <Carousel.Item key={ index }>
+                      <h2>{ company.name }</h2>
+                      <p>{ company.jobs } vagas</p>
+                  </Carousel.Item>
+                )
+            })
         }
     </Carousel>
   );
