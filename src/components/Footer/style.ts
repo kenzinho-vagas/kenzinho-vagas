@@ -5,6 +5,7 @@ export const DivFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 12px;
+  position: fixed;
   bottom: 0;
   width: 100%;
 

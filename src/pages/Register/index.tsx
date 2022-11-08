@@ -103,7 +103,7 @@ export const Register = () => {
                   <option value="Senior">Sênior</option>
                 </select>
 
-                <label htmlFor="specialty">Selecionar módulo</label>
+                <label htmlFor="specialty">Especialidade</label>
                 <select id="specialty" {...register("specialty")}>
                   <option value="Front-end">Front-end</option>
                   <option value="Back-End">Back-End</option>

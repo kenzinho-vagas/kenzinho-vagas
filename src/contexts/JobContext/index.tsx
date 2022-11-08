@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
 import { notifyError, notifySuccess } from "../../toast";
 
@@ -21,14 +21,14 @@ interface IJobContext {
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
   adminJobs: IFormVagas | [];
-  jobId: number | null;
+  jobId: number | null | undefined;
   getCandidates: () => void;
   candidates: IFormVagas[];
-  setJobId: any;
-  setEditModal: any;
+  setJobId: Dispatch<SetStateAction<number | null | undefined>>;
+  setEditModal: Dispatch<SetStateAction<boolean>>;
   editModal: boolean;
   editId: number | null;
-  setEditId: any;
+  setEditId: Dispatch<SetStateAction<number | null>>;
   DelJob: (jobId?: number) => void;
   listFilteredAdmin: IFormVagas | [];
   filterValidationAdmin: boolean;
@@ -61,11 +61,10 @@ export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
   const [adminJobs, setAdminJobs] = useState<IFormVagas | []>([]);
-  const [jobId, setJobId] = useState<number | null>(null);
+  const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [editId, setEditId] = useState<number | null>(null);
-
 
   const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas | []>(
     []
@@ -121,10 +120,10 @@ export const JobProvider = ({ children }: IJobProvider) => {
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
-      notifySuccess()
+      notifySuccess();
     } catch (error) {
       console.log(error);
-      notifyError()
+      notifyError();
     }
   }
 
