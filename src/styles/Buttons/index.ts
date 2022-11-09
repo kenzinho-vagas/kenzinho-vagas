@@ -46,6 +46,12 @@ export const ButtonWhite = styled.button`
   justify-content: center;
   font-size: 0.75rem;
   cursor: pointer;
+
+  :hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: 0.5s;
+  }
   @media screen and (min-width: 768px) {
     width: 130px;
     font-size: 1rem;
