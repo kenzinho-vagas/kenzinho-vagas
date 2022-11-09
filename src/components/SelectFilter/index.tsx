@@ -48,26 +48,6 @@ const SelectFilter = () => {
             <option value="React">React</option>
             <option value="Java">Java</option>
             <option value="Node.js">Node.js</option>
-            {/* // {allJobs
-            //   .map((Element) => Element.tech)
-            //   .reduce((list, sub) => list.concat(sub), [])
-            //   .filter((elem, index, self) => index === self.indexOf(elem))
-            //   .map((teste, churros) => {
-            //     return (
-            //       console.log(teste),
-            //       (
-            //         <option key={churros} value="">
-            //           {teste}
-            //         </option>
-            //       )
-            //     );
-            //   })} */}
-            {/* {allJobs.map((element) => {
-              return (
-                console.log(element.tech),
-                (<option value="">{element.tech}</option>)
-              );
-            })} */}
           </select>
           <select
             onChange={(event) => setSelectSalary(event.target.value)}
