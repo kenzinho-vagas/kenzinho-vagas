@@ -11,3 +11,5 @@ Participantes:
   <li><a href="https://github.com/luizabarros">Luiza Barros</a></li>
 </ul>
 
+Deploy:
+https://kenzinho-vagas-zeta.vercel.app/
