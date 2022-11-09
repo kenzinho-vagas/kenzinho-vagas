@@ -95,13 +95,6 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     postSpecificJob();
   }, [saveJob]);
 
-  //filtro do neto antes -----------------------------------------------------------------------------
-  // const writtenSearch = allJobs.filter(
-  //   (vacancies) =>
-  //     vacancies.company_name.toLowerCase().includes(search.toLowerCase()) ||
-  //     vacancies.specialty.toLowerCase().includes(search.toLowerCase())
-  // );
-  //filtro do neto antes -----------------------------------------------------------------------------
 
   const writtenSearch = (search: string) => {
     const resultSearch = allJobs.filter(
