@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContextDU";
 import Lists from "../Lists";
+import NoVacanciesFound from "../NoVacanciesFound";
 
 export interface IJobsProps {
   company_name: string;
@@ -23,14 +24,12 @@ const Cards = ({ title }: ICardsProps) => {
   const { savedJobs, ListFiltred, allJobs, filterValidation } =
     useContext(JobContext);
 
-  const [vazio, setVazio] = useState<[]>([]);
-
   return title === "Todas as vagas" ? (
     filterValidation === true ? (
       ListFiltred[0] !== undefined ? (
         <Lists objectArray={ListFiltred} title={title} />
       ) : (
-        <Lists objectArray={vazio} title={title} />
+        <NoVacanciesFound />
       )
     ) : (
       <Lists objectArray={allJobs} title={title} />

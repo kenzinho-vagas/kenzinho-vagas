@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../contexts/JobContext";
+import { JobContext as teste } from "../../contexts/JobContextDU";
 
 const SelectFilterAdmin = () => {
   const [selectTechAdm, setSelectTechAdm] = useState<string>("");
@@ -7,6 +8,7 @@ const SelectFilterAdmin = () => {
   const [selectTypeAdm, setSelectTypeAdm] = useState<string>("");
 
   const { filterSelectAdm } = useContext(JobContext);
+  const { allJobs } = useContext(teste);
 
   return (
     <div className="searchSelect">
@@ -29,10 +31,13 @@ const SelectFilterAdmin = () => {
           defaultValue={"default"}
         >
           <option value="">Tecnologia</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="React">React</option>
-          <option value="TypeScript">TypeScript</option>
-          <option value="Angular">Angular</option>
+          {allJobs
+            .map((Element) => Element.tech)
+            .reduce((list, sub) => list.concat(sub), [])
+            .filter((Element, index, self) => index === self.indexOf(Element))
+            .map((Element) => {
+              return <option value={Element}>{Element}</option>;
+            })}
         </select>
         <select
           onChange={(event) => setSelectTypeAdm(event.target.value)}
