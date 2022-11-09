@@ -20,7 +20,7 @@ export const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
   const [allCompanies, setAllCompanies] = useState<ICompany[] | []>([]);
   const [companiesData, setCompaniesData] = useState<ICompanyInfo[]| []>([]);
-  const [uniqueCompaniesData, setUniqueCompaniesData] = useState<ICompanyInfo[]| []>([]);
+  const [uniqueCompaniesData, setUniqueCompaniesData] = useState<ICompanyInfo[]| [] | (ICompanyInfo | undefined)[]>([]);
 
   useEffect(() => {
     async function getCompanies() {
@@ -53,14 +53,12 @@ export const ControlledCarousel = () => {
   }, [allCompanies])
 
   useEffect(() => {
-    const dataNotDuplicated = Array.from(new Set(companiesData.map(company => company.name)))
-    .map(nameEl => {
+    const dataNotDuplicated = Array.from(new Set<ICompanyInfo[] | string[] | string>(companiesData.map(company => company.name))).map((nameEl) => {
       return companiesData.find(company => company.name === nameEl)
     })
 
-    console.log(dataNotDuplicated)
     setUniqueCompaniesData(dataNotDuplicated)
-  }, [])
+  }, [companiesData])
   
   const handleSelect = (selectedIndex: SetStateAction<number>) => {
     setIndex(selectedIndex);
@@ -72,8 +70,8 @@ export const ControlledCarousel = () => {
             uniqueCompaniesData.map((company, index) => {
                 return (
                   <Carousel.Item key={ index }>
-                      <h2>{ company.name }</h2>
-                      <p>{ company.jobs } vagas</p>
+                      <h2>{ company?.name }</h2>
+                      <p>{ company?.jobs } vagas</p>
                   </Carousel.Item>
                 )
             })
