@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { INewJobForm } from "../../components/CreateJob";
+import { notifyError, notifySuccess } from "../../toast";
 
 import api from "../../services/api";
+// import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface IJobProvider {
   children: React.ReactNode;
@@ -20,15 +22,19 @@ interface IJobContext {
   EditJob: (data: IEditJobForm) => void;
   listJobs: () => void;
   adminJobs: IFormVagas | null | undefined;
-  jobId: number | null;
+  jobId: number | null | undefined;
   getCandidates: () => void;
   candidates: IFormVagas[];
-  setJobId: any;
-  setEditModal: any;
+  setJobId: Dispatch<SetStateAction<number | null | undefined>>;
+  setEditModal: Dispatch<SetStateAction<boolean>>;
   editModal: boolean;
-  editId: number | null;
-  setEditId: any;
+  editId: number | null | undefined;
+  setEditId: Dispatch<SetStateAction<number | null | undefined>>;
   DelJob: (jobId?: number) => void;
+  listFilteredAdmin: IFormVagas[] | [];
+  filterValidationAdmin: boolean;
+  writtenSearchAdmin: (search: string) => void;
+  filterSelectAdm: (object: IFilterObjectAdm) => void;
 }
 
 export interface IFormVagas {
@@ -36,7 +42,7 @@ export interface IFormVagas {
   filter(arg0: (elem: IFormVagas) => boolean): unknown;
   company_name: string;
   specialty: string;
-  salary: number;
+  salary: string;
   kind_of_work: string;
   tech: [];
   level: string;
@@ -53,37 +59,201 @@ interface PatchJob {
   id?: number;
 }
 
+interface IFilterObjectAdm {
+  tech: string;
+  salary: string;
+  type: string;
+}
 
 export const JobContext = createContext<IJobContext>({} as IJobContext);
 
 export const JobProvider = ({ children }: IJobProvider) => {
-  const [adminJobs, setAdminJobs] = useState<IFormVagas | null>();
-  const [jobId, setJobId] = useState(null);
+  const [adminJobs, setAdminJobs] = useState<IFormVagas | null | undefined>(null);
+  const [jobId, setJobId] = useState<number | null | undefined>();
   const [candidates, setCandidates] = useState<IFormVagas[]>([]);
-  const [editModal, setEditModal] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editId, setEditId] = useState<number | null | undefined>(null);
+
+  const [listFilteredAdmin, setListFilteredAdmin] = useState<IFormVagas[] | []>(
+    []
+  );
+  const [filterValidationAdmin, setFilterValidationAdmin] = useState(false);
+
+  const writtenSearchAdmin = (search: string) => {
+    const resultSearchAd = adminJobs!.filter(
+      (vacancies) =>
+        vacancies.company_name
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          ) ||
+        vacancies.specialty
+          .toLowerCase()
+          .split(" ")
+          .filter((value) => value !== "")
+          .join("")
+          .includes(
+            search
+              .toLowerCase()
+              .split(" ")
+              .filter((value) => value !== "")
+              .join("")
+          )
+    );
+    setListFilteredAdmin(resultSearchAd as any);
+
+    setFilterValidationAdmin(true);
+    console.log(resultSearchAd);
+  };
+
+  const filterSelectAdm = (object: IFilterObjectAdm) => {
+    console.log(adminJobs);
+    console.log(object);
+    if (object.salary === "" && object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "" && object.salary === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.tech === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.salary === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else if (object.type === "") {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    } else {
+      const resultFiltred = adminJobs?.filter((element) => {
+        return (
+          +element.salary >= +object.salary &&
+          +element.salary <= +object.salary + 5000 &&
+          element.tech
+            .join(",")
+            .toLocaleLowerCase()
+            .includes(object.tech.toLocaleLowerCase()) === true &&
+          element.kind_of_work
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLocaleLowerCase()
+            .includes(
+              object.type
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLocaleLowerCase()
+            ) === true
+        );
+      });
+      console.log(resultFiltred);
+      setListFilteredAdmin(resultFiltred as any);
+    }
+
+    return setFilterValidationAdmin(true);
+  };
 
   async function NewJob(data: INewJobForm) {
     try {
       const response = await api.post("users/1/companyJobs ", data);
       const id = response.data.id;
-      console.log(id);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      console.log("ResponseData", response.data);
-      console.log("Response", response);
       api.defaults.headers.authorization = `Bearer ${token}`;
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
-
+      
       const DataPath = {
         tech: techsJobCorrect,
         candidates: candidatesCorrect,
       };
       await api.patch<PatchJob | null>(`companyJobs/${id}`, DataPath);
+      notifySuccess();
+      listJobs();
     } catch (error) {
       console.log(error);
+      notifyError();
     }
   }
 
@@ -97,7 +267,8 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.specialty === "") {
       delete data.specialty;
     }
-    if (data.salary === "") {
+    // eslint-disable-next-line no-self-compare
+    if (data.salary === data.salary) {
       delete data.salary;
     }
     if (data.level === "") {
@@ -109,7 +280,6 @@ export const JobProvider = ({ children }: IJobProvider) => {
     if (data.description === "") {
       delete data.description;
     }
-    console.log(data);
     try {
       const response = await api.patch(`companyJobs/${editId} `, data);
       const token = localStorage.getItem("@kenzinhoVagas:accessToken");
@@ -117,7 +287,7 @@ export const JobProvider = ({ children }: IJobProvider) => {
       const techsJob = response.data.tech.split(" ").join("");
       const techsJobCorrect = techsJob.split(",");
       const candidatesCorrect = response.data.candidates.split("");
-      listJobs()
+      listJobs();
 
       const DataPath = {
         tech: techsJobCorrect,
@@ -181,6 +351,10 @@ export const JobProvider = ({ children }: IJobProvider) => {
         setEditId,
         EditJob,
         DelJob,
+        listFilteredAdmin,
+        filterValidationAdmin,
+        writtenSearchAdmin,
+        filterSelectAdm,
       }}
     >
       {children}

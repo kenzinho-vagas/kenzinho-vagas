@@ -14,7 +14,6 @@ interface ICompany {
 interface ICompanyInfo {
   name: string, 
   jobs: number;
-}
 
 export const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
@@ -34,8 +33,8 @@ export const ControlledCarousel = () => {
         }
     }
 
-    getCompanies()
-  }, [])
+    getCompanies();
+  }, []);
 
   useEffect(() => {
     async function getJobsCompanies() {
@@ -78,4 +77,4 @@ export const ControlledCarousel = () => {
         }
     </Carousel>
   );
-}
+};

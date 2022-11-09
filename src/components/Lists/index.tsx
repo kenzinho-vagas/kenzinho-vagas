@@ -16,7 +16,7 @@ interface IListsProps {
 }
 
 const Lists = ({ objectArray, title }: IListsProps) => {
-  const { id, showModal, setShowModal, setDeleteJob, setID } =
+  const { id, showModal, setShowModal, deleteSpecificJob, setID } =
     useContext<IJobContext>(JobContext);
 
   return (
@@ -43,7 +43,12 @@ const Lists = ({ objectArray, title }: IListsProps) => {
 
             <div className="cardInfo">
               <img src={Wage} alt="wage" />
-              <CardText>{object.salary}</CardText>
+              <CardText>
+                {Number(object.salary).toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </CardText>
             </div>
 
             {title === "Todas as vagas" ? (
@@ -61,8 +66,9 @@ const Lists = ({ objectArray, title }: IListsProps) => {
               <img
                 src={Trash}
                 alt="Trash"
+                className="trash"
                 onClick={() => {
-                  setDeleteJob(true);
+                  deleteSpecificJob(object.id);
                   setID(object.id);
                 }}
               />

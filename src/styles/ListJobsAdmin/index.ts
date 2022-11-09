@@ -7,13 +7,28 @@ const ListJobsAdmin = styled.div`
   flex-direction: column;
   border-radius: 5px;
   border: 1px solid black;
-  background-color: var(--grey-3);
+  background-color: var(--grey-1);
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+  }
 
   ul {
     display: flex;
     overflow-x: auto;
     gap: 80px;
     padding: 20px 0px;
+
+    ::-webkit-scrollbar {
+      background-color: var(--grey-1);
+      height: 8px;
+      padding: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 8px;
+    }
 
     li {
       position: relative;
@@ -22,13 +37,15 @@ const ListJobsAdmin = styled.div`
       background-color: white;
       border: 1px solid var(--color-primary);
       border-radius: 5px;
-      min-width: 150px;
-      width: 40%;
-      max-width: 10px;
+      max-width: 200px;
+      min-width: 170px;
+      width: 50%;
       min-height: 200px;
       padding: 25px 10px 10px 10px;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      transition: 0.5s;
 
       h3 {
         text-align: center;
@@ -48,11 +65,17 @@ const ListJobsAdmin = styled.div`
       .btnDeleteJob {
         position: absolute;
         right: 0;
+        transform: translate(50%, -70%);
         top: 5px;
         border: none;
-        background-color: transparent;
+        background: transparent;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
       }
-
+      .btnDeleteJob:hover {
+        background: #ffffff;
+      }
       :nth-child(1) {
         margin-left: 22%;
       }
@@ -60,11 +83,22 @@ const ListJobsAdmin = styled.div`
         margin-right: 22%;
       }
 
+      .buttonsJob {
+        gap: 5px;
+      }
+
       button {
-        min-width: 40%;
-        width: fit-content;
+        width: 80px;
         font-size: 10px;
       }
+
+      .btnCandidatesJob {
+        width: 80px;
+      }
+    }
+
+    li:active {
+      background: #ffb84e;
     }
 
     .buttonsJob {

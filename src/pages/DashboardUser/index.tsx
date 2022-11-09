@@ -8,7 +8,7 @@ import Welcome from "../../components/Welcome";
 
 const DashboardUser = () => {
   const {profileUser, isProfileModal} = useContext<IProfileContext>(ProfileContext)
-  
+
   return (
     <>
     {isProfileModal && <ProfileModal/>}

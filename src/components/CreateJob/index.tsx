@@ -8,7 +8,7 @@ import * as yup from "yup";
 export interface INewJobForm {
   company_name: string;
   specialty: string;
-  salary: number;
+  salary: string;
   kind_of_work: string;
   tech: string;
   level: string;
@@ -29,7 +29,6 @@ export interface IEditJobForm {
 
 const CreateJob = () => {
   const { NewJob } = useContext(JobContext);
-
   const formSchema = yup.object().shape({
     company_name: yup.string().required("Campo obrigátorio"),
     specialty: yup.string().required("Campo obrigátorio"),
@@ -80,18 +79,24 @@ const CreateJob = () => {
               />
               <p>{errors.specialty && errors.specialty.message}</p>
               <label htmlFor="type">Tipo de vaga</label>
-              <input
-                type="text"
+              <select
                 id="type"
-                placeholder="Presencial, Remota..."
+                placeholder="Escolha uma opção"
+                defaultValue={"default"}
                 {...register("kind_of_work")}
-              />
+              >
+                <option value="default" disabled>Selecione uma opção</option>
+                <option value="Remoto">Remota</option>
+                <option value="Hibrido">Híbrida</option>
+                <option value="Presencial">Presencial</option>
+              </select>
               <p>{errors.kind_of_work && errors.kind_of_work.message}</p>
               <label htmlFor="salary">Salário</label>
               <input
-                type="text"
+                type="currency"
                 id="salary"
-                placeholder="R$4.500,00"
+                placeholder="Somente números"
+                inputMode="numeric"
                 {...register("salary")}
               />
               <p>{errors.salary && errors.salary.message}</p>
@@ -112,7 +117,7 @@ const CreateJob = () => {
                 defaultValue={"default"}
                 {...register("level")}
               >
-                <option value="default">Selecione uma opção</option>
+                <option value="default" disabled>Selecione uma opção</option>
                 <option value="Júnior">Júnior</option>
                 <option value="Pleno">Pleno</option>
                 <option value="Sênior">Sênior</option>

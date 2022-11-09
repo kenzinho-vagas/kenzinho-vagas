@@ -8,7 +8,7 @@ const Global = createGlobalStyle`
         --grey-1: #EBEBEB;
         --grey-2:#000000;
         --grey-3: #C0C0C0;
-        --grey-4: ##EBEBEB;
+        --grey-4: #EBEBEB;
         --color-button: #F3D9FA;
         --text-color1: #2C2C2C;
         --text-color2: #1E1E1E;

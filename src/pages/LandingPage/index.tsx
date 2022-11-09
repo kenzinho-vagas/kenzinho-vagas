@@ -1,12 +1,17 @@
 import { LinkPrimary, LinkSecundary } from "../../styles/Links";
-import { DivKenzinho, DivLanding, DivOurNumbers, DivAllCompanies } from "./style";
-import { FooterLanding } from "./footer";
+import {
+  DivKenzinho,
+  DivLanding,
+  DivOurNumbers,
+  DivAllCompanies,
+} from "./style";
+import { FooterCopyright, FooterLanding } from "./footer";
 import { Link } from "react-router-dom";
 import { ImInstagram, ImYoutube } from "react-icons/im";
 import { FaFacebookSquare, FaTwitter, FaTiktok } from "react-icons/fa";
 import { ControlledCarousel as CarouselNumbers } from "./carrosselNumbers";
-import { ControlledCarousel as CarouselCompanies} from "./carrosselCompanies";
-import Footer from "../../components/Footer";
+import { ControlledCarousel as CarouselCompanies } from "./carrosselCompanies";
+import {BsArrowUpRight} from "react-icons/bs"
 import group from "../../img/group.png";
 import whykenzinho from "../../img/whykenzinho.png";
 import logo from "../../img/logo.png";
@@ -18,7 +23,7 @@ export const LandingPage = () => {
       <Header>
         <img src={logo} alt="Logo Kenzinho" />
         <div className="rightHeader">
-          <LinkPrimary to={"/"} className="buttonHeaderDesktop">
+          <LinkPrimary to={"/aboutus"} className="buttonHeaderDesktop">
             Sobre Nós
           </LinkPrimary>
           <LinkSecundary to={"/login"} className="buttonHeaderDesktop">
@@ -34,22 +39,25 @@ export const LandingPage = () => {
           <h1 className="titleLand">
             AS MELHORES VAGAS PARA PROFISSIONAIS E ESTUDANTES DE TECNOLOGIA
           </h1>
+          <Link to={"/register"}>
           <p className="textLand">
-            Cadastre-se e comece sua experiência com a Kenzinho
+            Cadastre-se e comece sua experiência com a Kenzinho 
+            <BsArrowUpRight/>
           </p>
+          </Link>
         </div>
       </DivLanding>
       <DivAllCompanies>
         <h2 className="titleLand2">EMPRESAS QUE CONTRATAM COM A KENZINHO</h2>
-        <CarouselCompanies/>
+        <CarouselCompanies />
       </DivAllCompanies>
       <DivOurNumbers>
         <h2 className="titleLand2">NOSSOS NÚMEROS</h2>
         <ul className="listNumbers">
           <div className="mobile">
-            <CarouselNumbers/>
+            <CarouselNumbers />
           </div>
-        
+
           <li className="desktop">
             <h4>
               <span>+1000</span>
@@ -136,8 +144,9 @@ export const LandingPage = () => {
           </div>
         </div>
       </FooterLanding>
-      <Footer />
-   
+      <FooterCopyright>
+        <p>© 2022 - 2022 KenzinhoVagas. - Todos os direitos reservados.</p>
+      </FooterCopyright>
     </>
   );
 };

@@ -10,6 +10,7 @@ import { LinkPrimary, LinkSecundary } from "../../styles/Links";
 import Header from "../../styles/Header";
 import logo from "../../img/logo.png";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../../components/Footer";
 
 export const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -27,7 +28,7 @@ export const Login = () => {
       <Header>
         <img src={logo} alt="Logo Kenzinho" />
         <div className="rightHeader">
-          <LinkPrimary to={"/"} className="buttonHeaderDesktop">
+          <LinkPrimary to={"/aboutus"} className="buttonHeaderDesktop">
             Sobre Nós
           </LinkPrimary>
           <LinkSecundary to={"/"} className="buttonHeaderDesktop">
@@ -63,6 +64,7 @@ export const Login = () => {
           </FormsLog>
         </div>
       </DivLogin>
+      <Footer />
     </>
   );
 };

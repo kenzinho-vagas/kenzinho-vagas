@@ -2,20 +2,26 @@ import Level from "../../img/level.png";
 import Type from "../../img/type.png";
 import Salary from "../../img/salary.png";
 import Company from "../../img/company.png";
-import BtnCloseJob from "../../img/closeJob.png";
+import DeleteSvg from "../../img/DeleteSvg.svg";
 import { ButtonPurple } from "../../styles/Buttons";
-import { IFormVagas, JobContext } from '../../contexts/JobContext'
+import { IFormVagas, JobContext } from "../../contexts/JobContext";
 import { useContext } from "react";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 
 const Card = (elem: IFormVagas) => {
-  const { setJobId, setEditModal, setEditId, DelJob } = useContext(JobContext)
+  const { setJobId, setEditModal, setEditId, DelJob, getCandidates } =
+    useContext(JobContext);
 
-    const salary = Number(elem.salary)
+  const salary = Number(elem.salary);
   return (
     <li key={uuid()}>
-      <button className="btnDeleteJob" onClick={() => {DelJob(elem.id)}}>
-        <img src={BtnCloseJob} alt="Botao excluir vaga" />
+      <button
+        className="btnDeleteJob"
+        onClick={() => {
+          DelJob(elem.id);
+        }}
+      >
+        <img src={DeleteSvg} alt="Botao excluir vaga" />
       </button>
       <h3> {elem.specialty}</h3>
       <p>
@@ -31,16 +37,26 @@ const Card = (elem: IFormVagas) => {
       </p>
       <p>
         <img src={Salary} alt="Salario" />
-        {salary.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+        {salary.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}
       </p>
       <div className="buttonsJob">
-        <ButtonPurple onClick={() => {
-          setEditModal(true)
-          setEditId(elem.id)
-        }}>Editar</ButtonPurple>
-        <ButtonPurple onClick={(e) => {
-          setJobId(elem.id)
-        }}>Candidatos</ButtonPurple>
+        <ButtonPurple
+          onClick={() => {
+            setEditModal(true);
+            setEditId(elem.id);
+          }}
+        >
+          Editar
+        </ButtonPurple>
+        <ButtonPurple
+          className="btnCandidatesJob"
+          onClick={(e) => {
+            setJobId(elem.id);
+            getCandidates();
+          }}
+        >
+          Candidatos
+        </ButtonPurple>
       </div>
     </li>
   );

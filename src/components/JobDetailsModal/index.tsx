@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { notifyError, notifySuccess } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";
@@ -10,53 +8,46 @@ import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";
 import Case from "../../img/case.png";
 import api from "../../services/api";
+import { useContext } from "react";
+import { JobContext } from "../../contexts/JobContextDU";
 
 interface IJobDetailsModalProps {
-  jobID: number;
+  jobID: number | null | undefined;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
-  const [specificJob, setSpecificJob] = useState<IJobsProps[] | []>([]);
-  const [saveJob, setSaveJob] = useState<boolean>(false);
+  const { setSpecificJob, specificJob, setSaveJob, saveJob } =
+    useContext(JobContext);
 
   useEffect(() => {
     async function getSpecificJob() {
       try {
-        const { data } = await api.get<IJobsProps[]>(`/companyJobs?id=${jobID}`);
+        const { data } = await api.get<IJobsProps[]>(
+          `/companyJobs?id=${jobID}`
+        );
         setSpecificJob(data);
       } catch (error) {
         console.error(error);
       }
     }
 
-    getSpecificJob()
-  }, [])
+    getSpecificJob();
+  }, []);
 
-  useEffect(() => {
-      async function postSpecificJob() {
-          if (saveJob) {
-              try {
-                  const body = specificJob[0]
-                  const userID = localStorage.getItem("@kenzinhoVagas:id");
-                  await api.post(`/users/${userID}/jobs`, body)
-                  notifySuccess()
-              } catch (error) {
-                  notifyError()
-              }
-          }
-      }
-      postSpecificJob()
-  }, [saveJob]);
+  // function apply() {
+  //   setSaveJob(!saveJob);
+  //   // setShowModal(false);
+  // }
 
   return (
     <DivModal>
       <div className="containerModal">
         <div className="overlayModal">
-          <div className="modal">
+          <div className="theModal">
             <DivModaldetails>
               {specificJob.map((object: IJobsProps) => (
-                <li key={object.id}>
+                <li key={object.userId}>
                   <h3 className="modalTitle">Programador {object.specialty}</h3>
                   <ul className="technologies">
                     {typeof object.tech === "object" &&
@@ -79,7 +70,7 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     </div>
                     <div className="infoJobsDetail">
                       <img src={Wage} alt="coins" />
-                      <p>{object.salary}</p>
+                      <p>R$ {object.salary}</p>
                     </div>
                   </div>
                   <div className="description">
@@ -89,7 +80,12 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
                     <ButtonWhite onClick={() => setShowModal(false)}>
                       Fechar
                     </ButtonWhite>
-                    <ButtonPurple onClick={() => setSaveJob(true)}>
+                    <ButtonPurple
+                      onClick={() => {
+                        setSaveJob(!saveJob);
+                        setShowModal(false);
+                      }}
+                    >
                       Candidatar
                     </ButtonPurple>
                   </div>
