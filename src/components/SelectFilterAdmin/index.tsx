@@ -59,7 +59,7 @@ const SelectFilterAdmin = () => {
           id="salary"
           defaultValue={"default"}
         >
-          <option value={"default"}>Salário</option>
+          <option value="">Salário</option>
           <option value="0">R$0 a R$5.000</option>
           <option value="5000">R$5.000 a R$10.000</option>
           <option value="10000">R$10.000 a R$15.000</option>
