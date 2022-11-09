@@ -12,8 +12,9 @@ interface ICompany {
 }
 
 interface ICompanyInfo {
-  name: string, 
+  name: string,
   jobs: number;
+}
 
 export const ControlledCarousel = () => {
   const [index, setIndex] = useState(0);
