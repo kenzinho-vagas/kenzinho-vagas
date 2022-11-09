@@ -1,15 +1,16 @@
-import StyleWelcome from "../../styles/Welcome"
+import StyleWelcome from "../../styles/Welcome";
 
 interface IWelcomeProps {
-    name: string | undefined;
+  name: string | undefined;
 }
 
-const Welcome = ({ name } :IWelcomeProps) => {
-    return (
-        <StyleWelcome>
-            <h2>BEM VINDO(A), {name?.toUpperCase()}!</h2>
-        </StyleWelcome>
-    )
-}
+const Welcome = ({ name }: IWelcomeProps) => {
+  return (
+    <StyleWelcome>
+      <h2>BEM VINDO(A), </h2>
+      <p> {name?.toUpperCase()}!</p>
+    </StyleWelcome>
+  );
+};
 
 export default Welcome;

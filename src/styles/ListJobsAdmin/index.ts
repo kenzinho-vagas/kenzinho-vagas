@@ -75,6 +75,7 @@ const ListJobsAdmin = styled.div`
       }
       .btnDeleteJob:hover {
         background: #ffffff;
+        border: solid 1px var(--color-primary);
       }
       :nth-child(1) {
         margin-left: 22%;
