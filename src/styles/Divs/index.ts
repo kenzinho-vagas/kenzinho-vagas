@@ -96,6 +96,13 @@ export const LiCard = styled.li`
     height: 25px;
     margin: 0 auto;
     cursor: pointer;
+    border-radius: 50%;
+  }
+  .trash:hover {
+    border: solid 1px transparent;
+  }
+  .trash:active {
+    border: solid 1px var(--color-primary);
   }
   .seeDetails {
     background-color: var(--color-primary);
