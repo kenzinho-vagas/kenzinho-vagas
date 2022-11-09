@@ -4,6 +4,7 @@ export const ButtonPurple = styled.button`
   background-color: var(--color-primary);
   padding: 5px 10px;
   min-width: 60px;
+  height: 40px;
   color: white;
   font-weight: 700;
   text-transform: uppercase;
@@ -15,6 +16,13 @@ export const ButtonPurple = styled.button`
   justify-content: center;
   font-size: 0.75rem;
   cursor: pointer;
+  transition: 0.5s;
+
+  :hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    transition: 0.5s;
+  }
 
   @media screen and (min-width: 768px) {
     width: 130px;
@@ -26,7 +34,7 @@ export const ButtonWhite = styled.button`
   background-color: white;
   padding: 5px 10px;
   min-width: 60px;
-  height: 30px;
+  height: 40px;
   color: var(--color-primary);
   font-weight: 700;
   text-transform: uppercase;

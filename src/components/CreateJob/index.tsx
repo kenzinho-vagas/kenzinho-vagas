@@ -51,7 +51,6 @@ const CreateJob = () => {
   });
 
   const submitForm = (data: INewJobForm) => {
-    const tech = data.tech.split(',')
     NewJob(data);
     reset();
   };
@@ -80,12 +79,17 @@ const CreateJob = () => {
               />
               <p>{errors.specialty && errors.specialty.message}</p>
               <label htmlFor="type">Tipo de vaga</label>
-              <input
-                type="text"
+              <select
                 id="type"
-                placeholder="Presencial, Remota..."
+                placeholder="Escolha uma opção"
+                defaultValue={"default"}
                 {...register("kind_of_work")}
-              />
+              >
+                <option value="default" disabled>Selecione uma opção</option>
+                <option value="Remoto">Remota</option>
+                <option value="Hibrido">Híbrida</option>
+                <option value="Presencial">Presencial</option>
+              </select>
               <p>{errors.kind_of_work && errors.kind_of_work.message}</p>
               <label htmlFor="salary">Salário</label>
               <input
@@ -113,7 +117,7 @@ const CreateJob = () => {
                 defaultValue={"default"}
                 {...register("level")}
               >
-                <option value="default">Selecione uma opção</option>
+                <option value="default" disabled>Selecione uma opção</option>
                 <option value="Júnior">Júnior</option>
                 <option value="Pleno">Pleno</option>
                 <option value="Sênior">Sênior</option>

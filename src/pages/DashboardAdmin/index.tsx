@@ -10,6 +10,7 @@ import ModalEdit from "../../components/ModalEditJob";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Loading } from "./loading";
 
 const DashboardAdmin = () => {
   const { jobId, editModal } = useContext(JobContext);
@@ -47,7 +48,9 @@ const DashboardAdmin = () => {
       {editModal && <ModalEdit />}
     </>
   ) : (
-    <h1>Loading...</h1>
+    <Loading>
+      <div className="loading"></div>
+    </Loading>
   );
 };
 export default DashboardAdmin;

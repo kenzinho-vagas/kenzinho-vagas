@@ -33,6 +33,11 @@ const Create = styled.div`
         padding: 10px;
       }
 
+      #type {
+        margin: 5px 0 1rem 0;
+        padding: 10px;
+      }
+
       select {
         margin: 5px 0 1rem 0;
         padding: 10px;
@@ -83,6 +88,10 @@ const Create = styled.div`
         padding: 20px 40px;
 
         input {
+          width: 80%;
+        }
+
+        #type {
           width: 80%;
         }
 

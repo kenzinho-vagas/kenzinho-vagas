@@ -1,4 +1,4 @@
-import { LinkPrimary, LinkSecundary } from "../../styles/Links";
+import { LinkSecundary } from "../../styles/Links";
 import Logo from "../../img/logo.png";
 import StyleHeader from "../../styles/HeaderAdmin";
 
