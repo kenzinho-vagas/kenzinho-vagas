@@ -7,8 +7,6 @@ const SelectFilter = () => {
   const [selectType, setSelectType] = useState<string>("");
 
   const { filterSelect, allJobs } = useContext(JobContext);
-  const [testeTech, setTesteTech] = useState([]);
-
 
   return (
     <>
@@ -31,9 +29,13 @@ const SelectFilter = () => {
             id="tech"
           >
             <option value="">Tecnologias</option>
-            <option value="React">React</option>
-            <option value="Java">Java</option>
-            <option value="Node.js">Node.js</option>
+            {allJobs
+              .map((Element) => Element.tech)
+              .reduce((list, sub) => list.concat(sub), [])
+              .filter((Element, index, self) => index === self.indexOf(Element))
+              .map((Element) => {
+                return <option value={Element}>{Element}</option>;
+              })}
           </select>
           <select
             onChange={(event) => setSelectSalary(event.target.value)}
