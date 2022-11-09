@@ -27,18 +27,25 @@ const JobsAdminStyle = styled.div`
     min-width: 120px;
   }
 
+  .borderForm {
+    border: 1px solid var(--color-primary);
+  }
+
   form {
     display: flex;
     gap: 10px;
-    border: 1px solid var(--color-primary);
     padding: 5px;
     border-radius: 8px;
     box-sizing: border-box;
+    flex-wrap: wrap;
+    height: fit-content;
+    align-content: flex-start;
+    align-items: center;
   }
 
   input {
     padding: 10px;
-    width: 90%;
+    width: 70%;
     border-radius: 8px;
     margin: 0 auto;
     outline: none;
@@ -51,6 +58,7 @@ const JobsAdminStyle = styled.div`
     border: 1px solid var(--color-primary);
     border-radius: 5px;
     transition: 0.5s;
+    height: 40px;
 
     :hover {
       background-color: var(--color-white);
