@@ -72,7 +72,7 @@ export const ProfileContext = createContext<IProfileContext>(
           }
           catch (error) {
             console.log(error)
-            
+            toast.error("Opa! Algo deu errado...");
           }
         }
         
@@ -109,7 +109,6 @@ export const ProfileContext = createContext<IProfileContext>(
         toast.error("Opa! Algo deu errado...");
       }
 
-      console.log(body)
         
       if (body.bio === "") {
         delete body.bio;
@@ -144,8 +143,6 @@ export const ProfileContext = createContext<IProfileContext>(
         console.log(error);
         toast.error("Opa! Algo deu errado...");
       }
-
-      console.log(body);
     }
 
     return (

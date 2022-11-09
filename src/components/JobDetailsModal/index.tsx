@@ -35,10 +35,6 @@ const JobDetailsModal = ({ jobID, setShowModal }: IJobDetailsModalProps) => {
     getSpecificJob();
   }, []);
 
-  // function apply() {
-  //   setSaveJob(!saveJob);
-  //   // setShowModal(false);
-  // }
 
   return (
     <DivModal>

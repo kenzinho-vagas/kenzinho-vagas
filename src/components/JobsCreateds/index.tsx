@@ -9,17 +9,13 @@ const JobsCreateds = () => {
   const { adminJobs, listJobs, listFilteredAdmin, filterValidationAdmin } =
     useContext(JobContext);
 
-  useEffect(() => {
-    listJobs();
-  }, []);
-
   return (
     <ListJobsAdmin>
       <h2>Vagas criadas</h2>
       <ul>
         {filterValidationAdmin === true ? (
           listFilteredAdmin[0] !== undefined ? (
-            listFilteredAdmin &&
+            
             listFilteredAdmin.map((elem: IFormVagas) => Card(elem))
           ) : (
             <NoVacanciesFound />

@@ -13,17 +13,21 @@ import { useState } from "react";
 import { Loading } from "./loading";
 
 const DashboardAdmin = () => {
-  const { jobId, editModal } = useContext(JobContext);
+  const { jobId, editModal, listJobs } = useContext(JobContext);
   const [admin, setAdmin] = useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    listJobs();
+  }, []);
 
   async function isAdmin() {
     const id = localStorage.getItem("@kenzinhoVagas:id");
     try {
       const { data } = await api.get(`users/${id}`);
       if (!data.isAdmin) {
-        console.log("nao é admin");
+        
         return navigate("/dashboardUser");
       } else {
         setAdmin(true);

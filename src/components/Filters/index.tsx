@@ -8,11 +8,6 @@ const Filters = () => {
   const { writtenSearch } = useContext(JobContext);
   const [valueSeacrh, setValueSeacrh] = useState("");
 
-  // function filterCard(event: React.ChangeEvent<HTMLInputElement>) {
-  //   event.preventDefault();
-  //   setSearch(event.target.value);
-  // }
-
   const filterCard = (value: string) => {
     writtenSearch(value);
   };
@@ -32,21 +27,10 @@ const Filters = () => {
               <input
                 type="text"
                 placeholder="Pesquisar"
-                // value={search}
                 onChange={(event) => setValueSeacrh(event.target.value)}
               />
               <button>Buscar</button>
             </form>
-            {/* <AiOutlineSearch /> */}
-            {/* <div className="searchBar">
-          <div className="searchBarInput">
-            <input
-              type="text"
-              placeholder="Pesquisar"
-              value={search}
-              onChange={(event) => filterCard(event)}
-            />
-            <AiOutlineSearch /> */}
           </div>
         </div>
       </DivFilters>

@@ -38,12 +38,6 @@ const Cards = ({ title }: ICardsProps) => {
   ) : (
     <Lists objectArray={savedJobs} title={title} />
   );
-
-  // return title === "Todas as vagas" ? (
-  //   <Lists objectArray={writtenSearch} title={title} />
-  // ) : (
-  //   <Lists objectArray={savedJobs} title={title} />
-  // );
 };
 
 export default Cards;
