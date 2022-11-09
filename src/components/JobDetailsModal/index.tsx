@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "../../styles/JobDetailsModal/style";
+import { DivModal } from "../Modal";
 import Wage from "../../img/wage.png";
 import Local from "../../img/localization.png";
 import Xp from "../../img/xp.png";

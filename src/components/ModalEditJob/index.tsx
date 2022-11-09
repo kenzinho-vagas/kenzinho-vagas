@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import { JobContext, IFormVagas } from "../../contexts/JobContext";
 import { IEditJobForm } from "../CreateJob";
-import { ModalEditStyle } from "../../styles/Modal";
+import { ModalEditStyle } from "../Modal";
 import api from "../../services/api";
 
 const ModalEdit = () => {

@@ -1,12 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
+import { DivForm, DivModal } from "../Modal";
 import {
   IEditeProfile,
   IProfileContext,
   ProfileContext,
 } from "../../contexts/UserContext";
-import { DivForm, DivModal } from "../../styles/Modal";
 import { CgCloseO } from "react-icons/cg";
 import * as yup from "yup";
 
