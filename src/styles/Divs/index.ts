@@ -187,6 +187,7 @@ export const DivFilters = styled.div`
 
         input {
           border: transparent;
+          outline: none;
         }
       }
     }
