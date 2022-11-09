@@ -18,6 +18,7 @@ function JobsAdmin() {
         onSubmit={(event) => (
           event.preventDefault(), filteredCard(searchValue)
         )}
+        className="borderForm"
       >
         <input
           type="text"

@@ -13,6 +13,19 @@ const Global = createGlobalStyle`
         --text-color1: #2C2C2C;
         --text-color2: #1E1E1E;
         --text-yup-color: #FFB84E;
+        
+    }
+
+    ::-webkit-scrollbar {
+      background-color: transparent;
+      width: 12px;
+      height: 8px;
+      padding: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 8px;
     }
 
     /* http://meyerweb.com/eric/tools/css/reset/ 
