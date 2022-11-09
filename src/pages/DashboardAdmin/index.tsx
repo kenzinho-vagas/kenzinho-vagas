@@ -23,7 +23,7 @@ const DashboardAdmin = () => {
     try {
       const { data } = await api.get(`users/${id}`);
       if (!data.isAdmin) {
-        console.log("nao é admin");
+        
         return navigate("/dashboardUser");
       } else {
         setAdmin(true);

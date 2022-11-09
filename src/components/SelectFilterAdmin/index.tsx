@@ -23,7 +23,6 @@ const SelectFilterAdmin = () => {
         }}
         action=""
       >
-        {/* <div className="filterLeft"> */}
         <select
           onChange={(event) => setSelectTechAdm(event.target.value)}
           id="tecnologies"
@@ -41,20 +40,17 @@ const SelectFilterAdmin = () => {
           defaultValue={"default"}
         >
           <option value="">Tipo</option>
-          {/* <option value="Remoto">Remoto</option>
-          <option value="Híbrido">Hibrido</option>
-          <option value="Presencial">Presencial</option> */}
           <option value="Rem">Remoto</option>
           <option value="Híb">Hibrido</option>
           <option value="Pre">Presencial</option>
         </select>
-        {/* </div> */}
-        {/* <div className="filterRight"> */}
+
         <select
           onChange={(event) => setSelectSalaryAdm(event.target.value)}
           id="salary"
+          defaultValue={"default"}
         >
-          <option value="" selected>
+          <option value={"default"} disabled>
             Salário
           </option>
           <option value="0">R$0 a R$5.000</option>
@@ -64,17 +60,6 @@ const SelectFilterAdmin = () => {
           <option value="20000">R$20.000 a R$25.000</option>
           <option value="25000">R$25.000 a R$30.000</option>
         </select>
-        {/* <select
-        onChange={(event) => setSelectCompanyAdm(event.target.value)}
-        id="company"
-      >
-        <option value="" selected>
-          Empresa
-        </option>
-        <option value="microsoft">Microsoft</option>
-        <option value="google">Google</option>
-      </select> */}
-        {/* </div> */}
         <button>Filtrar</button>
       </form>
     </div>

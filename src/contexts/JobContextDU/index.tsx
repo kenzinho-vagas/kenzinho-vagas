@@ -219,7 +219,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       api.defaults.headers.authorization = `Bearer ${token}`;
 
       const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
-      console.log("67");
+      
       setSavedJobs(data);
     } catch (error) {
       console.error(error);

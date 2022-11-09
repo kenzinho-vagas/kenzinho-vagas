@@ -15,7 +15,6 @@ const ModalEdit = () => {
         register,
           handleSubmit,
       } = useForm<IEditJobForm>({
-        // resolver: yupResolver(formSchema),
       });
 
     async function getJob() {
