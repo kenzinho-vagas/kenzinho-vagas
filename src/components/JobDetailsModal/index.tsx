@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useEffect } from "react";
 import { IJobsProps } from "../Cards";
-import { notifySuccess, notifyError } from "../../toast";
 import { DivModal } from "../../styles/Modal";
 import { ButtonPurple, ButtonWhite } from "../../styles/Buttons";
 import { DivModaldetails } from "./style";

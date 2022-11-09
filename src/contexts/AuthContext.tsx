@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import { notifyError } from "../toast";
 
 export interface IUser {
   id: number;
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser>({} as IUser);
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUser() {
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
           setUser(data);
         } catch (error) {
           console.error(error);
-          toast.error("Opa! Algo deu errado...");
+          notifyError();
         }
       }
       setLoading(false);
@@ -83,10 +84,10 @@ export const AuthProvider = ({ children }: IAuthContext) => {
         ? navigate("/dashboardAdmin", { replace: true })
         : navigate("/dashboardUser", { replace: true });
 
-        setLoading(true)
+      setLoading(true);
     } catch (error) {
       console.error(error);
-      toast("Algo deu errado! :(");
+      notifyError();
     }
   }
   async function registerUser(data: IUser) {
@@ -96,7 +97,7 @@ export const AuthProvider = ({ children }: IAuthContext) => {
       navigate("/login");
     } catch (error) {
       console.error(error);
-      toast("Algo deu errado! :(");
+      notifyError();
     }
   }
 
