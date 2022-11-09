@@ -35,8 +35,12 @@ const SelectFilterAdmin = () => {
             .map((Element) => Element.tech)
             .reduce((list, sub) => list.concat(sub), [])
             .filter((Element, index, self) => index === self.indexOf(Element))
-            .map((Element) => {
-              return <option value={Element}>{Element}</option>;
+            .map((Element, index) => {
+              return (
+                <option key={index} value={Element}>
+                  {Element}
+                </option>
+              );
             })}
         </select>
         <select
@@ -55,9 +59,7 @@ const SelectFilterAdmin = () => {
           id="salary"
           defaultValue={"default"}
         >
-          <option value={"default"} disabled>
-            Salário
-          </option>
+          <option value={"default"}>Salário</option>
           <option value="0">R$0 a R$5.000</option>
           <option value="5000">R$5.000 a R$10.000</option>
           <option value="10000">R$10.000 a R$15.000</option>

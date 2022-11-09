@@ -33,8 +33,12 @@ const SelectFilter = () => {
               .map((Element) => Element.tech)
               .reduce((list, sub) => list.concat(sub), [])
               .filter((Element, index, self) => index === self.indexOf(Element))
-              .map((Element) => {
-                return <option value={Element}>{Element}</option>;
+              .map((Element, index) => {
+                return (
+                  <option key={index} value={Element}>
+                    {Element}
+                  </option>
+                );
               })}
           </select>
           <select
