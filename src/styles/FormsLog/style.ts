@@ -41,14 +41,20 @@ export const FormsLog = styled.form`
 
   .buttonForm1 {
     border-radius: 8px;
-    border: 1px solid var(--grey-2);
-    background-color: var(--color-button);
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-white);
+    color: var(--color-primary);
     margin: 10px;
     font-weight: bold;
-    color: var(--text-color1);
+    transition: all 0.5s ease-in;
     cursor: pointer;
     font-size: 15px;
     padding: 10px;
+  }
+  .buttonForm1:hover {
+    border: 1px solid var(--color-secundary);
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
   }
 
   .buttonForm2 {
@@ -59,7 +65,14 @@ export const FormsLog = styled.form`
     border: 1px solid var(--grey-2);
     padding: 10px;
     font-weight: bold;
+    transition: all 0.5s ease-in;
     color: var(--text-color1);
+  }
+
+  .buttonForm2:hover {
+    border: 1px solid var(--color-secundary);
+    background-color: var(--color-secundary);
+    color: var(--color-primary);
   }
 
   a {
@@ -75,7 +88,6 @@ export const FormsLog = styled.form`
     .divFormCad {
       flex-direction: column;
       gap: 0px;
-      
     }
   }
   input,
