@@ -14,6 +14,11 @@ export const FormsLog = styled.form`
   margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+  .error{
+    font-size: 12px;
+    margin-left:10px;
+    color: var(--grey-3);
+  }
   .divFormCad {
     display: flex;
     gap: 20px;
@@ -47,6 +52,7 @@ export const FormsLog = styled.form`
     margin: 10px;
     font-weight: bold;
     transition: all 0.5s ease-in;
+    color: var(--text-color1);
     cursor: pointer;
     font-size: 15px;
     padding: 10px;

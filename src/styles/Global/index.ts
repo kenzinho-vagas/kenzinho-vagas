@@ -16,6 +16,18 @@ const Global = createGlobalStyle`
         
     }
 
+    ::-webkit-scrollbar {
+      background-color: transparent;
+      width: 12px;
+      height: 8px;
+      padding: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--color-primary);
+      border-radius: 8px;
+    }
+
     /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
