@@ -6,11 +6,8 @@ import Main from "../../components/Main";
 import ProfileModal from "../../components/ProfileModal";
 import Welcome from "../../components/Welcome";
 
-
-
 const DashboardUser = () => {
   const {profileUser, isProfileModal} = useContext<IProfileContext>(ProfileContext)
- 
 
   return (
     <>
