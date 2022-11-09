@@ -49,141 +49,116 @@ export interface IEditeProfile {
 
 export const ProfileContext = createContext<IProfileContext>(
   {} as IProfileContext
-);
+  )
+  
+  
+  
+  export const ProfileProvider = ({ children }: IProfileContextProps) => {
+    const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
+    const [isProfileModal, setProfileModal] = useState<boolean>(false)
+    
+    const { loading } = useContext<IUserContext>(AuthContext)
 
-export const ProfileProvider = ({ children }: IProfileContextProps) => {
-  const [profileUser, setProfileUser] = useState<IUserProfile | null>(null);
-  const [isProfileModal, setProfileModal] = useState<boolean>(false);
+    useEffect(() => {
+      async function getProfile() {
+        const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+        const userId = localStorage.getItem("@kenzinhoVagas:id")
 
-  const { loading } = useContext<IUserContext>(AuthContext);
+        if (token) {
+          try {
+            api.defaults.headers.authorization = `Bearer ${token}`;
+            const { data } = await api.get<IUserProfile>(`/users/${userId}`)
+            setProfileUser(data)
+          }
+          catch (error) {
+            console.log(error)
+            
+          }
+        }
+        
+      }
+      getProfile()
+    }, [loading])
 
-  useEffect(() => {
-    async function getProfile() {
-      const token = localStorage.getItem("@kenzinhoVagas:accessToken");
-      const userId = localStorage.getItem("@kenzinhoVagas:id");
+    async function editeProfile(body: IEditeProfile) {
+      const userId = localStorage.getItem("@kenzinhoVagas:id")
+      const token = localStorage.getItem("@kenzinhoVagas:accessToken")
+
+      if (body.bio === "") {
+        delete body.bio
+      }
+      if (body.level === "") {
+        delete body.level
+      }
+      if (body.specialty === "") {
+        delete body.specialty
+      }
+
+      try {
+        api.defaults.headers.authorization = `Bearer ${token}`
+
+        const { data } = await api.patch(`/users/${userId}`, body)
+        setProfileUser(data)
+        toast.success("Perfil editado com Sucesso!!")
+        setProfileModal(!isProfileModal)
+      }
+
+      catch (error) {
+
+        console.log(error)
+        toast.error("Opa! Algo deu errado...");
+      }
+
+      console.log(body)
+        
+      if (body.bio === "") {
+        delete body.bio;
+      }
+      if (body.level === "") {
+        delete body.level;
+      }
+      if (body.specialty === "") {
+        delete body.specialty;
+      }
 
       try {
         api.defaults.headers.authorization = `Bearer ${token}`;
-        const { data } = await api.get<IUserProfile>(`/users/${userId}`);
+
+        const { data } = await api.patch(`/users/${userId}`, body);
         setProfileUser(data);
+        toast.success("Perfil editado com Sucesso!!");
+        setProfileModal(!isProfileModal);
       } catch (error) {
         console.log(error);
+        toast.error("Opa! Algo deu errado...");
       }
-    }
-    getProfile();
-  }, [loading]);
 
-  async function editeProfile(body: IEditeProfile) {
-    const userId = localStorage.getItem("@kenzinhoVagas:id");
-    const token = localStorage.getItem("@kenzinhoVagas:accessToken");
+      try {
+        api.defaults.headers.authorization = `Bearer ${token}`;
 
-export const ProfileContext = createContext<IProfileContext>({} as IProfileContext)
+        const { data } = await api.patch(`/users/${userId}`, body);
+        setProfileUser(data);
+        toast.success("Perfil editado com Sucesso!!");
+        setProfileModal(!isProfileModal);
+      } catch (error) {
+        console.log(error);
+        toast.error("Opa! Algo deu errado...");
+      }
 
-export const ProfileProvider = ({children}: IProfileContextProps) => {
-    const [profileUser, setProfileUser] = useState<IUserProfile | null>(null)
-    const [isProfileModal, setProfileModal] = useState<boolean>(false)
-
-    const {loading} = useContext<IUserContext>(AuthContext)
-
-    useEffect(() =>{
-        async function getProfile () {
-            const token = localStorage.getItem("@kenzinhoVagas:accessToken")
-            const userId = localStorage.getItem("@kenzinhoVagas:id")
-
-            if (token) {
-                try {
-                    api.defaults.headers.authorization = `Bearer ${token}`;
-                    const {data} = await api.get<IUserProfile>(`/users/${userId}`)
-                    setProfileUser(data)
-                }
-                catch (error){
-                    console.log(error)
-                    
-                }
-            }
-          
-        }
-        getProfile()
-    }, [loading])
-
-    async function editeProfile (body: IEditeProfile) {
-        const userId = localStorage.getItem("@kenzinhoVagas:id")
-        const token = localStorage.getItem("@kenzinhoVagas:accessToken")
-
-        if (body.bio === "") {
-            delete body.bio
-        }
-        if (body.level === "") {
-            delete body.level
-        }
-        if (body.specialty === "") {
-            delete body.specialty
-        }
-
-        try {
-            api.defaults.headers.authorization = `Bearer ${token}`
-
-            const {data} = await api.patch(`/users/${userId}`, body)
-            setProfileUser(data)
-            toast.success("Perfil editado com Sucesso!!")
-            setProfileModal(!isProfileModal)
-        }
-
-        catch (error) {
-            console.log(error)
-            toast.error("Opa! Algo deu errado...");
-        }
-
-        console.log(body)
-        
-    if (body.bio === "") {
-      delete body.bio;
-    }
-    if (body.level === "") {
-      delete body.level;
-    }
-    if (body.specialty === "") {
-      delete body.specialty;
+      console.log(body);
     }
 
-    try {
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      const { data } = await api.patch(`/users/${userId}`, body);
-      setProfileUser(data);
-      toast.success("Perfil editado com Sucesso!!");
-      setProfileModal(!isProfileModal);
-    } catch (error) {
-      console.log(error);
-      toast.error("Opa! Algo deu errado...");
-    }
-
-    try {
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      const { data } = await api.patch(`/users/${userId}`, body);
-      setProfileUser(data);
-      toast.success("Perfil editado com Sucesso!!");
-      setProfileModal(!isProfileModal);
-    } catch (error) {
-      console.log(error);
-      toast.error("Opa! Algo deu errado...");
-    }
-
-    console.log(body);
-  }
-
-  return (
-    <ProfileContext.Provider
-      value={{
-        profileUser,
-        setProfileUser,
-        isProfileModal,
-        setProfileModal,
-        editeProfile,
-      }}
-    >
-      {children}
-    </ProfileContext.Provider>
-  );
-};
+    return (
+      <ProfileContext.Provider
+        value={{
+          profileUser,
+          setProfileUser,
+          isProfileModal,
+          setProfileModal,
+          editeProfile,
+        }}
+      >
+        {children}
+      </ProfileContext.Provider>
+    );
+  };
