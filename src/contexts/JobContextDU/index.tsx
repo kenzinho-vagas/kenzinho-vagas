@@ -62,14 +62,14 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       if (saveJob) {
         try {
           const body = specificJob[0];
-          console.log(body);
+          
           if (body.id) {
             delete body.id;
           }
           const userID = localStorage.getItem("@kenzinhoVagas:id");
           body.userId = Number(userID);
           const { data } = await api.get<IFormVagas[]>(`/users/${userID}/jobs`);
-          console.log(data);
+          
           const alreadyExist = data.findIndex(
             (elem: any) =>
               elem.company_name === body.company_name &&
@@ -77,7 +77,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
               elem.salary === body.salary &&
               elem.specialty === body.specialty
           );
-          console.log(alreadyExist);
+          
           if (alreadyExist === -1) {
             await api.post(`/users/${userID}/jobs`, body);
             notifySuccess();
@@ -85,7 +85,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
             setSaveJob(false);
           } else {
             notifyError();
-            console.log("achou");
+            
           }
         } catch (error) {
           console.error(error);
@@ -95,13 +95,6 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
     postSpecificJob();
   }, [saveJob]);
 
-  //filtro do neto antes -----------------------------------------------------------------------------
-  // const writtenSearch = allJobs.filter(
-  //   (vacancies) =>
-  //     vacancies.company_name.toLowerCase().includes(search.toLowerCase()) ||
-  //     vacancies.specialty.toLowerCase().includes(search.toLowerCase())
-  // );
-  //filtro do neto antes -----------------------------------------------------------------------------
 
   const writtenSearch = (search: string) => {
     const resultSearch = allJobs.filter(
@@ -226,7 +219,7 @@ export const JobProvider = ({ children }: IJobCountextProps) => {
       api.defaults.headers.authorization = `Bearer ${token}`;
 
       const { data } = await api.get<IJobsProps[]>(`/users/${userID}/jobs`);
-      console.log("67");
+      
       setSavedJobs(data);
     } catch (error) {
       console.error(error);
